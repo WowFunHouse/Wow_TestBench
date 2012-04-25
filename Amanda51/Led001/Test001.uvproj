@@ -352,6 +352,11 @@
               <FileType>1</FileType>
               <FilePath>.\led001.c</FilePath>
             </File>
+            <File>
+              <FileName>led002.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\led002.c</FilePath>
+            </File>
           </Files>
         </Group>
       </Groups>
