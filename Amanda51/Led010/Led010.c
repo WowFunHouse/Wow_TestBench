@@ -1,10 +1,16 @@
 #include <STC89.H>
 
+unsigned char led(unsigned char n)
+{
+	n=~n;
+	return n;
+}
+
 void delay(void)
 {
 	unsigned int	a;
 
-	for(a=0; a<10000; a++);
+	for(a=0; a<60000; a++);
 
 }
 
@@ -15,7 +21,7 @@ void main(void)
 	a=0;
 	for(;;)
 	{
-		P0=a++;
+		P0=led(a++);
 		delay();
 	}
 }
