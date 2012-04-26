@@ -9,6 +9,12 @@
 	return n;  	
  }
 
+void delay(unsigned int t)
+{
+	unsigned int a;
+	for (a=0; a<t; a++);
+}
+
 void delaya(void)
 {
 	unsigned int a;
@@ -33,18 +39,20 @@ void main(void)
 	for(;;)
 	{
 		P0=led(a);
-		delaya();
+		delay(ALOOPS);
 
 		P0=led(0);
-		delayb();
+		delay(30000);
 		P0=led(3);
-		delayb();
+		delay(15000);
 		P0=led(12);
-		delayb();
+		delay(7500);
 		P0=led(48);
-		delayb();
+		delay(3500);
 		P0=led(192);
-		delayb();
+		delay(1750);
+		P0=led(0);
+		delay(800);
 
 		a++;
 	}
