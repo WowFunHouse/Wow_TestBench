@@ -34,8 +34,18 @@ void main(void)
 	{
 		P0=led(a);
 		delaya();
+
 		P0=led(0);
 		delayb();
+		P0=led(3);
+		delayb();
+		P0=led(12);
+		delayb();
+		P0=led(48);
+		delayb();
+		P0=led(192);
+		delayb();
+
 		a++;
 	}
 }
