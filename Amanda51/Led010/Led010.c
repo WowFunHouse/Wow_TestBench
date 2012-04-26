@@ -1,6 +1,6 @@
 #include <STC89.H>
 
-#define LOOPS 10000
+#define LOOPS 50000
 
 unsigned char led(unsigned char n)
 {
@@ -23,7 +23,10 @@ void main(void)
 	a=0;
 	for(;;)
 	{
-		P0=led(a++);
+		P0=led(a);
 		delay();
+		P0=led(0);
+		delay();
+		a++;
 	}
 }
