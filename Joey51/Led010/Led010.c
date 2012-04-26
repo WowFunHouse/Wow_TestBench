@@ -1,6 +1,7 @@
 #include <STC89.H>
 
-#define	LOOPS	30000
+#define	ALOOPS	50000
+#define	BLOOPS	30000
 
  unsigned char led(unsigned char n)
  {
@@ -8,11 +9,19 @@
 	return n;  	
  }
 
-void delay(void)
+void delaya(void)
 {
 	unsigned int a;
 
-	for (a=0; a< LOOPS; a++);
+	for (a=0; a< ALOOPS; a++);
+}
+
+
+  void delayb(void)
+{
+	unsigned int a;
+
+	for (a=0; a< BLOOPS; a++);
 }
 
 
@@ -24,9 +33,9 @@ void main(void)
 	for(;;)
 	{
 		P0=led(a);
-		delay();
+		delaya();
 		P0=led(0);
-		delay();
+		delayb();
 		a++;
 	}
 }
