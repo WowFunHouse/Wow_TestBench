@@ -7,7 +7,7 @@ char led(char g)
 
 void main(void)
 {
-	int x;
+	int x;          /* Ms: 應該用 char 型態 (1-Byte), int 是 2-byte 的 */
 
 	P2=0xFF;
 	for(;;)
