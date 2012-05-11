@@ -1,6 +1,6 @@
 #include <STC89.H>
 
-char led(char x)
+int led(int x)
 {
 	return	~x;
 }
@@ -14,7 +14,7 @@ void delay(int t)
 
 void swicha(void)
 {
-	int 	a;
+	char	a;
 	int		n;
 
 	a=0x01;
@@ -30,12 +30,12 @@ void swicha(void)
 
 void swichb(void)
 {
-	int 	a;
+	char	a;
 	int		n;
 
 	a=0x80;
 
-	// for(;;){
+	//for(;;){
 		for(n=0; n<=8; n++)
 		{
 			P0=led(a>>n);
@@ -46,7 +46,7 @@ void swichb(void)
 
 void swichc(void)
 {
-	// for(;;){
+	//for(;;){
 		P0=led(0x81);
 		delay(20000);
 		P0=led(0x42);
@@ -60,7 +60,7 @@ void swichc(void)
 
 void swichd(void)
 {
-	// for(;;){
+	//for(;;){
 		P0=led(0x18);
 		delay(20000);
 		P0=led(0x24);
@@ -74,7 +74,7 @@ void swichd(void)
 
 void main(void)
 {
-	int		x;
+	char	x;
 
 	P2=0xFF;
 
@@ -88,6 +88,6 @@ void main(void)
 		else if	(x==0x0B)		swichc();
 		else if	(x==0x07)		swichd();
 
-		else					P0=led(0x00);
+		else 					P0=led(0x00);
 	}
 }
