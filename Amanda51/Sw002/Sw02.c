@@ -1,6 +1,10 @@
 #include <STC89.H>
 
+<<<<<<< HEAD
 int led(int x)
+=======
+char led(char x)        // Ms: You define the parameter as char type here
+>>>>>>> ce849c292f3360223c03ce84613c641d2215eac7
 {
 	return	~x;
 }
@@ -30,7 +34,11 @@ void swicha(void)
 
 void swichb(void)
 {
+<<<<<<< HEAD
 	char	a;
+=======
+	int 	a;      // Ms: Should use char type, instead of int
+>>>>>>> ce849c292f3360223c03ce84613c641d2215eac7
 	int		n;
 
 	a=0x80;
@@ -74,8 +82,13 @@ void swichd(void)
 
 void main(void)
 {
+<<<<<<< HEAD
 	char	x;
 
+=======
+	int		x;          /* Ms: Should use char type (1-byte) instead of int (2-byte) */
+    
+>>>>>>> ce849c292f3360223c03ce84613c641d2215eac7
 	P2=0xFF;
 
 	for(;;)
