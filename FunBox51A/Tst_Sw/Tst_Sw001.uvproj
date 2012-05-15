@@ -346,6 +346,18 @@
       <Groups>
         <Group>
           <GroupName>Source Group 1</GroupName>
+          <Files>
+            <File>
+              <FileName>Tst_local.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\Tst_local.c</FilePath>
+            </File>
+            <File>
+              <FileName>sw001.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\sw001.c</FilePath>
+            </File>
+          </Files>
         </Group>
       </Groups>
     </Target>
