@@ -352,6 +352,11 @@
               <FileType>1</FileType>
               <FilePath>.\led001.c</FilePath>
             </File>
+            <File>
+              <FileName>tst_local.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\tst_local.c</FilePath>
+            </File>
           </Files>
         </Group>
       </Groups>
