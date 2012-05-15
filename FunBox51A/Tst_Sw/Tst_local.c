@@ -4,5 +4,8 @@
 
 void main()
 {
+ for (;;)
+ {
 	P0 = ~getsw();
+ }
 }
