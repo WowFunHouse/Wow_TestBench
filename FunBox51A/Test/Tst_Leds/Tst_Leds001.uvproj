@@ -346,6 +346,18 @@
       <Groups>
         <Group>
           <GroupName>Source Group 1</GroupName>
+          <Files>
+            <File>
+              <FileName>led001.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\led001.c</FilePath>
+            </File>
+            <File>
+              <FileName>tst_local.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\tst_local.c</FilePath>
+            </File>
+          </Files>
         </Group>
       </Groups>
     </Target>
