@@ -47,7 +47,7 @@
           <OutputName>Tst_Sw001</OutputName>
           <CreateExecutable>1</CreateExecutable>
           <CreateLib>0</CreateLib>
-          <CreateHexFile>0</CreateHexFile>
+          <CreateHexFile>1</CreateHexFile>
           <DebugInformation>1</DebugInformation>
           <BrowseInformation>1</BrowseInformation>
           <ListingPath>.\</ListingPath>
@@ -353,9 +353,9 @@
               <FilePath>.\Tst_local.c</FilePath>
             </File>
             <File>
-              <FileName>sw001.c</FileName>
+              <FileName>sw002.c</FileName>
               <FileType>1</FileType>
-              <FilePath>.\sw001.c</FilePath>
+              <FilePath>.\sw002.c</FilePath>
             </File>
           </Files>
         </Group>
