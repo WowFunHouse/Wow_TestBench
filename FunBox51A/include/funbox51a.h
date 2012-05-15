@@ -9,7 +9,7 @@
 unsigned char getsw(void);
 
 // Display different patterns on LEDs
-void ledptn(unsigned pattern);
+void ledptn(unsigned char pattern);
 
 // Make different sounds from Beeper
-void beepsnd(unsigned freq, unsigned length);
+void beepsnd(unsigned char freq, unsigned char length);
