@@ -346,6 +346,18 @@
       <Groups>
         <Group>
           <GroupName>Source Group 1</GroupName>
+          <Files>
+            <File>
+              <FileName>Beep001.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\Beep001.c</FilePath>
+            </File>
+            <File>
+              <FileName>bp_local.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\bp_local.c</FilePath>
+            </File>
+          </Files>
         </Group>
       </Groups>
     </Target>
