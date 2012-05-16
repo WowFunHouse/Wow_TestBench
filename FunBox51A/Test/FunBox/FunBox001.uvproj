@@ -348,9 +348,29 @@
           <GroupName>Source Group 1</GroupName>
           <Files>
             <File>
-              <FileName>masterctrl001.c</FileName>
+              <FileName>Beep001.c</FileName>
               <FileType>1</FileType>
-              <FilePath>.\masterctrl001.c</FilePath>
+              <FilePath>..\Tst_Beep\Beep001.c</FilePath>
+            </File>
+            <File>
+              <FileName>led001.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\Tst_Leds\led001.c</FilePath>
+            </File>
+            <File>
+              <FileName>sw003.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\Tst_Sw\sw003.c</FilePath>
+            </File>
+            <File>
+              <FileName>funbox_main001.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\funbox_main001.c</FilePath>
+            </File>
+            <File>
+              <FileName>lib001.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\Library\lib001.c</FilePath>
             </File>
           </Files>
         </Group>
