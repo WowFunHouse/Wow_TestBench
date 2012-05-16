@@ -12,4 +12,4 @@ unsigned char getsw(void);
 void ledptn(unsigned char pattern);
 
 // Make different sounds from Beeper
-void beepsnd(unsigned char freq, unsigned char length);
+void beepsnd(unsigned int freq, unsigned int length);
