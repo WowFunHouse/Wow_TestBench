@@ -367,16 +367,21 @@
               <FileType>1</FileType>
               <FilePath>..\Library\lib001.c</FilePath>
             </File>
-          </Files>
-        </Group>
-        <Group>
-          <GroupName>Devices</GroupName>
-          <Files>
             <File>
               <FileName>device_led.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\Library\device_led.c</FilePath>
             </File>
+            <File>
+              <FileName>device_beeper.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\Library\device_beeper.c</FilePath>
+            </File>
+          </Files>
+        </Group>
+        <Group>
+          <GroupName>Devices</GroupName>
+          <Files>
             <File>
               <FileName>sw_A001.c</FileName>
               <FileType>1</FileType>
