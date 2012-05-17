@@ -4,28 +4,67 @@
 
 void ledptn(unsigned char pattern)
 {
- unsigned int t;
+	unsigned int	t;
 
- if (pattern == 1)
- {
-  	P0 = 0x80;
-	for (t=0; t<10000; t++);
-	P0 = 0x40;
- 	for (t=0; t<10000; t++);
-	P0 = 0x20;
-	for (t=0; t<10000; t++);
-	P0 = 0x10;
-  	for (t=0; t<10000; t++);
- }
- else if (pattern == 2)
- {
- }
- else if (pattern == 3)
- {
- }
- else if (pattern == 4)
- {
- }
-
+	if (pattern == 1)
+ 	{
+		P0 = 0x80;
+		delayms(500);
+  		P0 = 0x40;
+		delayms(500);
+  		P0 = 0x20;
+		delayms(500);
+  		P0 = 0x10;
+		delayms(500);
+  		P0 = 0x08;
+		delayms(500);
+  		P0 = 0x04;
+		delayms(500);
+  		P0 = 0x02;
+		delayms(500);
+  		P0 = 0x01;
+		delayms(500);
+ 	}
+ 	else if (pattern == 2)
+ 	{
+		P0 = 0x01;
+		delayms(500);
+  		P0 = 0x02;
+		delayms(500);
+  		P0 = 0x04;
+		delayms(500);
+  		P0 = 0x08;
+		delayms(500);
+  		P0 = 0x10;
+		delayms(500);
+  		P0 = 0x20;
+		delayms(500);
+  		P0 = 0x40;
+		delayms(500);
+  		P0 = 0x80;
+		delayms(500);
+ 	}
+	else if (pattern == 3)
+ 	{
+		P0 = 0x81;
+		delayms(500);
+  		P0 = 0x42;
+		delayms(500);
+  		P0 = 0x24;
+		delayms(500);
+  		P0 = 0x18;
+		delayms(500);
+ 	}
+	else if (pattern == 4)
+	{
+		P0 = 0x18;
+		delayms(500);
+  		P0 = 0x24;
+		delayms(500);
+  		P0 = 0x42;
+		delayms(500);
+  		P0 = 0x81;
+		delayms(500);
+	}
+	else	P0=0x00;
 }
-
