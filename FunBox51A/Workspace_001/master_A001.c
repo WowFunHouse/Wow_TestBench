@@ -1,6 +1,6 @@
 #include <STC89.H>
-#include "../../include/library.h"
-#include "../../include/funbox51a.h"
+#include "../include/library.h"
+#include "../include/funbox51a.h"
 
 void main(void)
 {
@@ -16,4 +16,4 @@ void main(void)
 			delay(10000);
 		}
 	}
-}
+} /* main */
