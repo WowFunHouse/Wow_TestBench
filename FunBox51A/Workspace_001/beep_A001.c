@@ -4,12 +4,14 @@
 
 void beepsnd(unsigned int freq, unsigned int length)
 {
-	unsigned int d, n;
+	unsigned int  n;
 
-	P3 = 0x00;						// Turn on the Beeper		
-	for (n=1; n<=length; n++)
+	P3 = 0x00;
+
+	for (n=1; n<=length; n++)	   // Turn on the Beeper
 	{
-		for (d=0; d<100; d++);
+		delayms(500);
+//		for (d=0; d<100; d++);
 	}
 	P3 = 0x10;						// Turn off the Beeper
 }
