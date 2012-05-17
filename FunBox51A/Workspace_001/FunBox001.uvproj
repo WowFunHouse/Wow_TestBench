@@ -49,7 +49,7 @@
           <CreateLib>0</CreateLib>
           <CreateHexFile>1</CreateHexFile>
           <DebugInformation>1</DebugInformation>
-          <BrowseInformation>1</BrowseInformation>
+          <BrowseInformation>0</BrowseInformation>
           <ListingPath>.\</ListingPath>
           <HexFormatSelection>0</HexFormatSelection>
           <Merge32K>0</Merge32K>
@@ -164,7 +164,7 @@
             <DriverSelection>-1</DriverSelection>
           </Flash1>
           <Flash2></Flash2>
-          <Flash3></Flash3>
+          <Flash3>"" ()</Flash3>
           <Flash4></Flash4>
         </Utilities>
         <Target51>
@@ -366,6 +366,11 @@
               <FileName>lib001.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\Library\lib001.c</FilePath>
+            </File>
+            <File>
+              <FileName>device_led.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\Library\device_led.c</FilePath>
             </File>
           </Files>
         </Group>

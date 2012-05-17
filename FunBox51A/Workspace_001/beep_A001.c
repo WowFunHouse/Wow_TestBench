@@ -5,7 +5,7 @@
 void beepsnd(unsigned int freq, unsigned int length)
 {
 	unsigned int  n;
-
+return;					// ***Amanda Bug Test
 	P3 = 0x00;
 
 	for (n=1; n<=length; n++)	   // Turn on the Beeper
