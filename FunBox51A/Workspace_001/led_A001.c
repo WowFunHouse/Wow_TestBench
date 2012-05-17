@@ -1,6 +1,6 @@
 #include <STC89.H>
-
-#include "../../include/funbox51a.h"
+#include "../include/library.h"
+#include "../include/funbox51a.h"
 
 void ledptn(unsigned char pattern)
 {

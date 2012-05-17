@@ -47,7 +47,7 @@
           <OutputName>FunBox001</OutputName>
           <CreateExecutable>1</CreateExecutable>
           <CreateLib>0</CreateLib>
-          <CreateHexFile>0</CreateHexFile>
+          <CreateHexFile>1</CreateHexFile>
           <DebugInformation>1</DebugInformation>
           <BrowseInformation>1</BrowseInformation>
           <ListingPath>.\</ListingPath>
@@ -345,32 +345,47 @@
       </TargetOption>
       <Groups>
         <Group>
-          <GroupName>Source Group 1</GroupName>
+          <GroupName>Controller</GroupName>
           <Files>
             <File>
-              <FileName>Beep001.c</FileName>
+              <FileName>master_A001.c</FileName>
               <FileType>1</FileType>
-              <FilePath>..\Tst_Beep\Beep001.c</FilePath>
+              <FilePath>.\master_A001.c</FilePath>
             </File>
+          </Files>
+        </Group>
+        <Group>
+          <GroupName>Common</GroupName>
+          <Files>
             <File>
-              <FileName>led001.c</FileName>
+              <FileName>support_A01.c</FileName>
               <FileType>1</FileType>
-              <FilePath>..\Tst_Leds\led001.c</FilePath>
-            </File>
-            <File>
-              <FileName>sw003.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\Tst_Sw\sw003.c</FilePath>
-            </File>
-            <File>
-              <FileName>funbox_main001.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>.\funbox_main001.c</FilePath>
+              <FilePath>.\support_A01.c</FilePath>
             </File>
             <File>
               <FileName>lib001.c</FileName>
               <FileType>1</FileType>
-              <FilePath>..\..\Library\lib001.c</FilePath>
+              <FilePath>..\Library\lib001.c</FilePath>
+            </File>
+          </Files>
+        </Group>
+        <Group>
+          <GroupName>Devices</GroupName>
+          <Files>
+            <File>
+              <FileName>sw_A001.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\sw_A001.c</FilePath>
+            </File>
+            <File>
+              <FileName>led_A001.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\led_A001.c</FilePath>
+            </File>
+            <File>
+              <FileName>beep_A001.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\beep_A001.c</FilePath>
             </File>
           </Files>
         </Group>
