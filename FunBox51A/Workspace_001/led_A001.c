@@ -10,6 +10,8 @@ void ledptn(unsigned char pattern)
 	if (pattern == 1)
  	{
 		PORT_LED = led(0x80); delayms(DELAY_TIME);
+		if(flag_stop != 0)	return;
+
   		PORT_LED = led(0x40); delayms(DELAY_TIME);
   		PORT_LED = led(0x20); delayms(DELAY_TIME);
   		PORT_LED = led(0x10); delayms(DELAY_TIME);
