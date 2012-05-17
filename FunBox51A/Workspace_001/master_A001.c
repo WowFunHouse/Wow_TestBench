@@ -6,6 +6,9 @@ void main(void)
 {
 	unsigned char sw;
 
+	last_key  = 0;	  			// Init with key pressed
+	flat_stop = 0; 				// Init with status of "non-stopping"
+
 	for (;;)
 	{
 		sw=getsw();
