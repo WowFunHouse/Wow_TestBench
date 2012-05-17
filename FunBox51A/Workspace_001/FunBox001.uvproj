@@ -372,6 +372,11 @@
               <FileType>1</FileType>
               <FilePath>..\Library\device_led.c</FilePath>
             </File>
+            <File>
+              <FileName>device_beeper.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\Library\device_beeper.c</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>
