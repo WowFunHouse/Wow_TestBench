@@ -348,9 +348,9 @@
           <GroupName>Source Group 1</GroupName>
           <Files>
             <File>
-              <FileName>led001.c</FileName>
+              <FileName>led002.c</FileName>
               <FileType>1</FileType>
-              <FilePath>.\led001.c</FilePath>
+              <FilePath>.\led002.c</FilePath>
             </File>
           </Files>
         </Group>
