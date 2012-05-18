@@ -44,12 +44,12 @@
             <InvalidFlash>1</InvalidFlash>
           </TargetStatus>
           <OutputDirectory>.\</OutputDirectory>
-          <OutputName>FunBox001</OutputName>
+          <OutputName>Testoo4</OutputName>
           <CreateExecutable>1</CreateExecutable>
           <CreateLib>0</CreateLib>
           <CreateHexFile>1</CreateHexFile>
           <DebugInformation>1</DebugInformation>
-          <BrowseInformation>0</BrowseInformation>
+          <BrowseInformation>1</BrowseInformation>
           <ListingPath>.\</ListingPath>
           <HexFormatSelection>0</HexFormatSelection>
           <Merge32K>0</Merge32K>
@@ -164,7 +164,7 @@
             <DriverSelection>-1</DriverSelection>
           </Flash1>
           <Flash2></Flash2>
-          <Flash3>"" ()</Flash3>
+          <Flash3></Flash3>
           <Flash4></Flash4>
         </Utilities>
         <Target51>
@@ -345,57 +345,12 @@
       </TargetOption>
       <Groups>
         <Group>
-          <GroupName>Controller</GroupName>
+          <GroupName>Source Group 1</GroupName>
           <Files>
             <File>
-              <FileName>master_A001.c</FileName>
+              <FileName>Led004.c</FileName>
               <FileType>1</FileType>
-              <FilePath>.\master_A001.c</FilePath>
-            </File>
-          </Files>
-        </Group>
-        <Group>
-          <GroupName>Common</GroupName>
-          <Files>
-            <File>
-              <FileName>support_A01.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>.\support_A01.c</FilePath>
-            </File>
-            <File>
-              <FileName>lib001.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\Library\lib001.c</FilePath>
-            </File>
-            <File>
-              <FileName>device_led.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\Library\device_led.c</FilePath>
-            </File>
-            <File>
-              <FileName>device_beeper.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\Library\device_beeper.c</FilePath>
-            </File>
-          </Files>
-        </Group>
-        <Group>
-          <GroupName>Devices</GroupName>
-          <Files>
-            <File>
-              <FileName>sw_A001.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>.\sw_A001.c</FilePath>
-            </File>
-            <File>
-              <FileName>led_A001.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>.\led_A001.c</FilePath>
-            </File>
-            <File>
-              <FileName>beep_A001.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>.\beep_A001.c</FilePath>
+              <FilePath>.\Led004.c</FilePath>
             </File>
           </Files>
         </Group>
