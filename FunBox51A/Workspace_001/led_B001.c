@@ -22,6 +22,10 @@ void ledptn(unsigned char pattern)
   		P0=0x01; delayms(DELAY_TIME);
 		P0=0x02; delayms(DELAY_TIME);
 		P0=0x04; delayms(DELAY_TIME);
+		P0=0x08; delayms(DELAY_TIME);
+		P0=0x10; delayms(DELAY_TIME);
+		P0=0x20; delayms(DELAY_TIME);
+		P0=0x40; delayms(DELAY_TIME);
 		P0=0x80; delayms(DELAY_TIME);
  	}
  	else if (pattern == 2)
@@ -29,11 +33,15 @@ void ledptn(unsigned char pattern)
  		P0=0x80; delayms(DELAY_TIME);
 		P0=0x20; delayms(DELAY_TIME);
 		P0=0x40; delayms(DELAY_TIME);
-		P0=0x01; delayms(DELAY_TIME);	
+		P0=0x10; delayms(DELAY_TIME);	
+		P0=0x08; delayms(DELAY_TIME);
+		P0=0x04; delayms(DELAY_TIME);
+		P0=0x02; delayms(DELAY_TIME);
+	   	P0=0x01; delayms(DELAY_TIME);
  	}
 	else if (pattern == 3)
  	{
-		P0=0x01; delayms(DELAY_TIME);
+		P0=0x81; delayms(DELAY_TIME);
 		P0=0x42; delayms(DELAY_TIME);
    		P0=0x24; delayms(DELAY_TIME);
 		P0=0x18; delayms(DELAY_TIME);
