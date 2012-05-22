@@ -5,7 +5,7 @@
 
 void beepsnd(unsigned int freq, unsigned int dur_ms)
 {
-	PORT_BEEP = 0x00;
+	beepOFF();
 	delayms(dur_ms);
-	PORT_BEEP = 0x10;						// Turn off the Beeper
+	beepON();						// Turn off the Beeper
 } /* beepsnd */

@@ -1,8 +1,8 @@
 #include <STC89.H>
 
-#include "../include/funbox51a.h"
+#include "../../include/funbox51a.h"
 
 void main(void)
 {
- ledptn(1);
+ ledptn(2);
 }

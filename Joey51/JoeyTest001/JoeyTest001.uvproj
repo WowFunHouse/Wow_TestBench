@@ -44,7 +44,7 @@
             <InvalidFlash>1</InvalidFlash>
           </TargetStatus>
           <OutputDirectory>.\</OutputDirectory>
-          <OutputName>FunBox001</OutputName>
+          <OutputName>JoeyTest001</OutputName>
           <CreateExecutable>1</CreateExecutable>
           <CreateLib>0</CreateLib>
           <CreateHexFile>1</CreateHexFile>
@@ -348,29 +348,9 @@
           <GroupName>Source Group 1</GroupName>
           <Files>
             <File>
-              <FileName>Beep001.c</FileName>
+              <FileName>JoeyTest001.c</FileName>
               <FileType>1</FileType>
-              <FilePath>..\Tst_Beep\Beep001.c</FilePath>
-            </File>
-            <File>
-              <FileName>led001.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\Tst_Leds\led001.c</FilePath>
-            </File>
-            <File>
-              <FileName>sw003.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\Tst_Sw\sw003.c</FilePath>
-            </File>
-            <File>
-              <FileName>funbox_main001.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>.\funbox_main001.c</FilePath>
-            </File>
-            <File>
-              <FileName>lib001.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\..\Library\lib001.c</FilePath>
+              <FilePath>.\JoeyTest001.c</FilePath>
             </File>
           </Files>
         </Group>

@@ -6,10 +6,11 @@ void main(void)
 
 	for (;;)
 	{
-		P0=0x92;
-		for (t=0; t< 10000; t++);
+		P0=0x67;
+		for (t=0; t< 20000; t++);
 
 		P0=0xFF;
-		for (t=0; t< 10000; t++);
+		for (t=0; t< 20000; t++);
 	}
 }
+					
