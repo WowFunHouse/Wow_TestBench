@@ -388,14 +388,14 @@
               <FilePath>.\sw_A001.c</FilePath>
             </File>
             <File>
-              <FileName>led_A001.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>.\led_A001.c</FilePath>
-            </File>
-            <File>
               <FileName>beep_A001.c</FileName>
               <FileType>1</FileType>
               <FilePath>.\beep_A001.c</FilePath>
+            </File>
+            <File>
+              <FileName>led_B001.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\led_B001.c</FilePath>
             </File>
           </Files>
         </Group>

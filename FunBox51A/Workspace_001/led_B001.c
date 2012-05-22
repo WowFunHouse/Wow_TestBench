@@ -4,7 +4,8 @@
  Created by:	Joey
  */
 #include <STC89.H>
-#include "../../include/funbox51a.h"
+#include "../include/library.h"
+#include "../include/funbox51a.h"
 
 #define	DELAY_TIME	500
 
