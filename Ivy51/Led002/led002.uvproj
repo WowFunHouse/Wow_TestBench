@@ -44,7 +44,7 @@
             <InvalidFlash>1</InvalidFlash>
           </TargetStatus>
           <OutputDirectory>.\</OutputDirectory>
-          <OutputName>led001</OutputName>
+          <OutputName>led002</OutputName>
           <CreateExecutable>1</CreateExecutable>
           <CreateLib>0</CreateLib>
           <CreateHexFile>1</CreateHexFile>
@@ -214,7 +214,7 @@
               <RCB>
                 <Type>0</Type>
                 <StartAddress>0x0</StartAddress>
-                <Size>0x0</Size>
+                <Size>0x10000</Size>
               </RCB>
               <RXB>
                 <Type>0</Type>
@@ -348,9 +348,9 @@
           <GroupName>Source Group 1</GroupName>
           <Files>
             <File>
-              <FileName>led001.c</FileName>
+              <FileName>led002.c</FileName>
               <FileType>1</FileType>
-              <FilePath>.\led001.c</FilePath>
+              <FilePath>.\led002.c</FilePath>
             </File>
           </Files>
         </Group>
