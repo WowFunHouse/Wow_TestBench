@@ -15,13 +15,15 @@ void setflag(void)
 
 	sw = getsw();
 
-	flag_stop = 0;					// Continue
-
-	if (sw != last_key)	
+	if (sw == 0)				// No key pressed
 	{
-		flag_stop = 1;	// Flag up for stopping
-		last_key  = sw;	// remember the changes
+		flag_stop = 1;			// Flag up for stopping
 	} 
+	else
+	{
+		flag_stop = 0;			// Continue
+	}
+	last_key  = sw;				// remember the changes
 } /* setflag */
 
 unsigned char chkflag(void)
