@@ -5,7 +5,7 @@
 
 void beepsnd(unsigned int freq, unsigned int dur_ms)
 {
-	beepOFF();
+	beepON();
 	delayms(dur_ms);
-	beepON();						// Turn off the Beeper
+	beepOFF();						// Turn off the Beeper
 } /* beepsnd */
