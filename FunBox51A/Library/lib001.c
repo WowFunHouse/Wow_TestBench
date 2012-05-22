@@ -1,3 +1,9 @@
+/****************************************
+ Description:	Library functions
+ Created on:	2012-05-15
+ Created by:	Michael
+ ****************************************/
+
 void delay1ms(void)   //Îó²î -0.651041666667us
 {
     unsigned char a,b;
