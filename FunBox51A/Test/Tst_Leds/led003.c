@@ -6,6 +6,11 @@
 #include <STC89.H>
 #include "../../include/funbox51a.h"
 
+#define	DELAY_TIME	500
+#define	DELAY_ME	delayms(DELAY_TIME);
+
+#define	CHECK_PTN1	if (pattern == 1)
+
 /*
  Description:	To display different LED patterns accroding to input
 
@@ -16,49 +21,49 @@ void ledptn(unsigned char pattern)
 {
  	unsigned int t;
 
- 	if (pattern == 1)
+	CHECK_PTN1
  	{
   		P0 = 0x01;
- 		for (t=0; t<10000; t++);
+ 		DELAY_ME
 		P0 = 0x02;
- 		for (t=0; t<10000; t++);
+ 		DELAY_ME
 		P0 = 0x04;
-		for (t=0; t<10000; t++);
+		DELAY_ME
 		P0 = 0x80;
-  		for (t=0; t<10000; t++);
+  		DELAY_ME
  	}
  	else if (pattern == 2)
  	{
  		P0=0x80;
-		for (t=0; t<10000; t++);
+		DELAY_ME
 		P0=0x20;
-		for (t=0; t<10000; t++);
+		DELAY_ME
 		P0=0x40;
-		for (t=0; t<10000; t++);
+		DELAY_ME
 		P0=0x01;
-		for (t=0; t<10000; t++);	
+		DELAY_ME	
  	}
 	else if (pattern == 3)
  	{
 		P0=0x01;
-		for (t=0; t<10000; t++);
+		DELAY_ME
 		P0=0x42;
-		for (t=0; t<10000; t++);
+		DELAY_ME
    		P0=0x24;
-		for (t=0; t<10000; t++);
+		DELAY_ME
 		P0=0x18;
-		for (t=0; t<10000; t++);
+		DELAY_ME
  	}
  	else if (pattern == 4)
  	{
 		P0=0x18;
-		for (t=0; t<10000; t++);
+		DELAY_ME
 		P0=0x24;
-		for (t=0; t<10000; t++);
+		DELAY_ME
 		P0=0x42;
-		for (t=0; t<10000; t++);
+		DELAY_ME
 		P0=0x81;
-		for (t=0; t<10000; t++);
+		DELAY_ME
  	}
 
 } /* ledptn */
