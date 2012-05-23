@@ -42,9 +42,9 @@ void ledptn(unsigned char pattern)
 		setFlag();
  		if (chkFlag() == 0) { PORT_LED=led(0x80); delayms(DELAY_TIME);}
 		setFlag();
-		if (chkFlag() == 0) { PORT_LED=led(0x20); delayms(DELAY_TIME);}
-		setFlag();
 		if (chkFlag() == 0) { PORT_LED=led(0x40); delayms(DELAY_TIME);}
+		setFlag();
+		if (chkFlag() == 0) { PORT_LED=led(0x20); delayms(DELAY_TIME);}
 		setFlag();
 		if (chkFlag() == 0) { PORT_LED=led(0x10); delayms(DELAY_TIME);}	
 		setFlag();
