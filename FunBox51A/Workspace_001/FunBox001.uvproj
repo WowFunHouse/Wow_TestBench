@@ -393,9 +393,9 @@
               <FilePath>.\beep_A001.c</FilePath>
             </File>
             <File>
-              <FileName>led_B002.c</FileName>
+              <FileName>led_B003.c</FileName>
               <FileType>1</FileType>
-              <FilePath>.\led_B002.c</FilePath>
+              <FilePath>.\led_B003.c</FilePath>
             </File>
           </Files>
         </Group>
