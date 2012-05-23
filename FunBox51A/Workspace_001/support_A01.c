@@ -28,6 +28,6 @@ void setFlag(void)
 
 unsigned char chkFlag(void)
 {
-	if (FlatStop != 0) return 1;
+	if (FlagStop != 0) return 1;
 	else return 0;
 } /* chkFlag */
