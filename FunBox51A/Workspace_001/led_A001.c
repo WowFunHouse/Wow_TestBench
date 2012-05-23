@@ -7,24 +7,25 @@
 
 void ledptn(unsigned char pattern)
 {
-	if (pattern == 1)
+	setFlag();
+	if ((chkFlag() == 0) && (pattern == 1))
  	{
-		PORT_LED = led(0x80); delayms(DELAY_TIME);
-		if(flat_stop != 0)		return;
-  		PORT_LED = led(0x40); delayms(DELAY_TIME);
-		if(flat_stop != 0)		return;
-  		PORT_LED = led(0x20); delayms(DELAY_TIME);
-		if(flat_stop != 0)		return;
-  		PORT_LED = led(0x10); delayms(DELAY_TIME);
-		if(flat_stop != 0)		return;
-  		PORT_LED = led(0x08); delayms(DELAY_TIME);
-		if(flat_stop != 0)		return;
-  		PORT_LED = led(0x04); delayms(DELAY_TIME);
-		if(flat_stop != 0)		return;
-  		PORT_LED = led(0x02); delayms(DELAY_TIME);
-		if(flat_stop != 0)		return;
-  		PORT_LED = led(0x01); delayms(DELAY_TIME);
-		if(flat_stop != 0)		return;
+		setFlag();
+		if (chkFlag() == 0) {PORT_LED = led(0x80); delayms(DELAY_TIME);}
+		setFlag();
+		if (chkFlag() == 0) {PORT_LED = led(0x40); delayms(DELAY_TIME);}
+		setFlag();
+		if (chkFlag() == 0) {PORT_LED = led(0x20); delayms(DELAY_TIME);}
+		setFlag();
+		if (chkFlag() == 0) {PORT_LED = led(0x10); delayms(DELAY_TIME);}
+		setFlag();
+		if (chkFlag() == 0) {PORT_LED = led(0x08); delayms(DELAY_TIME);}
+		setFlag();
+		if (chkFlag() == 0) {PORT_LED = led(0x04); delayms(DELAY_TIME);}
+		setFlag();
+		if (chkFlag() == 0) {PORT_LED = led(0x02); delayms(DELAY_TIME);}
+		setFlag();
+		if (chkFlag() == 0) {PORT_LED = led(0x01); delayms(DELAY_TIME);}
  	}
  	else if (pattern == 2)
  	{

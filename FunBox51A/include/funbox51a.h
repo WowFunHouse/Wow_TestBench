@@ -14,8 +14,8 @@ void ledptn(unsigned char pattern);
 // Make different sounds from Beeper
 void beepsnd(unsigned int freq, unsigned int dur_ms);
 
-void setflag(void);
-unsigned char chkflag(void);
+void setFlag(void);
+unsigned char chkFlag(void);
 
-static unsigned char	flat_stop;
-static unsigned char	last_key;
+static unsigned char	FlagStop;
+static unsigned char	LastKey;

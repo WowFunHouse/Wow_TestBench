@@ -2,30 +2,32 @@
 #include "../include/library.h"
 #include "../include/funbox51a.h"
 
-unsigned char	flag_stop;			// 0: continue	!0: stop
-unsigned char	last_key;		 	// last switch pressed
+unsigned char	FlagStop;			// 0: continue	!0: stop
+unsigned char	LastKey;		 	// last switch pressed
 
 /* Check if the key pressed has been changed
 	0: Continue (no changes)
 	1: Key status changes - update the last_key with new key value
 */
-void setflag(void)
+void setFlag(void)
 {
 	unsigned char	sw;
 
 	sw = getsw();
 
-	flag_stop = 0;					// Continue
-
-	if (sw != last_key)	
+	if (sw == 0)				// No key pressed
 	{
-		flag_stop = 1;	// Flag up for stopping
-		last_key  = sw;	// remember the changes
+		FlagStop = 1;			// Flag up for stopping
 	} 
-} /* setflag */
+	else
+	{
+		FlagStop = 0;			// Continue
+	}
+	LastKey = sw;				// remember the changes
+} /* setFlag */
 
-unsigned char chkflag(void)
+unsigned char chkFlag(void)
 {
-	if (flag_stop != 0) return 1;
+	if (FlatStop != 0) return 1;
 	else return 0;
-}
+} /* chkFlag */
