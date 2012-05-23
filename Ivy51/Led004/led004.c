@@ -30,10 +30,10 @@ void main(void)
 		P0=0xFE;
 		for (t=0; t< 10000; t++);
 
-		P0=0xFF;
-		for (t=0; t< 10000; t++);
-
 		P0=0x00;
+		for (t=0; t< 25000; t++);
+
+		P0=0xFF;
 		for (t=0; t< 30000; t++);
 	}
 }
