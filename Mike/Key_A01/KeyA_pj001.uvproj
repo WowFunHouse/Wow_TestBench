@@ -345,12 +345,12 @@
       </TargetOption>
       <Groups>
         <Group>
-          <GroupName>Source Group 1</GroupName>
+          <GroupName>Source Group</GroupName>
           <Files>
             <File>
-              <FileName>key001.c</FileName>
+              <FileName>key002.c</FileName>
               <FileType>1</FileType>
-              <FilePath>.\key001.c</FilePath>
+              <FilePath>.\key002.c</FilePath>
             </File>
           </Files>
         </Group>
