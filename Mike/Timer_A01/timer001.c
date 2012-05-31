@@ -6,11 +6,12 @@ void main(void)
 {
 	wait = 0;
 
-	P0=0xAA;
+	P0=0xAA;		// Set LED pattern
 
 	TH0=0x00;		// Set Timer0 delay time (high byte)
 	TL0=0x01;		// Set Timer0 delay time (low byte)
 	TMOD=T0_M1;		// Set Timer0 to Mode 1
+
 	ET0=1;			// Accept Timer0 interrupt
 
 	EA=1;			// Enable all interrupt (accept interrupt)
