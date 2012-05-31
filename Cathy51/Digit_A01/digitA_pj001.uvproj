@@ -44,10 +44,10 @@
             <InvalidFlash>1</InvalidFlash>
           </TargetStatus>
           <OutputDirectory>.\</OutputDirectory>
-          <OutputName>KeyA_pj001</OutputName>
+          <OutputName>digitA_pj001</OutputName>
           <CreateExecutable>1</CreateExecutable>
           <CreateLib>0</CreateLib>
-          <CreateHexFile>1</CreateHexFile>
+          <CreateHexFile>0</CreateHexFile>
           <DebugInformation>1</DebugInformation>
           <BrowseInformation>1</BrowseInformation>
           <ListingPath>.\</ListingPath>
@@ -345,12 +345,12 @@
       </TargetOption>
       <Groups>
         <Group>
-          <GroupName>Source Group</GroupName>
+          <GroupName>Source Group 1</GroupName>
           <Files>
             <File>
-              <FileName>key002.c</FileName>
+              <FileName>digit001.c</FileName>
               <FileType>1</FileType>
-              <FilePath>.\key002.c</FilePath>
+              <FilePath>.\digit001.c</FilePath>
             </File>
           </Files>
         </Group>
