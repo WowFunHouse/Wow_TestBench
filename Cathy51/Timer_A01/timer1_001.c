@@ -1,5 +1,9 @@
 #include <STC89.H>
 
+void delay1ms(void);   //Îó²î -0.651041666667us
+void delayms(unsigned int delaytime);
+void delay(unsigned int delaytime);
+
 unsigned int wait;
 
 void main(void)
@@ -20,22 +24,23 @@ void main(void)
 
 void timer(void) interrupt 3 using 3
 {	
-	unsigned char a,b,t;
-	int n,h;
+
+	unsigned int a=75;
+	unsigned int n,t;
 
 	if (wait == 2000)
 	{  
 		  for (t=0; t<2; t++)
 		  {
-				for (n=0; n<100; n++) //Set Beep time
+				for (n=0; n<100; n++) 	 //Set Beep time
 			  {
-					P3=0x00;		// Set Beep freq	  
-		    		for(b=1;b>0;b--) for(a=227;a>0;a--);
+					P3=0x00;			 // Set Beep freq	  
+		    		delay(75);  
 		
-					P3=0x10; // Set Beep  freq
-		    		for(b=1;b>0;b--) for(a=227;a>0;a--);
+					P3=0x10; 			// Set Beep  freq
+		    		delay(75);
 			  }
-			  	for(h=0; h<6000; h++);
+			  delayms(500);
 			 	
 			}
 		wait=0;
@@ -50,3 +55,21 @@ void timer(void) interrupt 3 using 3
 	TR1=1;
 }
 
+void delay1ms(void)   //Îó²î -0.651041666667us
+{
+    unsigned char a,b;
+    for(b=102;b>0;b--)
+        for(a=3;a>0;a--);
+}
+
+void delayms(unsigned int delaytime)
+{
+	unsigned int t;
+	for (t=0;t<delaytime;t++) delay1ms();
+}
+
+void delay(unsigned int delaytime)
+{
+	unsigned int t;
+	for (t=0;t<delaytime;t++);
+}
