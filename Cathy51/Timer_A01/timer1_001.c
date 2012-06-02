@@ -1,15 +1,13 @@
 #include <STC89.H>
 
-unsigned char wait;
+unsigned int wait;
 
 void main(void)
 {
 	wait = 0;
 
-	P3=0x00;		// Set LED pattern
-
-	TH1=0x96;		// Set Timer1 delay time (high byte)
-	TL1=0x80;		// Set Timer1 delay time (low byte)
+	TH1=0xd8;	// Set Timer1 delay time (high byte)
+	TL1=0xf0;		// Set Timer1 delay time (low byte)
 	TMOD=T0_M1;		// Set Timer1 to Mode 1
 
 	ET1=1;			// Accept Timer1 interrupt
@@ -21,38 +19,34 @@ void main(void)
 }
 
 void timer(void) interrupt 3 using 3
-{
-	if (wait == 152)
-	{
-		unsigned char a,b;
-		int n;
+{	
+	unsigned char a,b,t;
+	int n,h;
 
-	
-	  	for (n=0; n<100; n++)
-	  	{
-			P3=0x00;
-    		for(b=1;b>0;b--) for(a=227;a>0;a--);
-
-			P3=0x10;
-    		for(b=1;b>0;b--) for(a=227;a>0;a--);
-	 	 }
-	  	for (n=0; n<100; n++)
-	  	{
-    		for(b=1;b>0;b--) for(a=227;a>0;a--);
-
-			for(b=1;b>0;b--) for(a=227;a>0;a--);
-      	}
-
-		wait = 0;
+	if (wait == 2000)
+	{  
+		  for (t=0; t<2; t++)
+		  {
+				for (n=0; n<100; n++) //Set Beep time
+			  {
+					P3=0x00;		// Set Beep freq	  
+		    		for(b=1;b>0;b--) for(a=227;a>0;a--);
+		
+					P3=0x10; // Set Beep  freq
+		    		for(b=1;b>0;b--) for(a=227;a>0;a--);
+			  }
+			  	for(h=0; h<6000; h++);
+			 	
+			}
+		wait=0;
 	}
-
 	else
 	{
 		wait++;
-	}
+	}  
 
-	TH1=0x96;
-	TL1=0x80;
+	TH1=0xd8;
+	TL1=0xf0;
 	TR1=1;
 }
 

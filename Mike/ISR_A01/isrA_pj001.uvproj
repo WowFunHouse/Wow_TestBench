@@ -44,7 +44,7 @@
             <InvalidFlash>1</InvalidFlash>
           </TargetStatus>
           <OutputDirectory>.\</OutputDirectory>
-          <OutputName>timerA_pj001</OutputName>
+          <OutputName>isrA_pj001</OutputName>
           <CreateExecutable>1</CreateExecutable>
           <CreateLib>0</CreateLib>
           <CreateHexFile>1</CreateHexFile>
@@ -348,9 +348,9 @@
           <GroupName>Source Group 1</GroupName>
           <Files>
             <File>
-              <FileName>timer002.c</FileName>
+              <FileName>isr001.c</FileName>
               <FileType>1</FileType>
-              <FilePath>.\timer002.c</FilePath>
+              <FilePath>.\isr001.c</FilePath>
             </File>
           </Files>
         </Group>
