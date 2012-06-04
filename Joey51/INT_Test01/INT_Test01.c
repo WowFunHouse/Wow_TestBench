@@ -17,7 +17,7 @@ void led(void) interrupt 0 using 3
 
 void main(void) 
 {
-	EX0=0;
+	EX0=1;
 	EA=1;
 
 	for(;;);

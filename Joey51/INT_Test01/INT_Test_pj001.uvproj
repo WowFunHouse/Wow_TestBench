@@ -348,9 +348,9 @@
           <GroupName>Source Group 1</GroupName>
           <Files>
             <File>
-              <FileName>INT_Test01.c</FileName>
+              <FileName>INT_Test08.c</FileName>
               <FileType>1</FileType>
-              <FilePath>.\INT_Test01.c</FilePath>
+              <FilePath>.\INT_Test08.c</FilePath>
             </File>
           </Files>
         </Group>
