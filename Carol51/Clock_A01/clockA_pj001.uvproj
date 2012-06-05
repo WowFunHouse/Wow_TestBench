@@ -44,7 +44,7 @@
             <InvalidFlash>1</InvalidFlash>
           </TargetStatus>
           <OutputDirectory>.\</OutputDirectory>
-          <OutputName>INT_Test_pj001</OutputName>
+          <OutputName>clockA_pj001</OutputName>
           <CreateExecutable>1</CreateExecutable>
           <CreateLib>0</CreateLib>
           <CreateHexFile>1</CreateHexFile>
@@ -348,9 +348,9 @@
           <GroupName>Source Group 1</GroupName>
           <Files>
             <File>
-              <FileName>INT_Test08.c</FileName>
+              <FileName>clock001.c</FileName>
               <FileType>1</FileType>
-              <FilePath>.\INT_Test08.c</FilePath>
+              <FilePath>.\clock001.c</FilePath>
             </File>
           </Files>
         </Group>
