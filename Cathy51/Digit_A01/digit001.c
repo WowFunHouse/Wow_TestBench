@@ -5,14 +5,15 @@
 */
 #include <STC89.H>
 
-#define DIGIT_OFF 0xff
-#define DIGIT_1  0xfe
-#define DIGIT_2  0xfd
-#define DIGIT_3  0xfb
-#define DIGIT_4  0xf7
-#define DELAY_Count 50
+#define DIGIT_OFF		0xff
+#define DIGIT_1			0xfe
+#define DIGIT_2			0xfd
+#define DIGIT_3			0xfb
+#define DIGIT_4			0xf7
+#define DELAY_Count 	50
 
 void delay(unsigned int t);
+
 void main(void)
 {
 	unsigned int digit[]={0xc0,0xf9,0xa4,0xb0,0x99,0x92,0x82,0xf8,0x80,0x98};
