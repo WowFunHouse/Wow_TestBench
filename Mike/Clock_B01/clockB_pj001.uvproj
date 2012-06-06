@@ -348,9 +348,9 @@
           <GroupName>Group Source</GroupName>
           <Files>
             <File>
-              <FileName>clock004.c</FileName>
+              <FileName>clock005.c</FileName>
               <FileType>1</FileType>
-              <FilePath>.\clock004.c</FilePath>
+              <FilePath>.\clock005.c</FilePath>
             </File>
           </Files>
         </Group>
