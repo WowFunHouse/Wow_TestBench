@@ -18,7 +18,7 @@ void main(void)
 			{
 				P2=~col;
 				col = col << 1;
-				for (t=0; t< 10000; t++);
+//				for (t=0; t< 150; t++);
 			}
 			row = row << 1;
 		}
