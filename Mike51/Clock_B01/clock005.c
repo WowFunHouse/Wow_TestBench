@@ -1,4 +1,7 @@
 #include <STC89.H>
+
+#define	CLICK_TIMER_DELAY	9216		// X'tal 11.0692Mhz
+#define	CLICK_COUNT			100			// Total timer delay 1sec = CLICK_TIMER_DELAY x CLICK_COUNT = 9216 x 100 = 921600
  
 unsigned char hour, minute, second;		// Real clock values
 unsigned char clock[6];					// Buffer of the clock digits
@@ -24,8 +27,8 @@ void main(void)
 	second = 15;
 	
 	TMOD = T0_M1;						// Set Timer0 to mode 1
-	TH0  = (65536 - 9216) >> 8;		// 10ms heartbeat (11.0592Hz x'tal)
-	TL0  = (65536 - 9216) % 256;
+	TH0  = (65536 - CLICK_TIMER_DELAY) >> 8;			// 10ms heartbeat (11.0592Hz x'tal)
+	TL0  = (65536 - CLICK_TIMER_DELAY) % 256;
 
 	ET0  = 1;		// Enable Timer0
 	EA   = 1;		// Enable all interrupts
@@ -49,7 +52,7 @@ void main(void)
 
 void isrTimer0(void) interrupt 1
 {
-	if (++click >= 100)	// wait for 1 secound (100 x 10ms)
+	if (++click >= CLICK_COUNT)	// wait for 1 secound (100 x 10ms)
 	{
 		click = 0;
 		if (++second > 59)
@@ -71,8 +74,8 @@ void isrTimer0(void) interrupt 1
 			second = 0;
 		}
 	}
-	TH0  = (65536 - 10000) >> 8;	// 10ms heartbeat (12MHz X'tal)
-	TL0  = (65536 - 10000) % 256;
+	TH0  = (65536 - CLICK_TIMER_DELAY) >> 8;	// 10ms heartbeat (12MHz X'tal)
+	TL0  = (65536 - CLICK_TIMER_DELAY) % 256;
 } /* isrTimer0 */
 
 void bin2BCD(unsigned char i, unsigned char *p)
