@@ -16,20 +16,24 @@ void main(void)
 {
 
 	unsigned char	a, b; 
-	unsigned int	t;
+	unsigned int	t, n;
 
 	for(;;)
 	{
 		for(a=0; a<6; a++)
 		{
-			for(b=0; b<4; b++)
+			for(n=0; n<500; n++)
 			{
-				P1 = 0xFF;					// All digit off
-
-				P0 = ~seven[a][b];
-				P1 = digit[b];
-				for(t=0; t<1000; t++);
-			}	 
+				for(b=0; b<4; b++)
+				{
+					P0 = 0xFF;					// All digit off
+	
+					P0 = ~seven[a][b];
+					P1 = digit[b];
+					for(t=0; t<50; t++);
+				}					 
+			}
+			P0 = 0xFF;
 		}
 	}
 }/* main */
