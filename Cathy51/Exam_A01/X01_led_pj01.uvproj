@@ -44,10 +44,10 @@
             <InvalidFlash>1</InvalidFlash>
           </TargetStatus>
           <OutputDirectory>.\</OutputDirectory>
-          <OutputName>digitB_pj001</OutputName>
+          <OutputName>X01_led_pj01</OutputName>
           <CreateExecutable>1</CreateExecutable>
           <CreateLib>0</CreateLib>
-          <CreateHexFile>1</CreateHexFile>
+          <CreateHexFile>0</CreateHexFile>
           <DebugInformation>1</DebugInformation>
           <BrowseInformation>1</BrowseInformation>
           <ListingPath>.\</ListingPath>
@@ -348,9 +348,9 @@
           <GroupName>Source Group 1</GroupName>
           <Files>
             <File>
-              <FileName>digit003.c</FileName>
+              <FileName>led001.c</FileName>
               <FileType>1</FileType>
-              <FilePath>.\digit003.c</FilePath>
+              <FilePath>.\led001.c</FilePath>
             </File>
           </Files>
         </Group>

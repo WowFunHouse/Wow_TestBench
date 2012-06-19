@@ -44,7 +44,7 @@
             <InvalidFlash>1</InvalidFlash>
           </TargetStatus>
           <OutputDirectory>.\</OutputDirectory>
-          <OutputName>digitB_pj001</OutputName>
+          <OutputName>digitC_pj001</OutputName>
           <CreateExecutable>1</CreateExecutable>
           <CreateLib>0</CreateLib>
           <CreateHexFile>1</CreateHexFile>
@@ -214,7 +214,7 @@
               <RCB>
                 <Type>0</Type>
                 <StartAddress>0x0</StartAddress>
-                <Size>0x0</Size>
+                <Size>0xffff</Size>
               </RCB>
               <RXB>
                 <Type>0</Type>
@@ -348,9 +348,9 @@
           <GroupName>Source Group 1</GroupName>
           <Files>
             <File>
-              <FileName>digit003.c</FileName>
+              <FileName>digitC_002.c</FileName>
               <FileType>1</FileType>
-              <FilePath>.\digit003.c</FilePath>
+              <FilePath>.\digitC_002.c</FilePath>
             </File>
           </Files>
         </Group>
