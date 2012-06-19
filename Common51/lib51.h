@@ -7,6 +7,6 @@ unsigned char hex[]={0x3F, 0x06, 0x5B, 0x4F, 0x66,
 
 unsigned char led(unsigned char ptn);
 
-void delay10us(void);		// X'tal=11.0925Mhz Îó²î -0.234375us
-void delay1ms(void);		// X'tal=11.0925Mhz Îó²î -0.651041666667us
-void delayms(void);
+void delay10us(void);			// X'tal=11.0925Mhz Îó²î -0.234375us
+void delay1ms(void);			// X'tal=11.0925Mhz Îó²î -0.651041666667us
+void delayms(unsigned int time);	// Delay in mini-second (ms)
