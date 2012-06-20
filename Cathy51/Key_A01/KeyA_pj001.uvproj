@@ -44,7 +44,7 @@
             <InvalidFlash>1</InvalidFlash>
           </TargetStatus>
           <OutputDirectory>.\</OutputDirectory>
-          <OutputName>X01_led_pj01</OutputName>
+          <OutputName>KeyA_pj001</OutputName>
           <CreateExecutable>1</CreateExecutable>
           <CreateLib>0</CreateLib>
           <CreateHexFile>1</CreateHexFile>
@@ -348,9 +348,9 @@
           <GroupName>Source Group 1</GroupName>
           <Files>
             <File>
-              <FileName>led001.c</FileName>
+              <FileName>key001.c</FileName>
               <FileType>1</FileType>
-              <FilePath>.\led001.c</FilePath>
+              <FilePath>.\key001.c</FilePath>
             </File>
           </Files>
         </Group>
