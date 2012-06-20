@@ -19,18 +19,17 @@
 
 void main(void)
 {
-	unsigned char a, b;
+	unsigned char a, b, n;
 	unsigned char last;
+	unsigned char bcd[]= {}
 	
 
-	P20 = 1 ;
+	P14 = 1 ;						    // Set output to high for capture input
 	for(;;)
 	{
-		unsigned char n;
-
 		for(n=1; n<43; n++)
 		{
-			if (P20 == 0)				// Key On
+			if (P14 == 0)				// Key On
 			{
 				n = last;
 			}
@@ -43,12 +42,12 @@ void main(void)
 			b = n /10 ;
 
 			P1 = 0xff;					// All digits off
-			P0 = led(bcd[a]);			// 1st LED pattern
+			P0 = bcd[a];				// 1st LED pattern
 			P1 = 0xf7;					// 1st digit on
 			delayms(100);	 
 
 			P1 = 0xff;				 	// All digits off
-			P0 = led(bcd[b]);				// 2nd LED pattern
+			P0 = bcd[b];				// 2nd LED pattern
 			P1 = 0xfb;				    // 2nd digit on
 			delayms(100);	
 		}

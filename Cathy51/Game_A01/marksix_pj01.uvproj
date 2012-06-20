@@ -348,14 +348,14 @@
           <GroupName>Source Group 1</GroupName>
           <Files>
             <File>
-              <FileName>marksix001.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>.\marksix001.c</FilePath>
-            </File>
-            <File>
               <FileName>lib51.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\..\Common51\lib51.c</FilePath>
+            </File>
+            <File>
+              <FileName>marksix002.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\marksix002.c</FilePath>
             </File>
           </Files>
         </Group>
