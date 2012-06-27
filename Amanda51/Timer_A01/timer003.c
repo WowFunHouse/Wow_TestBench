@@ -49,6 +49,9 @@ void main(void)
 
 void timer(void) interrupt 1				// Timer stopped, TH=0, TL=0, TF=1, timer interrrupt triggered
 {
+	TH0  = (65536 - 9216)>>8;
+	TL0  = (65536 - 9216)%256;
+
 	if(waittime >= 100)						// Wait for 1 secound (9216 x 100)
 	{
 		timeout = 1;
@@ -58,10 +61,6 @@ void timer(void) interrupt 1				// Timer stopped, TH=0, TL=0, TF=1, timer interr
 	{
 		waittime++;
 	}
-
-	TH0  = (65536 - 9216)>>8;
-	TL0  = (65536 - 9216)%256;
-
 }/* timer */
 
 void light(unsigned char p)
