@@ -1,15 +1,29 @@
 /*****************************************************
-Timer Program
+ Digital progressive LEDs 1 light left per second
 
-Version:		1.0
-Description:	Timer wait for 1 secound (9216 x 100 times)
+ Version:		1.0
+ Description:	Timer wait for 1 secound (9216 x 100 times)
 				Timer each time -> The Led run one times
 				Led run one times -> Display plus one
 
-Created on:		2012-06-26
-Created by:		Amanda Li
+ Created on:	2012-06-26
+ Created by:	Amanda Li
 
-Board:			RICHMCU RZ-51/AVR V2.0
+ Board:			RICHMCU RZ-51/AVR V2.0
+ Hardware:		LED: 0->ON, 1->OFF
+
+ Specification / Requirements:
+ 	LED status as below: 
+ 	1s  OFF OFF OFF OFF OFF OFF OFF OFF		->	0x00
+	2s  OFF OFF OFF OFF OFF OFF OFF ON		->	0x01
+	3s  OFF OFF OFF OFF OFF OFF ON  OFF		->	0x02
+	4s  OFF OFF OFF OFF OFF OFF ON  ON		->	0x03
+	5s  OFF OFF OFF OFF OFF ON  OFF OFF		->	0x04
+	6s  OFF OFF OFF OFF OFF ON  OFF ON		->	0x05
+	7s  OFF OFF OFF OFF OFF ON  ON  OFF		->	0x06
+	8s  OFF OFF OFF OFF OFF ON  ON  ON		->	0x07
+	9s  OFF OFF OFF OFF ON  OFF OFF OFF		->	0x08
+	10s	OFF OFF OFF OFF ON  OFF OFF ON		->	0x09
 *****************************************************/
 
 #include <STC89.H>
@@ -17,7 +31,6 @@ Board:			RICHMCU RZ-51/AVR V2.0
 void light(unsigned char p);
 
 unsigned char	timeout;
-unsigned int	waittime;
 
 void main(void)
 {
@@ -38,7 +51,7 @@ void main(void)
 
 	for(;;)
 	{
-		if(timeout != 0)					// Chect the timer
+		if(timeout != 0)					// 1 second reached
 		{
 			light(a);						// Turn on the LED
 			a++;
@@ -47,21 +60,24 @@ void main(void)
 	}
 }/* main */
 
-void timer(void) interrupt 1				// Timer stopped, TH=0, TL=0, TF=1, timer interrrupt triggered
+void isrTimer(void) interrupt 1				// Timer stopped, TH=0, TL=0, TF=1, timer interrrupt triggered
 {
+
+	static unsigned char	timercount = 0;	
+
 	TH0  = (65536 - 9216)>>8;
 	TL0  = (65536 - 9216)%256;
 
-	if(waittime >= 100)						// Wait for 1 secound (9216 x 100)
+	if(timercount >= 100)						// Wait for 1 secound (9216 x 100)
 	{
 		timeout = 1;
-		waittime = 0;
+		timercount = 0;
 	}
 	else
 	{
-		waittime++;
+		timercount++;
 	}
-}/* timer */
+}/* isrTimer */
 
 void light(unsigned char p)
 {
