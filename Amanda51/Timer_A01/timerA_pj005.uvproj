@@ -348,9 +348,9 @@
           <GroupName>Source Group 1</GroupName>
           <Files>
             <File>
-              <FileName>timer005.c</FileName>
+              <FileName>timer006.c</FileName>
               <FileType>1</FileType>
-              <FilePath>.\timer005.c</FilePath>
+              <FilePath>.\timer006.c</FilePath>
             </File>
           </Files>
         </Group>
