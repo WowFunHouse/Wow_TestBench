@@ -27,7 +27,7 @@
     <TargetOption>
       <CLK51>45000000</CLK51>
       <OPTTT>
-        <gFlags>1</gFlags>
+        <gFlags>0</gFlags>
         <BeepAtEnd>1</BeepAtEnd>
         <RunSim>1</RunSim>
         <RunTarget>0</RunTarget>
@@ -46,9 +46,9 @@
         <ListingPath>.\</ListingPath>
       </OPTLEX>
       <ListingPage>
-        <CreateCListing>0</CreateCListing>
-        <CreateAListing>0</CreateAListing>
-        <CreateLListing>0</CreateLListing>
+        <CreateCListing>1</CreateCListing>
+        <CreateAListing>1</CreateAListing>
+        <CreateLListing>1</CreateLListing>
         <CreateIListing>0</CreateIListing>
         <AsmCond>1</AsmCond>
         <AsmSymb>1</AsmSymb>
@@ -151,23 +151,9 @@
 
   <Group>
     <GroupName>Source Group 1</GroupName>
-    <tvExp>1</tvExp>
+    <tvExp>0</tvExp>
     <tvExpOptDlg>0</tvExpOptDlg>
     <cbSel>0</cbSel>
-    <File>
-      <GroupNumber>1</GroupNumber>
-      <FileNumber>1</FileNumber>
-      <FileType>1</FileType>
-      <tvExp>0</tvExp>
-      <Focus>0</Focus>
-      <ColumnNumber>42</ColumnNumber>
-      <tvExpOptDlg>0</tvExpOptDlg>
-      <TopLine>62</TopLine>
-      <CurrentLine>62</CurrentLine>
-      <bDave2>0</bDave2>
-      <PathWithFileName>.\timer003.c</PathWithFileName>
-      <FilenameWithoutPath>timer003.c</FilenameWithoutPath>
-    </File>
   </Group>
 
 </ProjectOpt>

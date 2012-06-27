@@ -25,7 +25,7 @@
     <ToolsetNumber>0x0</ToolsetNumber>
     <ToolsetName>MCS-51</ToolsetName>
     <TargetOption>
-      <CLK51>45000000</CLK51>
+      <CLK51>11059200</CLK51>
       <OPTTT>
         <gFlags>1</gFlags>
         <BeepAtEnd>1</BeepAtEnd>
@@ -160,13 +160,27 @@
       <FileType>1</FileType>
       <tvExp>0</tvExp>
       <Focus>0</Focus>
-      <ColumnNumber>42</ColumnNumber>
+      <ColumnNumber>109</ColumnNumber>
       <tvExpOptDlg>0</tvExpOptDlg>
-      <TopLine>62</TopLine>
-      <CurrentLine>62</CurrentLine>
+      <TopLine>9</TopLine>
+      <CurrentLine>9</CurrentLine>
       <bDave2>0</bDave2>
-      <PathWithFileName>.\timer003.c</PathWithFileName>
-      <FilenameWithoutPath>timer003.c</FilenameWithoutPath>
+      <PathWithFileName>.\time001.c</PathWithFileName>
+      <FilenameWithoutPath>time001.c</FilenameWithoutPath>
+    </File>
+    <File>
+      <GroupNumber>1</GroupNumber>
+      <FileNumber>2</FileNumber>
+      <FileType>1</FileType>
+      <tvExp>0</tvExp>
+      <Focus>0</Focus>
+      <ColumnNumber>4</ColumnNumber>
+      <tvExpOptDlg>0</tvExpOptDlg>
+      <TopLine>11</TopLine>
+      <CurrentLine>15</CurrentLine>
+      <bDave2>0</bDave2>
+      <PathWithFileName>.\time002.c</PathWithFileName>
+      <FilenameWithoutPath>time002.c</FilenameWithoutPath>
     </File>
   </Group>
 
