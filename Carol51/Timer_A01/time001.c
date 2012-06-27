@@ -49,7 +49,7 @@ void main(void)
 	 }
 } /* main */
 
-void isrTimer(void) interrupt 1
+void isrTimer(void) interrupt 1		// Reach here: Timer stopped, TH=0, TL=0, TF=1, timer interrupt triggered
 {
 	timercount++;					// 9216 clicks come here 
 

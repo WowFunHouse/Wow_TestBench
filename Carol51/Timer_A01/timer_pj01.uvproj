@@ -352,6 +352,11 @@
               <FileType>1</FileType>
               <FilePath>.\time001.c</FilePath>
             </File>
+            <File>
+              <FileName>time002.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\time002.c</FilePath>
+            </File>
           </Files>
         </Group>
       </Groups>
