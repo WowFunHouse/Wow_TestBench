@@ -4,10 +4,9 @@
 			i.e. 1 second: 921,600 timer click (9216 x 100)
  **********************************************************/
 #include <STC89.H>
+void light(unsigned char p);
 
 unsigned char timeout;
-
-void light(unsigned char p);
 
 void main (void)
 {
@@ -23,7 +22,7 @@ void main (void)
 	EA=1;
 	
 	a=0;
-	timeout = 0;			
+	timeout= 0;			
 	TR0=1;			
 
 	for(;;)
@@ -37,7 +36,7 @@ void main (void)
 	}
 }
 
-void light(unsigned char p)		 //Set LED 
+void light(unsigned char p)		 	//Set LED 
 {
 	P0 = ~p; 
 }									
