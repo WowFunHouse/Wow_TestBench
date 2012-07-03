@@ -1,4 +1,4 @@
-/****************************************************
+/************************************************************************
  LCD Testing
 
  Version:		1.0
@@ -15,11 +15,15 @@
 				EN - P22
 				DATAPORT - P0
 
- Jumpers:		将 JPP0 跳线端的跳线帽拔掉以免干扰1602 液晶显示
+ Jumpers:		Remove JPSMG - Disable 7-Segment LEDs
+ 				Remove JPP0  - Disable LEDs
+				Add JPBG     - Enable LCD Back Light
+
 				将 JPSMG 数码管控制跳线拔掉使数码管停止工作。
+ 				将 JPP0 跳线端的跳线帽拔掉以免干扰1602 液晶显示
 				插上1602LCD液晶
 				将 JPBG 液晶背光跳线插上
-************************************************/
+************************************************************************/
 #include <STC89.H>
 
 #define	RS			P20
@@ -42,14 +46,15 @@ unsigned char lcdCheckBusy(void)
 
 	BF = 1;					// Set Pin ready for Input
 
+	EN = 0;					// Ready to create a transition of EN: Low->High
 	RS = 0;
 	RW = 1;
-	EN = 0;					// Ready to create a transition of EN: Low->High
 	EN = 1;	
 	delay(DELAYSHORT);		// Wait for the BF to be stable
 	bf = BF;
 	EN = 0;
-	RS = 1;
+	RS = 1;				// Optional to set it to RAM Select
+	RW = 1;				// Optional to set it to READ
 
 	return bf;
 } /* lcdCheckBusy */
@@ -63,14 +68,16 @@ void lcdWaitUntilReady(void)
 void lcdWriteCmd(unsigned char cmd)
 {
 	lcdWaitUntilReady();
+	
+	EN = 0;					// Ready to create a transition of EN: Low->High
 	RS = 0;
 	RW = 0;
-	EN = 0;					// Ready to create a transition of EN: Low->High
 	DATAPORT = cmd;
-	delay(DELAYSHORT);
+	delay(DELAYSHORT);		// Optional - wait for data stable
 	EN = 1;
 	delay(DELAYSHORT);		// Wait for LCD to complete the read cycle		
 	EN = 0;
+	RS = 1;
 	RW = 1;
 
 } /* lcdWriteCmd */
@@ -78,19 +85,24 @@ void lcdWriteCmd(unsigned char cmd)
 void lcdWriteData(unsigned char dData)
 {
 	lcdWaitUntilReady();
+
+	EN = 0;					// Ready to create a transition of EN: Low->High
 	RS = 1;
 	RW = 0;
-	EN = 0;					// Ready to create a transition of EN: Low->High
 	DATAPORT = dData;
+	delay(DELAYSHORT);		// Optional - wait for data stable
 	EN = 1;
 	delay(DELAYSHORT);		// Wait for LCD to complete the read cycle	
 	EN = 0;
+	RS = 1;
 	RW = 1;
+	
 } /* lcdWriteData */
 
 void lcdClear(void)
 {
 	lcdWriteCmd(0x1);			// Clear LCD Screen
+
 } /* lcdClear */
 
 void main(void)
@@ -112,4 +124,5 @@ void main(void)
 	lcdWriteData(0x31);		// '1'
 
 	for (;;);
+
 } /* main */
