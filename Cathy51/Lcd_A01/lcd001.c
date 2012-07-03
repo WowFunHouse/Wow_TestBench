@@ -78,14 +78,10 @@ void lcdClear (void)
 	lcdWriteCmd(0x01);		
 }/*	lcdClear*/
 
-void lcdInit (void)
-{
-	DATAPORT = 0xff;
-}/*	lcdInit */
-
 void main (void)
 {
 	lcdClear();
+
 	lcdWriteCmd(0x0F);				//	Display:On Cursor:On Blink:On
 	lcdWriteCmd(0x38);				//	8-bit, 2lines,5x7 font
 	lcdWriteCmd(0x06);				//	Input mode; Increment, Non-shift
@@ -95,6 +91,8 @@ void main (void)
 	lcdWriteData(0x76);			    //	'v'
 	lcdWriteData(0x6F);				//	'o'
 	lcdWriteData(0x65);				//	'e'
+
+	for(;;);
 }/* main */
 
 
