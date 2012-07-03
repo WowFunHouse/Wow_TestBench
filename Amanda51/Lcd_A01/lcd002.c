@@ -1,11 +1,11 @@
 /*********************************************************************
 LCD Testing
 
-Version:		0.1
+Version:		2.0
 Description:	To Show a string on LCD display
 
 Creared on:		Amanda Li
-Creared by:		2012-07-02
+Creared by:		2012-07-03
 
 Board:			Richmcu RZ-51/AVR 2.0
 
@@ -117,17 +117,35 @@ void main(void)
 	lcdWriteCmd(0x38);						// 8-bit, 2 lines, 5x7 font
 	lcdWriteCmd(0x06);						// Input mode: Increment, Non-shift
 
-	lcdWriteData(0x49);						// " I "
-	lcdWriteData(0x20);						// "   "
-	lcdWriteData(0x4C);						// " L "
-	lcdWriteData(0x6F);						// " o "
-	lcdWriteData(0x76);						// " v "
-	lcdWriteData(0x65);						// " e "
-	lcdWriteData(0x20);						// "   "
-	lcdWriteData(0x38);						// " 8 "
-	lcdWriteData(0x30);						// " 0 "
-	lcdWriteData(0x35);						// " 5 "
-	lcdWriteData(0x31);						// " 1 "
+	lcdWriteData('I');
+	lcdWriteData(' ');
+	lcdWriteData('L');
+	lcdWriteData('o');
+	lcdWriteData('v');
+	lcdWriteData('e');
+	lcdWriteData(' ');
+	lcdWriteData('8');
+	lcdWriteData('0');
+	lcdWriteData('5');
+	lcdWriteData('1');
+
+	lcdWriteData(0x7E);
+	lcdWriteData(0xF6);
+	lcdWriteData('3');
+	lcdWriteData(0xFA);
+	lcdWriteData(0xFB);
+
+//	lcdWriteData(0x49);						// " I "
+//	lcdWriteData(0x20);						// "   "
+//	lcdWriteData(0x4C);						// " L "
+//	lcdWriteData(0x6F);						// " o "
+//	lcdWriteData(0x76);						// " v "
+//	lcdWriteData(0x65);						// " e "
+//	lcdWriteData(0x20);						// "   "
+//	lcdWriteData(0x38);						// " 8 "
+//	lcdWriteData(0x30);						// " 0 "
+//	lcdWriteData(0x35);						// " 5 "
+//	lcdWriteData(0x31);						// " 1 "
 
 	for (;;);
 }/* main */

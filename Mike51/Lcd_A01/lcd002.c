@@ -1,7 +1,7 @@
-/************************************************************************
+/****************************************************************************
  LCD Testing
 
- Version:		1.0
+ Version:		2.0
  Description:	To show a string on LCD display
 
  Created on:	2012-07-02
@@ -23,7 +23,9 @@
  				将 JPP0 跳线端的跳线帽拔掉以免干扰1602 液晶显示
 				插上1602LCD液晶
 				将 JPBG 液晶背光跳线插上
-************************************************************************/
+
+ V2.0:			Use string array instead of individual characters for output
+****************************************************************************/
 #include <STC89.H>
 
 #define	RS			P20
@@ -38,6 +40,7 @@ void delay(unsigned int delaycount)
 	unsigned int t;
 
 	for (t=0; t<delaycount; t++);
+
 } /* delay */
 
 unsigned char lcdCheckBusy(void)
@@ -108,20 +111,39 @@ void lcdClear(void)
 void main(void)
 {
 	lcdClear();
+
 	lcdWriteCmd(0x0f);		// Display:On, Cursor:On, Blink:On
 	lcdWriteCmd(0x38);		// 8-bit, 2 lines, 5x7 font
 	lcdWriteCmd(0x06);		// Input mode: Increment, Non-shift
-	lcdWriteData(0x49);		// 'I'
-	lcdWriteData(0x20);		// ' '
-	lcdWriteData(0x4c);		// 'L'
-	lcdWriteData(0x6f);		// 'o'
-	lcdWriteData(0x76);		// 'v'
-	lcdWriteData(0x65);		// 'e'
-	lcdWriteData(0x20);		// ' '
-	lcdWriteData(0x38);		// '8'
-	lcdWriteData(0x30);		// '0'
-	lcdWriteData(0x35);		// '5'
-	lcdWriteData(0x31);		// '1'
+
+	lcdWriteData('I');
+	lcdWriteData(' ');
+	lcdWriteData('L');
+	lcdWriteData('o');
+	lcdWriteData('v');
+	lcdWriteData('e');
+	lcdWriteData(' ');
+	lcdWriteData('8');
+	lcdWriteData('0');
+	lcdWriteData('5');
+	lcdWriteData('1');
+	lcdWriteData(0x7e);
+	lcdWriteData(0xf6);
+	lcdWriteData('3');
+	lcdWriteData(0xfa);
+	lcdWriteData(0xfb);
+
+//	lcdWriteData(0x49);		// 'I'
+//	lcdWriteData(0x20);		// ' '
+//	lcdWriteData(0x4c);		// 'L'
+//	lcdWriteData(0x6f);		// 'o'
+//	lcdWriteData(0x76);		// 'v'
+//	lcdWriteData(0x65);		// 'e'
+//	lcdWriteData(0x20);		// ' '
+//	lcdWriteData(0x38);		// '8'
+//	lcdWriteData(0x30);		// '0'
+//	lcdWriteData(0x35);		// '5'
+//	lcdWriteData(0x31);		// '1'
 
 	for (;;);
 
