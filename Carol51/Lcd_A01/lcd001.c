@@ -5,61 +5,62 @@
 #define	EN P22
 #define DATAPORT P0
 #define BF P07
-#define DELAYSHORT500
+#define DELAYSHORT	500
 
 void delay(unsigned int delaycount)
 {
 	   unsigned int t;
 	   for(t=0;t<delaycount;t++);
 }
-unsigned char LcdCheckBusy(void)			   //1:busy,  0:poady;  
+unsigned char lcdCheckBusy(void)			   //1:busy,  0:poady;  
 {
 	   unsigned char bf;
 	   DATAPORT=0xff;
 	   RS=0;
 	   RW=1;
 	   EN=1;				
-	   delay();
+	   delay(DELAYSHORT);
 	   bf=BF;
 	   EN=0;
 	   RW=0;
+
 	   return bf;
 }
 
-void LcdWaitUntilReady(void)
+void lcdWaitUntilReady(void)
 {
-       While(LcdCheakBusy()==1);
+       while (lcdCheckBusy()==1);
 }
 
-void LcdWriteCmd(unsigned char cmd)
+void lcdWriteCmd(unsigned char cmd)
 {
-   	 LcdWaitUntilReay();
+   	 lcdWaitUntilReady();
 	 RS=0;
-	 Rw=0;
+	 RW=0;
 	 EN=0;
 	 DATAPORT=cmd;
-	 delay(delaySHORT);
+	 delay(DELAYSHORT);
 	 EN=1;
-	 delay(delaySHORT);
+	 delay(DELAYSHORT);
 	 EN=0;
 	 RW=1;
 }
 
-void LcdWriteData(unsigned char dData)
+void lcdWriteData(unsigned char dData)
 {
-     LcdWaitUntilReady();
+     lcdWaitUntilReady();
 	 RS=1;
 	 RW=0;
 	 EN=0;
 	 DATAPORT=dData;
-	 delay(delaySHORT);
+	 delay(DELAYSHORT);
 	 EN=1;
-	 delay(delaySHORT);
+	 delay(DELAYSHORT);
 	 EN=0;
-	 RW=1
+	 RW=1;
 }
 
-void LcdClear(void)
+void lcdClear(void)
 {
 	 lcdWaitUntilReady();
 	 lcdWriteCmd(0x01);			   //clear Lcd screen;
@@ -67,7 +68,7 @@ void LcdClear(void)
 
  void main(void)
  {
-	 lcdClear()
+	 lcdClear();
 	 lcdWriteCmd(0x0F);
 	 lcdWriteCmd(0x38);			 //8 bit,2 lines, 5x7 font;
 	 lcdWriteCmd(0x06);
@@ -81,6 +82,8 @@ void LcdClear(void)
 	 lcdWriteData(0x30);
 	 lcdWriteData(0x35);
 	 lcdWriteData(0x31);
+
+	 for (;;);
  }
 
 
