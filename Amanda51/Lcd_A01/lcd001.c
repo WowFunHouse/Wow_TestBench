@@ -105,7 +105,7 @@ void main(void)
 	lcdWriteCmd(0x38);						// 8-bit, 2 lines, 5x7 font
 	lcdWriteCmd(0x06);						// Input mode: Increment, Non-shift
 
-	lcdWriteData(0x46);						// " I "
+	lcdWriteData(0x49);						// " I "
 	lcdWriteData(0x20);						// "   "
 	lcdWriteData(0x4C);						// " L "
 	lcdWriteData(0x6F);						// " o "
@@ -116,4 +116,6 @@ void main(void)
 	lcdWriteData(0x30);						// " 0 "
 	lcdWriteData(0x35);						// " 5 "
 	lcdWriteData(0x31);						// " 1 "
+
+	for (;;);
 }/* main */
