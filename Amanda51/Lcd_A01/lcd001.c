@@ -14,37 +14,46 @@ Conmnection:	LCD pins as below -
 				RW			P21
 				EN			P22
 				DATAPORT	P0
+
+Jumpers:		Remove JPSMG - Disable 7-Segment LEDs
+				Remove JPP0	 - Disable LEDs
+				Add JPBG	 - Enable LCD Back Light
 *********************************************************************/
 #include <STC89.H>
 
 #define RS			P20
 #define RW			P21
 #define EN			P22
+
 #define DATAPORT	P0
 #define BF			P07
-#define DELAYSHORT	500
 
-void delay(delaycount)
+#define DELAYSHORT	10
+
+void delay(unsigned int delaycount)
 {
 	unsigned int	t;
+
 	for (t=0; t<delaycount; t++);
 }/* delay */
 
-unsigned char lcdCheckBusy(void)				// 1: Busy, 0: Poady
+unsigned char lcdCheckBusy(void)
 {
 	unsigned char	bf;
 	
-	DATAPORT = 0xFF;
+	BF = 1;										// Set Pin ready for Input
 
+	EN = 0;										// Ready to create a transition of EN: Low -> High
 	RS = 0;
-	RW = 1;
+	RW = 1;	
 	EN = 1;
-	delay(DELAYSHORT);	
+	delay(DELAYSHORT);							// Wait for the BF to be stable	
 
 	bf = BF;
 
 	EN = 0;
-	RW = 0;
+	RW = 0;										// Optional to set it to READ
+	RS = 1;										// Optional to set it to RAM Select
 
 	return	bf;
 }/* lcdCheckBusy */
@@ -59,42 +68,45 @@ void lcdWriteCmd(unsigned char cmd)
 {
 	lcdWaitUntilReady();	
 
+	EN = 0;										// Ready to create a transition of EN: Low -> High
 	RS = 0;
 	RW = 0;
-	EN = 0;
 
 	DATAPORT = cmd;
-	delay(DELAYSHORT);
+	delay(DELAYSHORT);							// Optional - wait for data stable
 
 	EN = 1;
-	delay(DELAYSHORT);
+	delay(DELAYSHORT);							// Wait for LCD to complete the read cycle
 
 	EN = 0;
 	RW = 1;
+	RS = 1;
 }/* lcdWriteCmd */
 
 void lcdWriteData(unsigned char dData)
 {
 	lcdWaitUntilReady();	
 
+	EN = 0;										// Ready to create a transition of EN: Low -> High
 	RS = 1;
 	RW = 0;
-	EN = 0;
 
 	DATAPORT = dData;
-	delay(DELAYSHORT);
+	delay(DELAYSHORT);							// Optional - wait for data stable
 
 	EN = 1;
-	delay(DELAYSHORT);
+	delay(DELAYSHORT);							// Wait for LCD to complete the read cycle
 
 	EN = 0;
-	RW = 1;	
+	RW = 1;
+	RS = 0;	
 }/* lcdWriteData */
 
 void lcdClear(void)
 {
 	lcdWaitUntilReady();
-	lcdWriteCmd(0x01); 						// Clear LCD Screen
+	lcdWriteCmd(0x01); 							// Clear LCD Screen
+
 }/* lcdClear */
 
 void main(void)
