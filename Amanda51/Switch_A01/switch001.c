@@ -5,33 +5,41 @@ Created on:		2012-06-28
 Created by:		Amanda Li
 
 Description:
-	P0:			LED: 0:OFF, 1:ON
-	P14:	K5	Switch: 0:OFF, 1:ON
+	P0:			LED: 	1->ON, 0->OFF
+	P14:	K5	Switch: 1->ON, 0->OFF
 ****************************************************************/
 #include <STC89.H>
 
+#define SWITCH_POINT	P14
+#define	LED_POINT		P0
+
+#define SWITCH_ON	1
+#define SWITCH_OFF	0
+#define LED_ON		1
+#define LED_OFF		0
+
 unsigned char getSwitch(void)
 {
-	P14 = 1;
+	SWITCH_POINT = SWITCH_ON;
 
-	if (P14 != 1)							// Switch now is ON
+	if (SWITCH_POINT != SWITCH_ON)					// Switch now is ON
 	{
-		return	1;	
+		return	SWITCH_ON;	
 	}
 	else		  							// Switch now is OFF
 	{
-		return	0;
+		return	SWITCH_OFF;
 	}
 }/* getSwitch */
 
 void ledON(void)
 {
-	P0 = ~0x01;								// Led now is ON
+	LED_POINT = ~0x01;								// Led now is ON
 }/* ledON */
 
 void ledOFF(void)
 {
-	P0 = ~0x00;								// Led now is OFF
+	LED_POINT = ~0x00;								// Led now is OFF
 }/* ledOFF */
 
 void main(void)
@@ -41,7 +49,7 @@ void main(void)
 	sw_last = getSwitch();
 
 	ledOFF();
-	led = 0;
+	led = LED_OFF;
 
 	for (;;)
 	{
@@ -50,12 +58,12 @@ void main(void)
 			if (led == 1)							// LED now is ON -> OFF
 			{
 				ledOFF();
-				led = 0;
+				led = LED_OFF;
 			}
 			else									// LED now is OFF -> ON
 			{
 				ledON();
-				led = 1;
+				led = LED_ON;
 			}
 		}
 	}																																																					                                                                                                                                                             
