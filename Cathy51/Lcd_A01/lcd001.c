@@ -1,6 +1,6 @@
 /*****************************************************
  LCD Testing
- Version:      		0.1
+ Version:      		1.0
  Created on:		2012-07-02
  Created by:		Cathy
  Hardware:			RichMCU RZ-51
@@ -9,7 +9,15 @@
 					P22 -> EN
 					P0  -> DATAPORT
 					P07 -> BF
- 		
+
+ Jumpers:			Remove JPSMS - Disble 7-Segment LEDs
+ 					Romove JPPO  - Disabled LEDs
+					Add JPBG     - Enable LCD Back Light
+
+ Jumpers:			JPP0 跳线端的跳线帽拔掉以免干扰1602液晶显示
+					JPSMG 数码管控制跳线拔掉使数码管停止工作。
+					JPBG 液晶背光跳线插上
+					插上1602LCD液晶
  *****************************************************/
 #include <STC89.H>
 
@@ -86,11 +94,16 @@ void main (void)
 	lcdWriteCmd(0x38);				//	8-bit, 2lines,5x7 font
 	lcdWriteCmd(0x06);				//	Input mode; Increment, Non-shift
 	lcdWriteData(0x49);				//	'I'
-	lcdWriteData(0x20);
+	lcdWriteData(0x20);				//	' '
 	lcdWriteData(0x4C);				//	'L'
 	lcdWriteData(0x76);			    //	'v'
 	lcdWriteData(0x6F);				//	'o'
 	lcdWriteData(0x65);				//	'e'
+	lcdWriteData(0x20);				//	' '
+	lcdWriteData(0x38);			   	//	'8'
+	lcdWriteData(0x30);			    //	'0'
+	lcdWriteData(0x35);				//	'5'
+	lcdWriteData(0x31);				//	'1'
 
 	for(;;);
 }/* main */
