@@ -160,10 +160,10 @@
       <FileType>1</FileType>
       <tvExp>0</tvExp>
       <Focus>0</Focus>
-      <ColumnNumber>20</ColumnNumber>
+      <ColumnNumber>49</ColumnNumber>
       <tvExpOptDlg>0</tvExpOptDlg>
-      <TopLine>1</TopLine>
-      <CurrentLine>23</CurrentLine>
+      <TopLine>109</TopLine>
+      <CurrentLine>111</CurrentLine>
       <bDave2>0</bDave2>
       <PathWithFileName>.\lcd003.c</PathWithFileName>
       <FilenameWithoutPath>lcd003.c</FilenameWithoutPath>
