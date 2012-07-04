@@ -107,6 +107,7 @@ void main(void)
 	char msgA[]={0x49, 0x20, 0x4c, 0x6f, 0x76, 0x65, 0x20, 0x38, 0x30, 0x35, 0x31, 0};
 	char msgB[]={'I', ' ', 'L', 'o', 'v', 'e', ' ', '8', '0', '5', '1', 0};
 	char msgC[]="I love 8051";
+	char msgD[]="My name carol";		
 	
 	unsigned int n;
 	
@@ -115,9 +116,9 @@ void main(void)
 	lcdWriteCmd(0x38);			 //8 bit,2 lines, 5x7 font;
 	lcdWriteCmd(0x06);
 
-	for (n=0; msgA[n]!=0; n++)
+	for (n=0; msgD[n]!=0; n++)
 	{
-	lcdWriteData(msgA[n]);
+	lcdWriteData(msgD[n]);
 	}
 
 //	lcdWriteData('I');
