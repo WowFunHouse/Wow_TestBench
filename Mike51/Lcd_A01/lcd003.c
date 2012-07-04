@@ -1,7 +1,7 @@
 /****************************************************************************
  LCD Testing
 
- Version:		2.0
+ Version:		3.0
  Description:	To show a string on LCD display
 
  Created on:	2012-07-02
@@ -24,7 +24,7 @@
 				插上1602LCD液晶
 				将 JPBG 液晶背光跳线插上
 
- V2.0:			Use quoted signle characters for output
+ V3.0:			Use array instead of individual characters for output
 ****************************************************************************/
 #include <STC89.H>
 
@@ -110,28 +110,49 @@ void lcdClear(void)
 
 void main(void)
 {
+	char msgA[]={0x49, 0x20, 0x4c, 0x6f, 0x76, 0x65, 0x20, 0x38, 0x30, 0x35, 0x31, 0};
+
+	char msgB[]={'I', ' ', 'L', 'o', 'v' , 'e', ' ', '8', '0', '5', '1', 0};
+
+	char msgC[]="I Love 8051";
+	char msgD[]="Wow is Great!!!";
+
+	unsigned int n;
+
 	lcdClear();
 
 	lcdWriteCmd(0x0f);		// Display:On, Cursor:On, Blink:On
 	lcdWriteCmd(0x38);		// 8-bit, 2 lines, 5x7 font
 	lcdWriteCmd(0x06);		// Input mode: Increment, Non-shift
 
-	lcdWriteData('I');
-	lcdWriteData(' ');
-	lcdWriteData('L');
-	lcdWriteData('o');
-	lcdWriteData('v');
-	lcdWriteData('e');
-	lcdWriteData(' ');
-	lcdWriteData('8');
-	lcdWriteData('0');
-	lcdWriteData('5');
-	lcdWriteData('1');
-	lcdWriteData(0x7e);
-	lcdWriteData(0xf6);
-	lcdWriteData('3');
-	lcdWriteData(0xfa);
-	lcdWriteData(0xfb);
+	for (n=0; msgD[n]!=0; n++)
+	{
+		lcdWriteData(msgD[n]);
+	}
+
+//	n = 0;
+//	while (msg[n] != 0)
+//	{
+//		lcdWriteData(msg[n]);
+//		n++;
+//	}
+
+//	lcdWriteData('I');
+//	lcdWriteData(' ');
+//	lcdWriteData('L');
+//	lcdWriteData('o');
+//	lcdWriteData('v');
+//	lcdWriteData('e');
+//	lcdWriteData(' ');
+//	lcdWriteData('8');
+//	lcdWriteData('0');
+//	lcdWriteData('5');
+//	lcdWriteData('1');
+//	lcdWriteData(0x7e);
+//	lcdWriteData(0xf6);
+//	lcdWriteData('3');
+//	lcdWriteData(0xfa);
+//	lcdWriteData(0xfb);
 
 //	lcdWriteData(0x49);		// 'I'
 //	lcdWriteData(0x20);		// ' '
