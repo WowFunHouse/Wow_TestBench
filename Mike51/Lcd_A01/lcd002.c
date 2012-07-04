@@ -24,7 +24,7 @@
 				插上1602LCD液晶
 				将 JPBG 液晶背光跳线插上
 
- V2.0:			Use string array instead of individual characters for output
+ V2.0:			Use quoted signle characters for output
 ****************************************************************************/
 #include <STC89.H>
 
