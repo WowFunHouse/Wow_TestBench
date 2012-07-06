@@ -144,6 +144,9 @@ void lcdClearRow(unsigned char row)
 	{
 		lcdWriteData(' ');
 	}
+
+	lcdSelectRow(row);
+
 } /* lcdClearRow */
 
 void main(void)
