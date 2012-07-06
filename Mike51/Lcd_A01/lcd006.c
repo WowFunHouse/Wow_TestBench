@@ -27,6 +27,7 @@
  V3.0:			Use array instead of individual characters for output
  V4.0:			Add a string pointer to handle string
  V5.0:			Use a string function to handle strings
+ V6.0:			Add lcdSelectRow()
 ****************************************************************************/
 #include <STC89.H>
 
@@ -120,6 +121,18 @@ void lcdWriteString(char *str)
 	}
 } /* lcdWriteString */
 
+void lcdSelectRow(unsigned char row)	// Row#1:0, Row#2:1
+{
+	if (row == 0)
+	{
+		lcdWriteCmd(0x80); 				// Row #1
+	}
+	else
+	{
+		lcdWriteCmd(0x80 | 0x40); 		//  Row #2
+	}
+} /* lcdSelectRow */
+
 void main(void)
 {
 	char msgA[]="I Love 8051";
@@ -132,7 +145,7 @@ void main(void)
 	lcdWriteCmd(0x06);		// Input mode: Increment, Non-shift
 
 	lcdWriteString(msgA);
-	lcdWriteCmd(0x80 | 0x40);
+	lcdSelectRow(1);
 	lcdWriteString(msgB);
 
 	for (;;);
