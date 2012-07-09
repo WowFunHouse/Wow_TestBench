@@ -44,7 +44,7 @@
             <InvalidFlash>1</InvalidFlash>
           </TargetStatus>
           <OutputDirectory>.\</OutputDirectory>
-          <OutputName>marksix_pj01</OutputName>
+          <OutputName>lcd_pj04.zzz</OutputName>
           <CreateExecutable>1</CreateExecutable>
           <CreateLib>0</CreateLib>
           <CreateHexFile>1</CreateHexFile>
@@ -214,7 +214,7 @@
               <RCB>
                 <Type>0</Type>
                 <StartAddress>0x0</StartAddress>
-                <Size>0x10000</Size>
+                <Size>0x0</Size>
               </RCB>
               <RXB>
                 <Type>0</Type>
@@ -348,14 +348,9 @@
           <GroupName>Source Group 1</GroupName>
           <Files>
             <File>
-              <FileName>lib51.c</FileName>
+              <FileName>lcd004.c</FileName>
               <FileType>1</FileType>
-              <FilePath>..\..\Common51\lib51.c</FilePath>
-            </File>
-            <File>
-              <FileName>marksix002.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>.\marksix002.c</FilePath>
+              <FilePath>.\lcd004.c</FilePath>
             </File>
           </Files>
         </Group>

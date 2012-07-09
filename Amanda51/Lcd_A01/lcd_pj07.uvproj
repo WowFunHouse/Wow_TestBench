@@ -44,7 +44,7 @@
             <InvalidFlash>1</InvalidFlash>
           </TargetStatus>
           <OutputDirectory>.\</OutputDirectory>
-          <OutputName>marksix_pj01</OutputName>
+          <OutputName>lcd_pj07.zzz</OutputName>
           <CreateExecutable>1</CreateExecutable>
           <CreateLib>0</CreateLib>
           <CreateHexFile>1</CreateHexFile>
@@ -171,10 +171,10 @@
           <Target51Misc>
             <MemoryModel>0</MemoryModel>
             <RTOS>0</RTOS>
-            <RomSize>2</RomSize>
+            <RomSize>0</RomSize>
             <DataHold>0</DataHold>
             <XDataHold>0</XDataHold>
-            <UseOnchipRom>0</UseOnchipRom>
+            <UseOnchipRom>1</UseOnchipRom>
             <UseOnchipArithmetic>0</UseOnchipArithmetic>
             <UseMultipleDPTR>0</UseMultipleDPTR>
             <UseOnchipXram>0</UseOnchipXram>
@@ -214,7 +214,7 @@
               <RCB>
                 <Type>0</Type>
                 <StartAddress>0x0</StartAddress>
-                <Size>0x10000</Size>
+                <Size>0xffff</Size>
               </RCB>
               <RXB>
                 <Type>0</Type>
@@ -348,14 +348,9 @@
           <GroupName>Source Group 1</GroupName>
           <Files>
             <File>
-              <FileName>lib51.c</FileName>
+              <FileName>lcd007a.c</FileName>
               <FileType>1</FileType>
-              <FilePath>..\..\Common51\lib51.c</FilePath>
-            </File>
-            <File>
-              <FileName>marksix002.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>.\marksix002.c</FilePath>
+              <FilePath>.\lcd007a.c</FilePath>
             </File>
           </Files>
         </Group>
