@@ -1,10 +1,11 @@
 /****************************************************************************
- LCD Driver Library Header File
+ RichMCU RZ-51V2.0 Hardware configuration header file
 
  Version:		0.01
- Description:	LCD 1602 Driver Header
+ Description:	RichMCU RZ-51V2.0 Hardware configuration
 
- Created on:	2012-07-09
+
+ Created on:	2012-07-10
  Created by:	Michael
 
  Board:			RichMCU RZ-51V2.0
@@ -25,14 +26,9 @@
 				将 JPBG 液晶背光跳线插上
 ****************************************************************************/
 
-// unsigned char lcdCheckBusy(void);
-// void lcdWaitUntilReady(void);
+#define	RS			P20
+#define	RW			P21
+#define	EN			P22
+#define BF			P07
 
-void lcdWriteCmd(unsigned char cmd);
-void lcdWriteData(unsigned char dData);
-void lcdWriteString(char *str);
-
-void lcdSelectRow(unsigned char row);	// Row#1:0, Row#2:1
-
-void lcdClearScreen(void);
-
+#define DATAPORT	P0
