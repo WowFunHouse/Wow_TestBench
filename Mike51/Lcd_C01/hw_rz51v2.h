@@ -1,10 +1,11 @@
 /****************************************************************************
- LCD Testing
+ RichMCU RZ-51V2.0 Hardware configuration header file
 
  Version:		0.01
- Description:	
+ Description:	RichMCU RZ-51V2.0 Hardware configuration
 
- Created on:	2012-07-09
+
+ Created on:	2012-07-10
  Created by:	Michael
 
  Board:			RichMCU RZ-51V2.0
@@ -24,26 +25,10 @@
 				插上1602LCD液晶
 				将 JPBG 液晶背光跳线插上
 ****************************************************************************/
-#include "lcd_lib001.h"
 
-void main(void)
-{
-	char msgA[]="I Love 8051";
-	char msgB[]="Wow is Great!!!";
+#define	RS			P20
+#define	RW			P21
+#define	EN			P22
+#define BF			P07
 
-	lcdInit();				// Set 2 lines, font:5x7
-
-	lcdSetDisplayMode(LCD_DMODE_DISPLAY_ON | 
-					  LCD_DMODE_CURSOR_ON  |
-					  LCD_DMODE_CURSOR_BLINK_ON);
-
-	lcdClearScreen();
-	lcdSetInputMode(LCD_INPUT_INC, LCD_INPUT_SHIFT_OFF);
-
-	lcdWriteString(msgA);
-	lcdSelectRow(1);
-	lcdWriteString(msgB);
-
-	for (;;);
-
-} /* main */
+#define DATAPORT	P0

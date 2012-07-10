@@ -25,7 +25,7 @@
     <ToolsetNumber>0x0</ToolsetNumber>
     <ToolsetName>MCS-51</ToolsetName>
     <TargetOption>
-      <CLK51>45000000</CLK51>
+      <CLK51>11059200</CLK51>
       <OPTTT>
         <gFlags>1</gFlags>
         <BeepAtEnd>1</BeepAtEnd>
@@ -48,7 +48,7 @@
       <ListingPage>
         <CreateCListing>0</CreateCListing>
         <CreateAListing>0</CreateAListing>
-        <CreateLListing>0</CreateLListing>
+        <CreateLListing>1</CreateLListing>
         <CreateIListing>0</CreateIListing>
         <AsmCond>1</AsmCond>
         <AsmSymb>1</AsmSymb>
@@ -158,12 +158,12 @@
       <GroupNumber>1</GroupNumber>
       <FileNumber>1</FileNumber>
       <FileType>1</FileType>
-      <tvExp>0</tvExp>
+      <tvExp>1</tvExp>
       <Focus>0</Focus>
-      <ColumnNumber>34</ColumnNumber>
+      <ColumnNumber>15</ColumnNumber>
       <tvExpOptDlg>0</tvExpOptDlg>
-      <TopLine>24</TopLine>
-      <CurrentLine>38</CurrentLine>
+      <TopLine>16</TopLine>
+      <CurrentLine>30</CurrentLine>
       <bDave2>0</bDave2>
       <PathWithFileName>.\lcd001.c</PathWithFileName>
       <FilenameWithoutPath>lcd001.c</FilenameWithoutPath>
@@ -181,10 +181,10 @@
       <FileType>1</FileType>
       <tvExp>0</tvExp>
       <Focus>0</Focus>
-      <ColumnNumber>0</ColumnNumber>
+      <ColumnNumber>1</ColumnNumber>
       <tvExpOptDlg>0</tvExpOptDlg>
-      <TopLine>0</TopLine>
-      <CurrentLine>0</CurrentLine>
+      <TopLine>1</TopLine>
+      <CurrentLine>2</CurrentLine>
       <bDave2>0</bDave2>
       <PathWithFileName>.\lib_uty001.c</PathWithFileName>
       <FilenameWithoutPath>lib_uty001.c</FilenameWithoutPath>
@@ -192,20 +192,20 @@
   </Group>
 
   <Group>
-    <GroupName>LCD Library</GroupName>
+    <GroupName>Lcd Library</GroupName>
     <tvExp>1</tvExp>
     <tvExpOptDlg>0</tvExpOptDlg>
     <cbSel>0</cbSel>
     <File>
       <GroupNumber>3</GroupNumber>
-      <FileNumber>3</FileNumber>
+      <FileNumber>0</FileNumber>
       <FileType>1</FileType>
-      <tvExp>0</tvExp>
+      <tvExp>1</tvExp>
       <Focus>0</Focus>
-      <ColumnNumber>37</ColumnNumber>
+      <ColumnNumber>0</ColumnNumber>
       <tvExpOptDlg>0</tvExpOptDlg>
-      <TopLine>122</TopLine>
-      <CurrentLine>122</CurrentLine>
+      <TopLine>40</TopLine>
+      <CurrentLine>53</CurrentLine>
       <bDave2>0</bDave2>
       <PathWithFileName>.\lcd_lib001.c</PathWithFileName>
       <FilenameWithoutPath>lcd_lib001.c</FilenameWithoutPath>
@@ -214,7 +214,7 @@
 
   <Group>
     <GroupName>Header Files</GroupName>
-    <tvExp>1</tvExp>
+    <tvExp>0</tvExp>
     <tvExpOptDlg>0</tvExpOptDlg>
     <cbSel>0</cbSel>
     <File>
@@ -223,24 +223,38 @@
       <FileType>5</FileType>
       <tvExp>0</tvExp>
       <Focus>0</Focus>
-      <ColumnNumber>0</ColumnNumber>
+      <ColumnNumber>2</ColumnNumber>
       <tvExpOptDlg>0</tvExpOptDlg>
-      <TopLine>71</TopLine>
-      <CurrentLine>74</CurrentLine>
+      <TopLine>13</TopLine>
+      <CurrentLine>31</CurrentLine>
       <bDave2>0</bDave2>
       <PathWithFileName>.\lcd_lib001.h</PathWithFileName>
       <FilenameWithoutPath>lcd_lib001.h</FilenameWithoutPath>
     </File>
     <File>
       <GroupNumber>4</GroupNumber>
-      <FileNumber>5</FileNumber>
+      <FileNumber>0</FileNumber>
       <FileType>5</FileType>
       <tvExp>0</tvExp>
       <Focus>0</Focus>
       <ColumnNumber>0</ColumnNumber>
       <tvExpOptDlg>0</tvExpOptDlg>
-      <TopLine>0</TopLine>
-      <CurrentLine>0</CurrentLine>
+      <TopLine>1</TopLine>
+      <CurrentLine>10</CurrentLine>
+      <bDave2>0</bDave2>
+      <PathWithFileName>.\lib_uty001.h</PathWithFileName>
+      <FilenameWithoutPath>lib_uty001.h</FilenameWithoutPath>
+    </File>
+    <File>
+      <GroupNumber>4</GroupNumber>
+      <FileNumber>0</FileNumber>
+      <FileType>5</FileType>
+      <tvExp>0</tvExp>
+      <Focus>0</Focus>
+      <ColumnNumber>20</ColumnNumber>
+      <tvExpOptDlg>0</tvExpOptDlg>
+      <TopLine>4</TopLine>
+      <CurrentLine>30</CurrentLine>
       <bDave2>0</bDave2>
       <PathWithFileName>.\hw_rz51v2.h</PathWithFileName>
       <FilenameWithoutPath>hw_rz51v2.h</FilenameWithoutPath>

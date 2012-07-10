@@ -27,12 +27,9 @@
 ****************************************************************************/
 #include <STC89.H>
 #include "lib_uty001.h"
+#include "hw_rz51v2.h"
+#include "lcd_lib001.h"
 
-#define	RS			P20
-#define	RW			P21
-#define	EN			P22
-#define BF			P07
-#define DATAPORT	P0
 #define DELAYSHORT	10
 
 unsigned char lcdCheckBusy(void)
@@ -52,6 +49,7 @@ unsigned char lcdCheckBusy(void)
 	RW = 1;				// Optional to set it to READ
 
 	return bf;
+
 } /* lcdCheckBusy */
 
 void lcdWaitUntilReady(void)
@@ -102,6 +100,7 @@ void lcdWriteString(char *str)
 	{
 		lcdWriteData(*(str+n));
 	}
+
 } /* lcdWriteString */
 
 void lcdSelectRow(unsigned char row)	// Row#1:0, Row#2:1
@@ -114,6 +113,7 @@ void lcdSelectRow(unsigned char row)	// Row#1:0, Row#2:1
 	{
 		lcdWriteCmd(0x80 | 0x40); 		//  Row #2
 	}
+
 } /* lcdSelectRow */
 
 void lcdClearScreen(void)
@@ -121,3 +121,21 @@ void lcdClearScreen(void)
 	lcdWriteCmd(0x1);			// Clear LCD Screen
 
 } /* lcdClear */
+
+void lcdInit(void)
+{
+	lcdWriteCmd(0x30 | LCD_STYLE_2LINES | LCD_STYLE_FONT5X7);	// 8-bit, 2lines, font:5x7
+
+} /* lcdInit */
+
+void lcdSetDisplayMode(unsigned display_mode)
+{
+	lcdWriteCmd(0x08 | display_mode);
+
+} /* lcdSetDisplayMode */
+
+void lcdSetInputMode(unsigned char input_mode, unsigned char input_shift)
+{
+	lcdWriteCmd(0x04 | input_mode | input_shift);
+
+} /* lcdSetInputMode */

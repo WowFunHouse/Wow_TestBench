@@ -2,46 +2,28 @@
 LCD Testing
 
 Version:		0.01
-Description:	
+Description:	Show 2 lines to 1602 LCDs
 
 Creared on:		Amanda Li
-Creared by:		2012-07-09
-
-Board:			Richmcu RZ-51/AVR 2.0
-
-Conmnection:	LCD pins as below - 
-				RS			P20
-				RW			P21
-				EN			P22
-				DATAPORT	P0
-
-Jumpers:		Remove JPSMG - Disable 7-Segment LEDs
-				Remove JPP0	 - Disable LEDs
-				Add JPBG	 - Enable LCD Back Light				
+Creared by:		2012-07-10				
 *****************************************************************************/
-#include <STC89.H>
 #include "lcd_lib001.h"
-
-#define RS			P20
-#define RW			P21
-#define EN			P22
-
-#define DATAPORT	P0
-#define BF			P07
-
-#define DELAYSHORT	10
 
 void main(void)
 {	
 	char msgA[] = "I Love 8051";
 	
-	char msgB[] = "Hello World!"; 
+	char msgB[] = "Hello World!";
+	
+	lcdInit(); 													// 8-bit, 2 lines, 5x7 font
+
+	lcdInitDisplayMode(	LCD_DMODE_DISPLAY_ON |					// Display: ON, Cursor: ON, Blink: ON 
+						LCD_DMODE_CURSOR_ON	 | 
+						LCD_DMODE_CUPSOR_BLINK_ON);
+
+	lcdSetInputMode(LCD_INPUT_INC, LCD_INPUT_SHIFT_OFF);	   // Input mode: Imcrement, No-shift
 
 	lcdClearScreen();
-	
-	lcdWriteCmd(0x0F);						// Display: ON, Cursor: ON, Blink: ON
-	lcdWriteCmd(0x38);						// 8-bit, 2 lines, 5x7 font
-	lcdWriteCmd(0x06);						// Input mode: Increment, Non-shift
 
 	lcdWriteString(msgA);
 	lcdSelectRow(1);
