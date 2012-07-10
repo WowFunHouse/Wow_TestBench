@@ -44,7 +44,7 @@
             <InvalidFlash>1</InvalidFlash>
           </TargetStatus>
           <OutputDirectory>.\</OutputDirectory>
-          <OutputName>lcd_pj01.zzz</OutputName>
+          <OutputName>ledA_pj001</OutputName>
           <CreateExecutable>1</CreateExecutable>
           <CreateLib>0</CreateLib>
           <CreateHexFile>1</CreateHexFile>
@@ -345,47 +345,12 @@
       </TargetOption>
       <Groups>
         <Group>
-          <GroupName>Application</GroupName>
+          <GroupName>Source Group 1</GroupName>
           <Files>
             <File>
-              <FileName>lcd001.c</FileName>
+              <FileName>led001.c</FileName>
               <FileType>1</FileType>
-              <FilePath>.\lcd001.c</FilePath>
-            </File>
-          </Files>
-        </Group>
-        <Group>
-          <GroupName>Utility</GroupName>
-          <Files>
-            <File>
-              <FileName>lib_uty001.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>.\lib_uty001.c</FilePath>
-            </File>
-          </Files>
-        </Group>
-        <Group>
-          <GroupName>LCD Library</GroupName>
-          <Files>
-            <File>
-              <FileName>lcd_lib001.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>.\lcd_lib001.c</FilePath>
-            </File>
-          </Files>
-        </Group>
-        <Group>
-          <GroupName>Header Files</GroupName>
-          <Files>
-            <File>
-              <FileName>lcd_lib001.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>.\lcd_lib001.h</FilePath>
-            </File>
-            <File>
-              <FileName>hw_rz51v2.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>.\hw_rz51v2.h</FilePath>
+              <FilePath>.\led001.c</FilePath>
             </File>
           </Files>
         </Group>
