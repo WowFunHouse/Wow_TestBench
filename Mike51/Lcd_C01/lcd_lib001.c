@@ -27,12 +27,8 @@
 ****************************************************************************/
 #include <STC89.H>
 #include "lib_uty001.h"
+#include "hw_rz51v2.h"
 
-#define	RS			P20
-#define	RW			P21
-#define	EN			P22
-#define BF			P07
-#define DATAPORT	P0
 #define DELAYSHORT	10
 
 unsigned char lcdCheckBusy(void)
@@ -52,6 +48,7 @@ unsigned char lcdCheckBusy(void)
 	RW = 1;				// Optional to set it to READ
 
 	return bf;
+
 } /* lcdCheckBusy */
 
 void lcdWaitUntilReady(void)
@@ -102,6 +99,7 @@ void lcdWriteString(char *str)
 	{
 		lcdWriteData(*(str+n));
 	}
+
 } /* lcdWriteString */
 
 void lcdSelectRow(unsigned char row)	// Row#1:0, Row#2:1
@@ -114,6 +112,7 @@ void lcdSelectRow(unsigned char row)	// Row#1:0, Row#2:1
 	{
 		lcdWriteCmd(0x80 | 0x40); 		//  Row #2
 	}
+
 } /* lcdSelectRow */
 
 void lcdClearScreen(void)

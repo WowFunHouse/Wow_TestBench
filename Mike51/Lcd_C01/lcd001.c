@@ -31,7 +31,7 @@ void main(void)
 	char msgA[]="I Love 8051";
 	char msgB[]="Wow is Great!!!";
 
-	lcdClear();
+	lcdClearScreen();
 
 	lcdWriteCmd(0x0f);		// Display:On, Cursor:On, Blink:On
 	lcdWriteCmd(0x38);		// 8-bit, 2 lines, 5x7 font

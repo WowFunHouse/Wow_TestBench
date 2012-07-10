@@ -382,6 +382,11 @@
               <FileType>5</FileType>
               <FilePath>.\lcd_lib001.h</FilePath>
             </File>
+            <File>
+              <FileName>hw_rz51v2.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\hw_rz51v2.h</FilePath>
+            </File>
           </Files>
         </Group>
       </Groups>
