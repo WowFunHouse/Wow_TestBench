@@ -10,12 +10,8 @@ Library of supporting utilities
  ******************************************************************/
 #include <STC89.H>
 #include "lib_uty001.h"
+#include "hw_rz51v2.h"
 
-#define RS 			P20
-#define RW 			P21
-#define EN 			P22
-#define DATAPORT    P0
-#define BF 			P07
 #define DELAYSHORT  100
 
 

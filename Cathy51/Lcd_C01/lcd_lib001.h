@@ -8,8 +8,8 @@ Library of supporting utilities
  Created by:		Cathy
  ******************************************************************/
 
-unsigned char lcdCheckBusy(void);
-void lcdWaitUntilReady(void);
+//unsigned char lcdCheckBusy(void);
+//void lcdWaitUntilReady(void);
 
 void lcdWriteCmd(unsigned char cmd);
 void lcdWriteData(unsigned char dData);
