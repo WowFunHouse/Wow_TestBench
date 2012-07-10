@@ -20,8 +20,8 @@ Jumpers:		Remove JPSMG - Disable 7-Segment LEDs
 				Add JPBG	 - Enable LCD Back Light				
 *****************************************************************************/
 
-unsigned char lcdCheckBusy(void);
-void lcdWaitUntilReady(void);
+//unsigned char lcdCheckBusy(void);
+//void lcdWaitUntilReady(void);
 
 void lcdWriteCmd(unsigned char cmd);
 void lcdWriteData(unsigned char dData);

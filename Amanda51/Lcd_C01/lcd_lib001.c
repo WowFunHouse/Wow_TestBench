@@ -21,13 +21,7 @@ Jumpers:		Remove JPSMG - Disable 7-Segment LEDs
 *****************************************************************************/
 #include <STC89.H>
 #include "lib_uty001.h"
-
-#define RS			P20
-#define RW			P21
-#define EN			P22
-
-#define DATAPORT	P0
-#define BF			P07
+#include "hw_rz51v2.h"
 
 #define DELAYSHORT	10
 
@@ -50,6 +44,7 @@ unsigned char lcdCheckBusy(void)
 	RS = 1;										// Optional to set it to RAM Select
 
 	return	bf;
+
 }/* lcdCheckBusy */
 
 void lcdWaitUntilReady(void)
@@ -75,6 +70,7 @@ void lcdWriteCmd(unsigned char cmd)
 	EN = 0;
 	RW = 1;
 	RS = 1;
+
 }/* lcdWriteCmd */
 
 void lcdWriteData(unsigned char dData)
@@ -93,7 +89,8 @@ void lcdWriteData(unsigned char dData)
 
 	EN = 0;
 	RW = 1;
-	RS = 0;	
+	RS = 0;
+		
 }/* lcdWriteData */
 
 void lcdWriteString(char *str)

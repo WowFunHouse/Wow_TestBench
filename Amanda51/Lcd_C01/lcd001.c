@@ -19,17 +19,7 @@ Jumpers:		Remove JPSMG - Disable 7-Segment LEDs
 				Remove JPP0	 - Disable LEDs
 				Add JPBG	 - Enable LCD Back Light				
 *****************************************************************************/
-#include <STC89.H>
 #include "lcd_lib001.h"
-
-#define RS			P20
-#define RW			P21
-#define EN			P22
-
-#define DATAPORT	P0
-#define BF			P07
-
-#define DELAYSHORT	10
 
 void main(void)
 {	
