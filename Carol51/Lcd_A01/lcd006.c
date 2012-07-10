@@ -125,7 +125,6 @@ void lcdSelectRow(unsigned char row)
 	}
 } /* lcdSelectRow */
 
-
 void main(void)
 {
 	char msg[]="My name Carol";	
