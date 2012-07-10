@@ -31,11 +31,14 @@ void main(void)
 	char msgA[]="I Love 8051";
 	char msgB[]="Wow is Great!!!";
 
-	lcdClearScreen();
+	lcdInit();				// Set 2 lines, font:5x7
 
-	lcdWriteCmd(0x0f);		// Display:On, Cursor:On, Blink:On
-	lcdWriteCmd(0x38);		// 8-bit, 2 lines, 5x7 font
-	lcdWriteCmd(0x06);		// Input mode: Increment, Non-shift
+	lcdSetDisplayMode(LCD_DMODE_DISPLAY_ON | 
+					  LCD_DMODE_CURSOR_ON  |
+					  LCD_DMODE_CURSOR_BLINK_ON);
+
+	lcdClearScreen();
+	lcdSetInputMode(LCD_INPUT_INC, LCD_INPUT_SHIFT_OFF);
 
 	lcdWriteString(msgA);
 	lcdSelectRow(1);
