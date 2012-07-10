@@ -5,7 +5,7 @@ Version:		0.01
 Description:	LCD 1602 Driver Header	
 
 Creared on:		Amanda Li
-Creared by:		2012-07-09
+Creared by:		2012-07-10
 
 Board:			Richmcu RZ-51/AVR 2.0
 
@@ -22,6 +22,7 @@ Jumpers:		Remove JPSMG - Disable 7-Segment LEDs
 #include <STC89.H>
 #include "lib_uty001.h"
 #include "hw_rz51v2.h"
+#include "lcd_lib001.h"
 
 #define DELAYSHORT	10
 
@@ -99,6 +100,7 @@ void lcdWriteString(char *str)
 
 	for (n=0; *(str+n)!=0; n++)
 	{
+
 		lcdWriteData( *(str+n) );
 	}
 
@@ -121,3 +123,21 @@ void lcdClearScreen(void)
 	lcdWriteCmd(0x01); 							// Clear LCD Screen
 
 }/* lcdClearScreen */
+
+void lcdInit(void)
+{
+	lcdWriteCmd(0x30 | LCD_STYLE_2LINES | LCD_STYLE_FONT5x7);				// 8-bit, 2 lines, 5x7 font
+
+}/* lcdInit */
+
+void lcdInitDisplayMode(unsigned char display_mode)
+{
+	lcdWriteCmd(0x08 | display_mode);
+
+}/* lcdInitDisplayMode */ 
+
+void lcdSetInputMode(unsigned char input_mode, unsigned char input_shift)
+{
+	 lcdWriteCmd(0x04 | input_mode | input_shift);
+
+}/* lcdSetInputMode */
