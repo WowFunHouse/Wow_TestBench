@@ -35,11 +35,19 @@ void main(void)
 	char msgA[]="I Love 8051";
 	char msgB[]="Wow digital post";
 
-	lcdClearScreen();
+	lcdInit();							 //	8-bit, 2lines,5x7 font
 
-	lcdWriteCmd(0x0F);					//	Display:On Cursor:On Blink:On
-	lcdWriteCmd(0x38);					//	8-bit, 2lines,5x7 font
-	lcdWriteCmd(0x06);					//	Input mode; Increment, Non-shift
+
+//	lcdWriteCmd(0x0F);					//	Display:On Cursor:On Blink:On	lcdWriteCmd(0x38);					//
+//	lcdWriteCmd(0x06);					//	Input mode; Increment, Non-shift
+
+	lcdSetDisplayMode (LCD_DMODE_DISPLAY_ON |
+					   LCD_DMODE_CURSOR_ON |
+					   LCD_DMODE_CURSOR_BLINK_ON);	
+
+	lcdSetInputMode (LCD_INPUT_INC , LCD_INPUT_SHIFT_OFF);
+
+	lcdClearScreen();
 
 	lcdSelectRow(0);
 	lcdWriteString(msgA);
@@ -47,6 +55,7 @@ void main(void)
 	lcdWriteString(msgB);
   
 	for(;;);
+
 
 } /* main */
 
