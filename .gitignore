@@ -9,7 +9,7 @@
 *.lnp
 *.plg
 *.uvgui.*
-#*.uvopt
+*.uvopt
 *.bak
 *.hex
 Output/
