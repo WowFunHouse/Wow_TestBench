@@ -1,16 +1,17 @@
-/*************************************
-Library of supporting utilitles
+/************************************************
+ Library of supporting utilitles
 
-Version:		0.01
-Description:	Supporting functions
+ Version:		0.01
+ Description:	Supporting functions
 
-Creared on:		Amanda Li
-Creared by:		2012-07-09				
-*************************************/
+ Creared on:	2012-07-09		
+ Creared by:	Amanda Li				
+ ************************************************/
 
 void delay(unsigned int delaycount)
 {
 	unsigned int	t;
 
 	for (t=0; t<delaycount; t++);
+
 }/* delay */

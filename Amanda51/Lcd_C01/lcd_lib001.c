@@ -1,24 +1,24 @@
-/***************************************************************************
-LCD Driver Library Heade
+/****************************************************************************
+ LCD Driver Library Header Files
 
-Version:		0.01
-Description:	LCD 1602 Driver Header	
+ Version:		0.01
+ Description:	LCD 1602 Driver Header	
 
-Creared on:		Amanda Li
-Creared by:		2012-07-10
+ Creared on:	2012-07-10		
+ Creared by:	Amanda Li
 
-Board:			Richmcu RZ-51/AVR 2.0
+ Board:			Richmcu RZ-51/AVR 2.0
 
-Conmnection:	LCD pins as below - 
+ Conmnection:	LCD pins as below - 
 				RS			P20
 				RW			P21
 				EN			P22
 				DATAPORT	P0
 
-Jumpers:		Remove JPSMG - Disable 7-Segment LEDs
+ Jumpers:		Remove JPSMG - Disable 7-Segment LEDs
 				Remove JPP0	 - Disable LEDs
 				Add JPBG	 - Enable LCD Back Light				
-*****************************************************************************/
+ ****************************************************************************/
 #include <STC89.H>
 #include "lib_uty001.h"
 #include "hw_rz51v2.h"
