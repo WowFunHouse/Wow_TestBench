@@ -1,8 +1,8 @@
 /****************************************************************************
  LCD Testing
 
- Version:		1.0
- Description:	Try to show 2 lines with homemade characters
+ Version:		0.01
+ Description:	
 
  Created on:	2012-07-09
  Created by:	Michael
@@ -24,24 +24,14 @@
 				插上1602LCD液晶
 				将 JPBG 液晶背光跳线插上
 ****************************************************************************/
-#include "lib_uty001.h"
 #include "lcd_lib001.h"
 
 void main(void)
 {
-	char mario[][8]={{0x06, 0x09, 0x09, 0x06, 0x03, 0x1a, 0x05, 0x08},
-					 {0x09, 0x09, 0x06, 0x03, 0x1a, 0x05, 0x08, 0x06},
-					 {0x09, 0x06, 0x03, 0x1a, 0x05, 0x08, 0x06, 0x09},
-					 {0x06, 0x03, 0x1a, 0x05, 0x08, 0x06, 0x09, 0x09},
-					 {0x03, 0x1a, 0x05, 0x08, 0x06, 0x09, 0x09, 0x06},
-					 {0x1a, 0x05, 0x08, 0x06, 0x09, 0x09, 0x06, 0x03},
-					 {0x05, 0x08, 0x06, 0x09, 0x09, 0x06, 0x03, 0x1a},
-					 {0x08, 0x06, 0x09, 0x09, 0x06, 0x03, 0x1a, 0x05}};
+	char font0[]={0x06, 0x09, 0x09, 0x06, 0x03, 0x1a, 0x05, 0x08};
 
 	char msgA[]="Wow8051";
 	char msgB[]="Wow is Great!!!";
-
-	unsigned char n;
 
 	lcdInit();				// Set 2 lines, font:5x7
 
@@ -54,40 +44,22 @@ void main(void)
 //	lcdMakeRawFont(0, 0x04, 0x0b, 0x04, 0x07, 0x1a, 0x04, 0x08, 0x10);
 //	lcdMakeRawFont(1, 0x06, 0x09, 0x09, 0x06, 0x03, 0x1a, 0x05, 0x08);
 
-	/* Setup all 8 self-made special characters */
-	for (n=0; n<8; n++)
-	{
-		lcdMakeFont(n, mario[n]);
-	}
+	lcdMakeFont(0, font0);
 
 	lcdClearScreen();
 	lcdSetInputMode(LCD_INPUT_INC, LCD_INPUT_SHIFT_OFF);
 
-	/* try to show all 8 pre-programmed special characters */
-//	for (n=0; n<8; n++)
-//	{
-//		lcdWriteData(n);
-//	}
-
+	lcdWriteData(0);
+	lcdWriteData(1);
 	lcdWriteData(' ');
 	lcdWriteString(msgA);
+	lcdWriteData(' ');
+	lcdWriteData(1);
+	lcdWriteData(0);
 
 	lcdSelectRow(1);
 	lcdWriteString(msgB);
 
-	lcdSetDisplayMode(LCD_DMODE_DISPLAY_ON | 
-					  LCD_DMODE_CURSOR_OFF  |
-					  LCD_DMODE_CURSOR_BLINK_OFF);
-
-	n=0;
-	for (;;)
-	{
-		lcdSelectRow(0);
-		lcdWriteData(n++);
-
-		if (n>=8) n=0;
-
-		delay(15000);
-	}
+	for (;;);
 
 } /* main */
