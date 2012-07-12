@@ -122,6 +122,7 @@ void lcdClearScreen(void)
 
 } /* lcdClear */
 
+
 void lcdInit(void)
 {
 	lcdWriteCmd(0x30 | LCD_STYLE_2LINES | LCD_STYLE_FONT5X7);	// 8-bit, 2lines, font:5x7
@@ -139,3 +140,73 @@ void lcdSetInputMode(unsigned char input_mode, unsigned char input_shift)
 	lcdWriteCmd(0x04 | input_mode | input_shift);
 
 } /* lcdSetInputMode */
+
+/***************************************************
+ lcdMakeRawFont() - Use this to create a new font
+ Input:
+	c: character code (0 - 7)
+	row0-row7: dotmatrix rows from top to bottom
+			   valid bits b0 - b4 from right to left
+ Output: N/A
+ ***************************************************/
+void lcdMakeRawFont(unsigned char c, unsigned char row0,
+									 unsigned char row1, 
+									 unsigned char row2, 
+									 unsigned char row3, 
+									 unsigned char row4,
+									 unsigned char row5,
+									 unsigned char row6,
+									 unsigned char row7)
+{																 
+	unsigned char	cgAddr = 8*c;							   
+
+	lcdWriteCmd(0x40 |  cgAddr);
+	lcdWriteData(row0);
+
+	lcdWriteCmd(0x40 | (cgAddr+1));
+	lcdWriteData(row1);
+
+	lcdWriteCmd(0x40 | (cgAddr+2));
+	lcdWriteData(row2);
+
+	lcdWriteCmd(0x40 | (cgAddr+3));
+	lcdWriteData(row3);
+
+	lcdWriteCmd(0x40 | (cgAddr+4));
+	lcdWriteData(row4);
+
+	lcdWriteCmd(0x40 | (cgAddr+5));
+	lcdWriteData(row5);
+
+	lcdWriteCmd(0x40 | (cgAddr+6));
+	lcdWriteData(row6);
+
+	lcdWriteCmd(0x40 | (cgAddr+7));
+	lcdWriteData(row7);
+
+} /* lcdMakeRawFont */
+
+/*****************************************************
+ lcdMakeFont() - Use this to create a new font
+ Input:
+	c: character code (0 - 7)
+	*row: dotmatrix rows (8 rows) from top to bottom
+		  valid bits b0 - b4 from right to left
+ Output: N/A
+ *****************************************************/
+void lcdMakeFont(unsigned char c, char *row)
+{
+	unsigned char	cgAddr;
+	unsigned char	n;
+
+	cgAddr = 8*c;
+
+	for (n=0; n<8; n++)
+	{
+		lcdWriteCmd(0x40 | cgAddr + n);
+		lcdWriteData(row[n]);
+	}
+	
+} /* lcdMakeFont */																 
+
+

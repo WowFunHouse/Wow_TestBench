@@ -27,7 +27,7 @@
 
 #define	LCD_DMODE_DISPLAY_OFF			0
 #define	LCD_DMODE_DISPLAY_ON			0x04
-#define	LCD_DMODE_CURSOF_OFF			0
+#define	LCD_DMODE_CURSOR_OFF			0
 #define	LCD_DMODE_CURSOR_ON				0x02
 #define	LCD_DMODE_CURSOR_BLINK_OFF		0
 #define	LCD_DMODE_CURSOR_BLINK_ON		0x01
@@ -72,12 +72,39 @@ void lcdSetPosition(unsigned char row, unsigned char pos);
 void lcdPutChar(unsigned char row, unsigned char pos, char c);
 unsigned char lcdGetCursorPost(void);
 
+/***************************************************
+ lcdMakeRawFont() - Use this to create a new font
+ Input:
+	c: character code (0 - 7)
+	row0-row7: dotmatrix rows from top to bottom
+			   valid bits b0 - b4 from right to left
+ Output: N/A
+ ***************************************************/
+void lcdMakeRawFont(unsigned char c, unsigned char row0,
+									 unsigned char row1, 
+									 unsigned char row2, 
+									 unsigned char row3, 
+									 unsigned char row4,
+									 unsigned char row5,
+									 unsigned char row6,
+									 unsigned char row7);
+
+/*****************************************************
+ lcdMakeFont() - Use this to create a new font
+ Input:
+	c: character code (0 - 7)
+	*row: dotmatrix rows (8 rows) from top to bottom
+		  valid bits b0 - b4 from right to left
+ Output: N/A
+ *****************************************************/
+void lcdMakeFont(unsigned char c, char *row);
 void lcdInit(void);							// 2lines, Font:5x7
 
 void lcdClearScreen(void);
 
 void lcdEfxBounce(unsigned char row, char *str, unsigned int speed);
 void lcdEfxRoll(unsigned char row, char *str, unsigned char dir, unsigned int speed);
+
 
 
 
