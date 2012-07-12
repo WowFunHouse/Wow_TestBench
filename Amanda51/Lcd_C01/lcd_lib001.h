@@ -1,14 +1,14 @@
 /***************************************************************************
-LCD Driver Library Heade
+ LCD Driver Library Heade
 
-Version:		0.01
-Description:	LCD 1602 Driver Header	
+ Version:		0.01
+ Description:	LCD 1602 Driver Header	
 
-Creared on:		Amanda Li
-Creared by:		2012-07-10
+ Creared on:	2012-07-10
+ Creared by:	Amanda Li
 
-Board:			Richmcu RZ-51/AVR 2.0				
-*****************************************************************************/
+ Board:			Richmcu RZ-51/AVR 2.0				
+ ***************************************************************************/
 
 #define LCD_DMODE_DISPLAY_OFF			0
 #define LCD_DMODE_DISPLAY_ON			0x04
