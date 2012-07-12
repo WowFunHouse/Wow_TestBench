@@ -1,10 +1,10 @@
 /****************************************************************************
  LCD Driver Library Header Files
 
- Version:		0.01
+ Version:		0.02
  Description:	LCD 1602 Driver Header	
 
- Creared on:	2012-07-10		
+ Creared on:	2012-07-12		
  Creared by:	Amanda Li
 
  Board:			Richmcu RZ-51/AVR 2.0
@@ -17,11 +17,10 @@
 
  Jumpers:		Remove JPSMG - Disable 7-Segment LEDs
 				Remove JPP0	 - Disable LEDs
-				Add JPBG	 - Enable LCD Back Light				
+				Add JPBG	 - Enable LCD Back Light
+
+ V0.02			Make font in 1602 LCD				
  ****************************************************************************/
-#include <STC89.H>
-#include "lib_uty001.h"
-#include "hw_rz51v2.h"
 #include "lcd_lib001.h"
 
 #define DELAYSHORT	10
@@ -141,3 +140,46 @@ void lcdSetInputMode(unsigned char input_mode, unsigned char input_shift)
 	 lcdWriteCmd(0x04 | input_mode | input_shift);
 
 }/* lcdSetInputMode */
+
+void lcdMakeRawFont(unsigned char c, unsigned char row0,
+									 unsigned char row1,
+									 unsigned char row2,
+									 unsigned char row3,
+									 unsigned char row4,
+									 unsigned char row5,
+									 unsigned char row6,
+									 unsigned char row7)
+{
+	unsigned char	cgAddr = 8*c;
+	
+	lcdWriteCmd(0x40 | cgAddr++);
+	lcdWriteData(row0);	
+	lcdWriteCmd(0x40 | (cgAddr+1));
+	lcdWriteData(row1);	
+	lcdWriteCmd(0x40 | (cgAddr+2));
+	lcdWriteData(row2);	
+	lcdWriteCmd(0x40 | (cgAddr+3));
+	lcdWriteData(row3);	
+	lcdWriteCmd(0x40 | (cgAddr+4));
+	lcdWriteData(row4);
+	lcdWriteCmd(0x40 | (cgAddr+5));
+	lcdWriteData(row5);	
+	lcdWriteCmd(0x40 | (cgAddr+6));
+	lcdWriteData(row6);	
+	lcdWriteCmd(0x40 | (cgAddr+7));
+	lcdWriteData(row7);		
+
+} /* lcdMakeRawFont */
+
+void lcdMakeFont(unsigned char c, unsigned char *row)
+{
+	unsigned char cgAddr = 8*c;
+	unsigned char n;
+
+	for (n=0; n<8; n++)
+	{
+		lcdWriteCmd(0x40 | (cgAddr + n));
+		lcdWriteData( row[n] );
+	}
+
+} /* lcdMakeFont */

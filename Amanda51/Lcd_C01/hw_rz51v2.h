@@ -17,6 +17,8 @@
 				Remove JPP0	 - Disable LEDs
 				Add JPBG	 - Enable LCD Back Light				
  **********************************************************************/
+#include <STC89.H>
+
 #define RS			P20
 #define RW			P21
 #define EN			P22
