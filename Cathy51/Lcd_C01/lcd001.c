@@ -22,17 +22,12 @@
 					JPSMG 数码管控制跳线拔掉使数码管停止工作。
 					JPBG 液晶背光跳线插上
 					插上1602LCD液晶
-
- V3.0				Use array for the LCD messages
- V4.0				Add a string pointer to handle string
- V5.0				Use a function to handle message string
- v6.0				Add Select Row
  ******************************************************************/
 #include "lcd_lib001.h"
 
 void main(void)
 {
-	char msgA[]="I Love 8051";
+	char msgA[12]="I Love 8051";
 	char msgB[]="Wow digital post";
 
 	lcdInit();							 //	8-bit, 2lines,5x7 font
@@ -45,17 +40,20 @@ void main(void)
 					   LCD_DMODE_CURSOR_ON |
 					   LCD_DMODE_CURSOR_BLINK_ON);	
 
-	lcdSetInputMode (LCD_INPUT_INC , LCD_INPUT_SHIFT_OFF);
+	lcdMakeRawFont(0, 0x06, 0x09, 0x09, 0x06, 0x03, 0x1a, 0x05, 0x08);
 
 	lcdClearScreen();
+	lcdSetInputMode (LCD_INPUT_INC , LCD_INPUT_SHIFT_OFF);
 
+
+	lcdWriteData(0);
+	lcdWriteData(' ');
 	lcdSelectRow(0);
 	lcdWriteString(msgA);
 	lcdSelectRow(1);					
 	lcdWriteString(msgB);
   
 	for(;;);
-
 
 } /* main */
 
