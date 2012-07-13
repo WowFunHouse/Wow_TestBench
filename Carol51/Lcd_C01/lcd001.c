@@ -27,13 +27,30 @@ void main(void)
 	char msgA[]="My name Carol";
 	char msgB[]="Good Day!";	
 
+	lcdInit();								            //set 2 lines,font 5x7
+	lcdSetDisplayMode(LCD_DMODE_DISPLAY_ON|
+	                   LCD_DMODE_CURSOR_ON|
+					   LCD_DMODE_CURSOR_BLINK_ON);
+
+//	lcdMakeFont(0,0x01,0x02,0x04,0x08,0x10,0x11,0x0a,0x11);
+//	lcdMakeFont(0,0x04,0x0b,0x04,0x08,0x10,0x11,0x0a,0x11);
+//	lcdMakeFont(0,0x06,0x02,0x04,0x08,0x10,0x11,0x0a,0x11);
+
+	lcdMakeFont(0,font0);
+							  
 	lcdClearScreen();
+	lcdSetInputMode(LCD_INPUT_INC,LCD_INPUT_SHIFT_OFF);
 
-	lcdWriteCmd(0x0F);
-	lcdWriteCmd(0x38);			 //8 bit,2 lines, 5x7 font;
-	lcdWriteCmd(0x06);
-
+	lcdWriteData(0);
+	lcdWriteData(' ');
+	lcdWriteData(0);
+	lcdWriteData(' ');
 	lcdWriteString(msgA);
+	lcdWriteData(' ');
+	lcdWriteData(0);
+	lcdWriteData(' ');
+	lcdWriteData(0);
+
 	lcdSelectRow(1);
 	lcdWriteString(msgB);
 

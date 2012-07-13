@@ -23,6 +23,7 @@
 #include <STC89.H>
 #include "lib_uty001.h"
 #include "hw_rz51v2.h"
+#include "lcd_lib001.h"
 
 #define DELAYSHORT	500
 
@@ -111,12 +112,59 @@ void lcdClearScreen(void)
 
 } /* lcdClear */
 
+void lcdInit(void)
+{
+	lcdWriteCmd(0x30|LCD_STYLE_2LINES|LCD_STYLE_FONT5X7);	  //8 bit,2 lines, font 5x7
+}/* lcdInit */
+	  
+void lcdSetDisplayMode(unsigned display_mode)
+{
+	lcdWriteCmd(0x08|display_mode);
+}/* lcdSetDisplayMode */
 
+void lcdSetInputMode(unsigned char input_mode,unsigned char input_shift)
+{		   
+	lcdWriteCmd(0x04|input_mode|input_shift);
+}/* lcdSetInputMode */
 
+/*******************************************
+lcdMakeRawFont()
+Input:
 
+ *******************************************/
+ void lcdMakeRawFont(unsigned char c,unsigned char row0, 
+									 unsigned char row1, 
+									 unsigned char row2, 
+									 unsigned char row3, 
+									 unsigned char row4,
+									 unsigned char row5,
+									 unsigned char row6,
+									 unsigned char row7)
+{
+	unsigned char cgAddr =8*c;
 
+	lcdWriteCmd(0x40| cgAddre);
+	lcdWriteData(row0);
 
+	lcdWriteCmd(0x40|(cgAddr+1));
+	lcdWriteData(row1);
 
+	lcdWriteCmd(0x40|(cgAddr+2));
+	lcdWriteData(row2);
+	
+	lcdWriteCmd(0x40|(cgAddr+3));
+	lcdWriteData(row3);
 
+	lcdWriteCmd(0x40|(cgAddr+4));
+	lcdWriteData(row4);
 
+	lcdWriteCmd(0x40|(cgAddr+5));
+	lcdWriteData(row5);
 
+	lcdWriteCmd(0x40|(cgAddr+6));
+	lcdWriteData(row6);
+
+	lcdWriteCmd(0x40|(cgAddr+7));
+	lcdWriteData(row7);
+
+} /* lcdMakeRawFont */
