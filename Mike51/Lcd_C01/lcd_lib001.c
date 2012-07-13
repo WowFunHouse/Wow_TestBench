@@ -32,6 +32,11 @@
 
 #define DELAYSHORT	10
 
+unsigned char	lcdCurrentModeFunction;			// Use to memorize the current status of # of Lines & Fonts
+unsigned char	lcdCurrentModeInput;			// Use to memorize the current status of Input Mode
+unsigned char	lcdCurrentModeDisplay;		  	// Use to memorize the current status of Display Mode
+unsigned char	lcdCurrentModeShifting;			// Use to memorize the current stauts of Shifting
+
 unsigned char lcdCheckBusy(void)
 {
 	unsigned char bf;
@@ -116,6 +121,28 @@ void lcdSelectRow(unsigned char row)	// Row#1:0, Row#2:1
 
 } /* lcdSelectRow */
 
+void lcdClearRow(unsigned char row)
+{
+	unsigned char n;
+	unsigned char currentModeInput;
+	
+	currentModeInput = lcdCurrentModeInput;
+
+	lcdSetInputMode(LCD_INPUT_INC | LCD_INPUT_SHIFT_OFF);
+
+	lcdSelectRow(row);
+
+	for (n=0; n<40; n++)
+	{
+		lcdWriteData(' ');
+	}
+
+	lcdSetInputMode(currentModeInput);
+
+	lcdSelectRow(row);
+
+} /* lcdClearRow */
+
 void lcdClearScreen(void)
 {
 	lcdWriteCmd(0x1);			// Clear LCD Screen
@@ -125,21 +152,35 @@ void lcdClearScreen(void)
 
 void lcdInit(void)
 {
-	lcdWriteCmd(0x30 | LCD_STYLE_2LINES | LCD_STYLE_FONT5X7);	// 8-bit, 2lines, font:5x7
+	lcdCurrentModeFunction = LCD_STYLE_2LINES | LCD_STYLE_FONT5X7;	// 8-bit, 2lines, font:5x7
+
+	lcdWriteCmd(0x30 | lcdCurrentModeFunction);
 
 } /* lcdInit */
 
-void lcdSetDisplayMode(unsigned display_mode)
+void lcdSetDisplayMode(unsigned char mode)
 {
-	lcdWriteCmd(0x08 | display_mode);
+	lcdCurrentModeDisplay = mode;
+
+	lcdWriteCmd(0x08 | lcdCurrentModeDisplay);
 
 } /* lcdSetDisplayMode */
 
-void lcdSetInputMode(unsigned char input_mode, unsigned char input_shift)
+void lcdSetInputMode(unsigned char mode)
 {
-	lcdWriteCmd(0x04 | input_mode | input_shift);
+	lcdCurrentModeInput = mode;
+
+	lcdWriteCmd(0x04 | lcdCurrentModeInput);
 
 } /* lcdSetInputMode */
+
+void lcdSetShiftMode(unsigned char mode)
+{
+	lcdCurrentModeShifting = mode;
+
+	lcdWriteCmd(0x10 | lcdCurrentModeShifting);
+
+} /* lcdSetShiftMode */
 
 /***************************************************
  lcdMakeRawFont() - Use this to create a new font

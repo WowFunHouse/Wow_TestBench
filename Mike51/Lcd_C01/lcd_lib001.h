@@ -54,23 +54,25 @@
 void lcdWriteData(unsigned char dData);
 void lcdWriteString(char *str);
 
-void lcdSelectRow(unsigned char row);	// Row#1:0, Row#2:1
+void lcdSelectRow(unsigned char row);	// Row#1:0, Row#2:1	Cursor on 1st position of row
 void lcdClearRow(unsigned char row);
 void lcdClearCurrentRow(void);
 void lcdClearRestOfRow(unsigned char row);
 void lcdClearRestOfCurrentRow(void);
 
-void lcdSetDisplayMode(unsigned display_mode);
+void lcdSetDisplayMode(unsigned char mode);
 
-void lcdSetInputMode(unsigned char input_mode, unsigned char input_shift);
+void lcdSetInputMode(unsigned char mode);
 void lcdSetInputShiftOn(void);
 void lcdSetInputShiftOff(void);
 void lcdSetInputInc(void);
 void lcdSetInputDec(void);
 
+void lcdSetShiftMode(unsigned char mode);
+
 void lcdSetPosition(unsigned char row, unsigned char pos);
 void lcdPutChar(unsigned char row, unsigned char pos, char c);
-unsigned char lcdGetCursorPost(void);
+unsigned char lcdGetCursorPos(void);
 
 /***************************************************
  lcdMakeRawFont() - Use this to create a new font

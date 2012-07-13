@@ -41,7 +41,8 @@ void main(void)
 	char msgA[]="Wow8051";
 	char msgB[]="Wow is Great!!!";
 
-	unsigned char n;
+	unsigned char currentDisplayMode;
+	unsigned char i, n;
 
 	lcdInit();				// Set 2 lines, font:5x7
 
@@ -61,10 +62,11 @@ void main(void)
 	}
 
 	lcdClearScreen();
-	lcdSetInputMode(LCD_INPUT_INC, LCD_INPUT_SHIFT_OFF);
+	lcdSetInputMode(LCD_INPUT_INC | LCD_INPUT_SHIFT_OFF);
 
 	/* try to show all 8 pre-programmed special characters */
 //	for (n=0; n<8; n++)
+
 //	{
 //		lcdWriteData(n);
 //	}
@@ -75,19 +77,46 @@ void main(void)
 	lcdSelectRow(1);
 	lcdWriteString(msgB);
 
-	lcdSetDisplayMode(LCD_DMODE_DISPLAY_ON | 
-					  LCD_DMODE_CURSOR_OFF  |
-					  LCD_DMODE_CURSOR_BLINK_OFF);
+	currentDisplayMode = LCD_DMODE_DISPLAY_ON | 
+						 LCD_DMODE_CURSOR_OFF |
+					 	 LCD_DMODE_CURSOR_BLINK_OFF;
 
-	n=0;
-	for (;;)
+	lcdSetDisplayMode(currentDisplayMode);
+
+	for (n=0;;)
 	{
 		lcdSelectRow(0);
-		lcdWriteData(n++);
+		lcdWriteData(n);
 
-		if (n>=8) n=0;
+		if (n>=8)
+		{
+			n=0;
+			for (i=0; i<3; i++)
+			{
+				lcdSetDisplayMode(LCD_DMODE_DISPLAY_OFF);
+				delay(10000);
+				lcdSetDisplayMode(currentDisplayMode);
+				delay(20000);
+			}
+		}
 
-		delay(15000);
+		delay(40000);
+
+		if (n++ < 4)
+		{
+			lcdClearRow(0);
+			lcdWriteString("  * ");
+			lcdWriteString(msgA);
+			lcdSetShiftMode(LCD_SHIFT_MSG | LCD_SHIFT_RIGHT);
+			lcdClearRow(1);
+			lcdWriteString(msgB);
+		}
+		else
+		{
+			lcdClearRow(1);
+			lcdWriteString("Come back! Ha! Ha!");
+			lcdSetShiftMode(LCD_SHIFT_MSG | LCD_SHIFT_LEFT);
+		}
 	}
 
 } /* main */
