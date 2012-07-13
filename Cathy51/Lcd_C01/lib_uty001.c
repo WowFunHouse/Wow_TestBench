@@ -6,7 +6,7 @@ Library of supporting utilities
 
  Created on:		2012-07-09
  Created by:		Cathy
-******************************************************************/
+ ******************************************************************/
 
 void delay(unsigned int delaycount)
 {

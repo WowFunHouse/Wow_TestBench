@@ -23,10 +23,6 @@
 					JPBG “∫æß±≥π‚Ã¯œﬂ≤Â…œ
 					≤Â…œ1602LCD“∫æß
 
- V3.0				Use array for the LCD messages
- V4.0				Add a string pointer to handle string
- V5.0				Use a function to handle message string
- v6.0				Add Select Row
  ******************************************************************/
 #define RS 			P20
 #define RW 			P21
