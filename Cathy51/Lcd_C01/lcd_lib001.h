@@ -37,23 +37,35 @@ Library of supporting utilities
 void lcdWriteData(unsigned char dData);
 void lcdWriteString(char *str);
  
-void lcdSelectRow(unsigned char row);  		// row: 0, 1
+void lcdSelectRow(unsigned char row);  		// Row#1:0, Row#2:1	Cursor on 1st position of row
 void lcdClearRow(unsigned char row);
 void lcdClearCurrentRow(void);
-void lcdClearRestOfRow(void);
+void lcdClearRestOfRow(unsigned char row);
+void lcdClearRestOfCurrentRow(void);
 																    
-void lcdSetDisplayMode(unsigned char display_mode); 
+void lcdSetDisplayMode(unsigned char mode); 
 
-void lcdSetInputMode(unsigned char input_mode ,unsigned char input_shift);
+void lcdSetInputMode(unsigned char mode);
+void lcdSetInputShiftOn(void);
+void lcdSetInputShiftOff(void);
+void lcdSetInputInc(void);
+void lcdSetInputDec(void);
 
-/***************************************************************************
+void lcdSetShiftMode(unsigned char mode);
+
+void lcdSetPosition(unsigned char row, unsigned char pos);
+void lcdPutChar(unsigned char row, unsigned char pos, char c);
+unsigned char lcdGetCursorPos(void);
+
+/**************************************************************
 lcdMakeRawFont() - Use thisto create a new font
 Input:
 	c: chraacter code (0-7)
-	row0 - row7: dotmatrix colums from top to bottom
+	row0 - row7: dotmatrix rows from top to bottom
 				 valid bits b0 - b4 from right to left
 Output: N/A
- ****************************************************************************/
+ **************************************************************/
+
 void lcdMakeRawFont(unsigned char c, unsigned char row0, 
 									 unsigned char row1,
 									 unsigned char row2,
@@ -62,8 +74,20 @@ void lcdMakeRawFont(unsigned char c, unsigned char row0,
 									 unsigned char row5,
 									 unsigned char row6,
 									 unsigned char row7);
-						
-void lcdInit(void);		   //2lines, Font:5x7
+
+/**************************************************************
+lcdMakeRawFont() - Use thisto create a new font
+Input:
+	c: chraacter code (0-7)
+	*row0: dotmatrix rows(8 rows) from top to bottom
+		   valid bits b0 - b4 from right to left
+Output: N/A
+ **************************************************************/
+void lcdMakeFont(unsigned char c, char *row);						
+void lcdInit(void);		   	//2lines, Font:5x7
 
 void lcdClearScreen(void);
+
+void lcdEfxBounce(unsigned char row, char *str, unsigned int speed);
+void lcdEfxRoll(unsigned char row, char *str, unsigned char dir, unsigned int speed);
 

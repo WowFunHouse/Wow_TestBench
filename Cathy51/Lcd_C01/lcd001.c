@@ -24,11 +24,25 @@
 					≤Â…œ1602LCD“∫æß
  ******************************************************************/
 #include "lcd_lib001.h"
+#include "lib_uty001.h"
 
 void main(void)
 {
+//	char font[]= {0x06, 0x09, 0x09, 0x06, 0x03, 0x1a, 0x05, 0x08};
+	char mario[][8] = {{0x06, 0x09, 0x09, 0x06, 0x03, 0x1a, 0x05, 0x08},		
+					   {0x09, 0x09, 0x06, 0x03, 0x1a, 0x05, 0x08, 0x06},
+					   {0x09, 0x06, 0x03, 0x1a, 0x05, 0x08, 0x06, 0x09},
+					   {0x06, 0x03, 0x1a, 0x05, 0x08, 0x06, 0x09, 0x09},
+					   {0x03, 0x1a, 0x05, 0x08, 0x06, 0x09, 0x09, 0x06},
+					   {0x1a, 0x05, 0x08, 0x06, 0x09, 0x09, 0x06, 0x03},
+					   {0x05, 0x08, 0x06, 0x09, 0x09, 0x06, 0x03, 0x1a},
+					   {0x08, 0x06, 0x09, 0x09, 0x06, 0x03, 0x1a, 0x05}};
+
 	char msgA[12]="I Love 8051";
 	char msgB[]="Wow digital post";
+
+	unsigned char currentDisplayMode;
+	unsigned char i, n;
 
 	lcdInit();							 //	8-bit, 2lines,5x7 font
 
@@ -40,21 +54,60 @@ void main(void)
 					   LCD_DMODE_CURSOR_ON |
 					   LCD_DMODE_CURSOR_BLINK_ON);	
 
-	lcdMakeRawFont(0, 0x06, 0x09, 0x09, 0x06, 0x03, 0x1a, 0x05, 0x08);
+//	lcdMakeRawFont(0,font);
+	for (n=0; n<8; n++)
+	{
+		lcdMakeFont(n, mario[n]);
+	}
 
 	lcdClearScreen();
-	lcdSetInputMode (LCD_INPUT_INC , LCD_INPUT_SHIFT_OFF);
+	lcdSetInputMode(LCD_INPUT_INC | LCD_INPUT_SHIFT_OFF);
 
-
-	lcdWriteData(0);
 	lcdWriteData(' ');
-	lcdSelectRow(0);
 	lcdWriteString(msgA);
+
 	lcdSelectRow(1);					
 	lcdWriteString(msgB);
+
+	currentDisplayMode = LCD_DMODE_DISPLAY_ON | 
+						 LCD_DMODE_CURSOR_OFF |
+					 	 LCD_DMODE_CURSOR_BLINK_OFF;
+	
+	lcdSetDisplayMode(currentDisplayMode);
   
-	for(;;);
+	for(n=0;;)
+	{
+		lcdSelectRow(0);
+		lcdWriteData(n);
 
+		if (n>=8)
+		{
+			n=0;
+			for (i=0; i<3; i++)
+			{
+				lcdSetDisplayMode(LCD_DMODE_DISPLAY_OFF);
+				delay(10000);
+				lcdSetDisplayMode(currentDisplayMode);
+				delay(20000);
+			}
+		}
+			delay(40000);
+
+			if (n++ <4)
+			{
+				lcdClearRow(0);
+				lcdWriteString(" * ");
+				lcdWriteString(msgA);
+				lcdSetShiftMode(LCD_SHIFT_MSG | LCD_SHIFT_RIGHT);
+				lcdClearRow(1);
+				lcdWriteString(msgB);
+			}
+			else
+			{
+				lcdClearRow(1);
+				lcdWriteString("Come back! Ha! Ha!");
+				lcdSetShiftMode(LCD_SHIFT_MSG | LCD_SHIFT_LEFT);
+			}
+		}
+	
 } /* main */
-
-
