@@ -100,12 +100,6 @@ void lcdWriteData(unsigned char dData)
 
 } /* lcdWriteData */
 
-void lcdClearScreen(void)
-{
-	lcdWriteCmd(0x01);
-			
-} /* lcdClearScreen */
-
 void lcdWriteString(char *str)
 {
  	unsigned int n;
@@ -136,7 +130,7 @@ void lcdClearRow(unsigned char row)
 
 	currentModeInput = lcdCurrentModeInput;
 
-	lcdSetInput(LCD_INPUT_INC | LCD_INPUT_SHIFT_OFF);
+	lcdSetInput(LCD_INPUT_INC);
 
 	lcdSelectRow(row);  
 
@@ -151,6 +145,12 @@ void lcdClearRow(unsigned char row)
 
 } /* lcdClearRow */
 
+void lcdClearScreen(void)
+{
+	lcdWriteCmd(0x01);
+			
+} /* lcdClearScreen */
+
 void lcdInit(void)
 {
 	lcdCurrentModeFunction = LCD_STYLE_2LINES | LCD_STYLE_FONT5X7;	  //8-bit, 2Line, font:5x7  
@@ -163,15 +163,8 @@ void lcdSetDisplay(unsigned char mode)
 	lcdCurrentModeDisplay = mode;
 
  	lcdWriteCmd(0x08 | lcdCurrentModeDisplay);
+
 } /* lcdSetDisplay */
-
-
-#define LCD_DMODE_DISPLAY_OFF			0
-#define LCD_DMODE_DISPLAY_ON			0x04	
-#define LCD_DMODE_CURSOR_OFF			0
-#define LCD_DMODE_CURSOR_ON				0x02
-#define	LCD_DMODE_CURSOR_BLINK_OFF		0
-#define LCD_DMODE_CURSOR_BLINK_ON		0x01
 
 void lcdSetInput(unsigned char mode)
 {
@@ -191,7 +184,7 @@ void lcdSetInputShiftOn(void)
 
 void lcdSetInputShiftOff(void)
 {
-	lcdCurrentModeInput &= LCD_INPUT_SHIFT_ON; 
+	lcdCurrentModeInput &= ~LCD_INPUT_SHIFT_ON; 
 
 	lcdWriteCmd(0x04 | lcdCurrentModeInput);
 
@@ -207,14 +200,11 @@ void lcdSetInputInc(void)
 
 void lcdSetInputDec(void)
 {
-	lcdCurrentModeInput &= LCD_INPUT_INC; 
+	lcdCurrentModeInput &= ~LCD_INPUT_INC; 
 
 	lcdWriteCmd(0x04 | lcdCurrentModeInput);
 	
 } /* lcdSetInputDec */
-
-
-
 
 void lcdSetShifting(unsigned char mode)
 {

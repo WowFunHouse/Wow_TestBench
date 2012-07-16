@@ -52,9 +52,9 @@ void main(void)
 //	lcdWriteCmd(0x0F);					//	Display:On Cursor:On Blink:On	lcdWriteCmd(0x38);					//
 //	lcdWriteCmd(0x06);					//	Input mode; Increment, Non-shift
 
-	lcdSetDisplay (LCD_DMODE_DISPLAY_ON |
-					LCD_DMODE_CURSOR_ON |
-					LCD_DMODE_CURSOR_BLINK_ON);	
+	lcdSetDisplay (LCD_DISPLAY_ON |
+					LCD_CURSOR_ON |
+					LCD_CURSOR_BLINK_ON);	
 
 //	lcdMakeRawFont(0,font);
 	for (n=0; n<8; n++)
@@ -63,7 +63,7 @@ void main(void)
 	}
 
 	lcdClearScreen();
-	lcdSetInput(LCD_INPUT_INC | LCD_INPUT_SHIFT_OFF);
+	lcdSetInput(LCD_INPUT_INC );
 
 	lcdWriteData(' ');
 	lcdWriteString(msgA);
@@ -71,9 +71,9 @@ void main(void)
 	lcdSelectRow(1);					
 	lcdWriteString(msgB);
 
-	currentDisplayMode = LCD_DMODE_DISPLAY_ON | 
-						 LCD_DMODE_CURSOR_OFF |
-					 	 LCD_DMODE_CURSOR_BLINK_OFF;
+	currentDisplayMode = LCD_DISPLAY_ON | 
+						 LCD_CURSOR_OFF |
+					 	 LCD_CURSOR_BLINK_OFF;
 	
 	lcdSetDisplay(currentDisplayMode);
   
