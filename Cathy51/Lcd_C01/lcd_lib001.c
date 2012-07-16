@@ -32,21 +32,27 @@
 
 #define DELAYSHORT  100
 
+unsigned char lcdCurrentModeFunction;			// Use to memorize the current status of # of Lines & Fonts
+unsigned char lcdCurrentModeInput;			// Use to memorize the current status of Input Mode
+unsigned char lcdCurrentModeDisplay;		  	// Use to memorize the current status of Display Mode
+unsigned char lcdCurrentModeShifting;			// Use to memorize the current stauts of Shifting
 
 unsigned char lcdCheckBusy(void)
 {
 	unsigned char bf;
 
 	DATAPORT = 0xFF;					// Set port ready for Input
-
 	BF = 1;   							// Set Pin ready for Input
-	EN = 0;  						
+
+	EN = 0;  							// Ready to create a transition of EN: Low->High
 	RS = 0;
 	RW = 1;
 	EN = 1;
-	delay(DELAYSHORT);
+	delay(DELAYSHORT);				    // Wait for the BF to be stable
 	bf = BF;
 	EN = 0;
+	RS = 1;				// Optional to set it to RAM Select
+	RW = 1;				// Optional to set it to READ
 
 	return bf;
 			
@@ -54,7 +60,7 @@ unsigned char lcdCheckBusy(void)
 
 void lcdWaitUntilReady(void) 
 {
-	while(lcdCheckBusy()== 1);
+	while (lcdCheckBusy()== 1);
 
 } /* lcdWaitUntilReady */
 
@@ -62,13 +68,15 @@ void lcdWriteCmd(unsigned char cmd)
 {
 	lcdWaitUntilReady();
 
+    EN = 0;								 // Ready to create a transition of EN: Low->High
 	RS = 0;
 	RW = 0;
 	DATAPORT = cmd;
-	delay(DELAYSHORT);
+	delay(DELAYSHORT);					 // Optional - wait for data stable
 	EN = 1;
-	delay(DELAYSHORT);
+	delay(DELAYSHORT);					 // Wait for LCD to complete the read cycle
 	EN = 0;
+	RS = 1;
 	RW = 1;
 
 } /* lcdWriteCmd */
@@ -77,14 +85,15 @@ void lcdWriteData(unsigned char dData)
 {
 	lcdWaitUntilReady();
 
+	EN = 0;
 	RS = 1;
 	RW = 0;
-	EN = 0;
 	DATAPORT = dData;
 	delay(DELAYSHORT);
 	EN = 1;
 	delay(DELAYSHORT);
 	EN = 0;
+	RS = 1;
 	RW = 1;
 
 } /* lcdWriteData */
@@ -105,42 +114,79 @@ void lcdWriteString(char *str)
 	}
 } /* lcdWriteString */
 
-void lcdSelectRow(unsigned char row)  	// row: 0, 1
+void lcdSelectRow(unsigned char row)  	// Row#1:0, Row#2:1
 {
 	if(row == 0)
 	{
 		lcdWriteCmd(0x80 | 0x00);	
 	}
-	else					   			// row != 0
+	else					   			// Row #1 (!= 0)
 	{
-		lcdWriteCmd(0x80 | 0x40);		//	0xC0
+		lcdWriteCmd(0x80 | 0x40);		// Row #2 (0xC0)
 	}
 		
 } /* lcdSelectRow */
 
+void lcdClearRow(unsigned char row)
+{
+	unsigned char n;
+	unsigned char currentModeInput;
+
+	currentModeInput = lcdCurrentModeInput;
+
+	lcdSetInputMode(LCD_INPUT_INC | LCD_INPUT_SHIFT_OFF);
+
+	lcdSelectRow(row);  
+
+	for (n=0; n<40; n++)
+	{
+		lcdWriteData(' ');
+	}
+	
+	lcdSetInputMode(currentModeInput);
+
+	lcdSelectRow(row);
+
+} /* lcdClearRow */
+
 void lcdInit(void)
 {
-	lcdWriteCmd(0x30 | LCD_STYLE_2LINES |LCD_STYLE_FONT5X7);    //8-bit,2Line, 5x7
+	lcdCurrentModeFunction = LCD_STYLE_2LINES | LCD_STYLE_FONT5X7;	  //8-bit, 2Line, font:5x7  
+	lcdWriteCmd(0x30 | lcdCurrentModeFunction);    
 
-}/* lcdInit */
+} /* lcdInit */
 
-void lcdSetDisplayMode(unsigned char display_mode)
+void lcdSetDisplayMode(unsigned char mode)
 {
- 	lcdWriteCmd(0x08 | display_mode);
+	lcdCurrentModeDisplay = mode;
+
+ 	lcdWriteCmd(0x08 | lcdCurrentModeDisplay);
 }
 
-void lcdSetInputMode(unsigned char input_mode ,unsigned char input_shift)
+void lcdSetInputMode(unsigned char mode)
 {
-	lcdWriteCmd(0x04 | input_mode |input_shift);
-}
+	lcdCurrentModeInput = mode;
 
+	lcdWriteCmd(0x04 | lcdCurrentModeInput);
 
-/***************************************************************************
+} /* lcdSetInputMode */
+
+void lcdSetShiftMode(unsigned char mode)
+{
+	lcdCurrentModeShifting = mode;
+
+	lcdWriteCmd(0x10 | lcdCurrentModeShifting);
+
+} /* lcdSetShiftMode */
+
+/******************************************************
 lcdMakeRawFont() - Use thisto create a new font
 Input:
 	c: chraacter code (0-7)
-	row0 - row7: dotmatrix colums from
-****************************************************************************/
+	row0 - row7: dotmatrix rows from top to bottom 
+				 valid bits b0 - b4 from right to left
+Output: N/A
+ ******************************************************/
 void lcdMakeRawFont(unsigned char c, unsigned char row0, 
 									 unsigned char row1,
 									 unsigned char row2,
@@ -175,24 +221,30 @@ void lcdMakeRawFont(unsigned char c, unsigned char row0,
 
 	lcdWriteCmd(0x40| cgAddr+7);
 	lcdWriteData(row7);
-}
 
-/***************************************************************************
+} /* lcdMakeRawFont */
+
+/***************************************************
 lcdMakeRawFont() - Use thisto create a new font
 Input:
 	c: chraacter code (0-7)
-	row0 - row7: dotmatrix colums from top to bottom
-				 valid bits b0 - b4 from right to left
+	*row: dotmatrix rows (8 rows) from top to bottom
+		  valid bits b0 - b4 from right to left
 Output: N/A
-****************************************************************************/
+ **************************************************/
 
-//void lcdMakeFont(unsigned char *row)
-//{
-//	for (n=0, n<8, n++)
-//	{
-//		lcdWritecmd(0x40|*row)
-//
-//	}
-//}
+void lcdMakeFont(unsigned char c,  char *row)
+{
+	unsigned char cgAddr;
+	unsigned char n;
+	
+	cgAddr = 8*c;
+
+	for (n=0; n<8; n++)
+	{
+		lcdWriteCmd(0x40 | cgAddr + n );
+		lcdWriteData(row[n]);
+	}
+} /* lcdMakeFont */
 
 
