@@ -6,6 +6,8 @@
 
  Creared on:	2012-07-10
  Creared by:	Amanda Li
+ 
+ Board:			RichMCU RZ-51V2.0
 
  Conmnection:	LCD pins as below - 
 				RS			P20
@@ -17,12 +19,9 @@
 				Remove JPP0	 - Disable LEDs
 				Add JPBG	 - Enable LCD Back Light				
  **********************************************************************/
-#include <STC89.H>
-
-#define RS			P20
-#define RW			P21
-#define EN			P22
-
+#define	RS			P20
+#define	RW			P21
+#define	EN			P22
 #define BF			P07
 
 #define DATAPORT	P0
