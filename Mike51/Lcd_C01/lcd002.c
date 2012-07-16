@@ -1,0 +1,124 @@
+/****************************************************************************
+ File:		lcd002.c
+
+ LCD Testing
+
+ Version:		1.0
+ Description:	Try to show 2 lines with homemade characters
+
+ Created on:	2012-07-09
+ Created by:	Michael
+
+ Board:			RichMCU RZ-51V2.0
+
+ Connection:	LCD pins as below -
+ 				RS - P20
+				RW - P21
+				EN - P22
+				DATAPORT - P0
+
+ Jumpers:		Remove JPSMG - Disable 7-Segment LEDs
+ 				Remove JPP0  - Disable LEDs
+				Add JPBG     - Enable LCD Back Light
+
+				将 JPSMG 数码管控制跳线拔掉使数码管停止工作。
+ 				将 JPP0 跳线端的跳线帽拔掉以免干扰1602 液晶显示
+				插上1602LCD液晶
+				将 JPBG 液晶背光跳线插上
+****************************************************************************/
+#include "lib_uty001.h"
+#include "lcd_lib001.h"
+
+void main(void)
+{
+	char mario[][8]={{0x06, 0x09, 0x09, 0x06, 0x03, 0x1a, 0x05, 0x08},
+					 {0x09, 0x09, 0x06, 0x03, 0x1a, 0x05, 0x08, 0x06},
+					 {0x09, 0x06, 0x03, 0x1a, 0x05, 0x08, 0x06, 0x09},
+					 {0x06, 0x03, 0x1a, 0x05, 0x08, 0x06, 0x09, 0x09},
+					 {0x03, 0x1a, 0x05, 0x08, 0x06, 0x09, 0x09, 0x06},
+					 {0x1a, 0x05, 0x08, 0x06, 0x09, 0x09, 0x06, 0x03},
+					 {0x05, 0x08, 0x06, 0x09, 0x09, 0x06, 0x03, 0x1a},
+					 {0x08, 0x06, 0x09, 0x09, 0x06, 0x03, 0x1a, 0x05}};
+
+	char msgA[]="Wow8051";
+	char msgB[]="Wow is Great!!!";
+
+	unsigned char currentDisplayMode;
+	unsigned char i, n;
+
+	lcdInit();				// Set 2 lines, font:5x7
+
+	lcdSetDisplayMode(LCD_DMODE_DISPLAY_ON | 
+					  LCD_DMODE_CURSOR_ON  |
+					  LCD_DMODE_CURSOR_BLINK_ON);
+
+//	lcdMakeRawFont(0, 0x01, 0x02, 0x04, 0x08, 0x10, 0x11, 0x0a, 0x11);
+
+//	lcdMakeRawFont(0, 0x04, 0x0b, 0x04, 0x07, 0x1a, 0x04, 0x08, 0x10);
+//	lcdMakeRawFont(1, 0x06, 0x09, 0x09, 0x06, 0x03, 0x1a, 0x05, 0x08);
+
+	/* Setup all 8 self-made special characters */
+	for (n=0; n<8; n++)
+	{
+		lcdMakeFont(n, mario[n]);
+	}
+
+	lcdClearScreen();
+	lcdSetInputMode(LCD_INPUT_INC | LCD_INPUT_SHIFT_OFF);
+
+	/* try to show all 8 pre-programmed special characters */
+//	for (n=0; n<8; n++)
+
+//	{
+//		lcdWriteData(n);
+//	}
+
+	lcdWriteData(' ');
+	lcdWriteString(msgA);
+
+	lcdSelectRow(1);
+	lcdWriteString(msgB);
+
+	currentDisplayMode = LCD_DMODE_DISPLAY_ON | 
+						 LCD_DMODE_CURSOR_OFF |
+					 	 LCD_DMODE_CURSOR_BLINK_OFF;
+
+	lcdSetDisplayMode(currentDisplayMode);
+
+	for (n=0;;)
+	{
+		lcdSelectRow(0);
+		lcdWriteData(n);
+
+		if (n>=8)
+		{
+			n=0;
+			for (i=0; i<3; i++)
+			{
+				lcdSetDisplayMode(LCD_DMODE_DISPLAY_OFF);
+				delay(10000);
+				lcdSetDisplayMode(currentDisplayMode);
+				delay(20000);
+			}
+		}
+
+		delay(40000);
+
+		if (n++ < 4)
+		{
+			lcdClearRow(0);
+			lcdWriteString("  * ");
+			lcdWriteString(msgA);
+			lcdSetShiftMode(LCD_SHIFT_MSG | LCD_SHIFT_RIGHT);
+			lcdClearRow(1);
+			lcdWriteString(msgB);
+		}
+		else
+		{
+			lcdClearRow(1);
+			lcdWriteString("Come back! Ha! Ha!");
+			lcdSetShiftMode(LCD_SHIFT_MSG | LCD_SHIFT_LEFT);
+		}
+	}
+
+} /* main */
