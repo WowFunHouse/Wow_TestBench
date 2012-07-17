@@ -1,4 +1,6 @@
 /************************************************
+ File:			lib_uty001.c
+
  Library of supporting utilitles
 
  Version:		0.01
@@ -14,4 +16,4 @@ void delay(unsigned int delaycount)
 
 	for (t=0; t<delaycount; t++);
 
-}/* delay */
+} /* delay */
