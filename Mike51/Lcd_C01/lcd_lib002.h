@@ -46,12 +46,24 @@
 void lcdWriteData(unsigned char dData);
 void lcdWriteString(char *str);
 
-void lcdSelectRow(unsigned char row);	// Row#1:0, Row#2:1	Cursor on 1st position of row
-void lcdSelectRowPosition(unsigned char row, unsigned char pos);
 void lcdClearRow(unsigned char row);
 void lcdClearCurrentRow(void);
 void lcdClearRestOfRow(unsigned char row);
 void lcdClearRestOfCurrentRow(void);
+
+// row: 0 - 1
+void lcdSelectRow(unsigned char row);	// Row#1:0, Row#2:1	Cursor on 1st position of row
+void lcdSelectRowPosition(unsigned char row, unsigned char pos);
+void lcdSelectPosition(unsigned char row, unsigned pos);
+
+// addr: 0x00 - 0x27, 0x40 - 0x67
+void lcdSelectDDRAMAddr(unsigned addr);
+void lcdSelectCGRAMAddr(unsigned addr);
+
+// row: 0 - 1, pos: 0 - 39
+void lcdPutCharAtPos(unsigned char row, unsigned char pos, char c);
+
+unsigned char lcdGetCursorPos(void);
 
 void lcdClearScreen(void);
 
@@ -83,10 +95,6 @@ void lcdSetFunction1Line(void);
 void lcdSetFunctionFont5x7(void);
 void lcdSetFunctionFont5x10(void);
 
-void lcdSetPosition(unsigned char row, unsigned char pos);
-void lcdPutChar(unsigned char row, unsigned char pos, char c);
-unsigned char lcdGetCursorPos(void);
-
 /***************************************************
  lcdMakeRawFont() - Use this to create a new font
  Input:
@@ -115,10 +123,5 @@ void lcdMakeRawFont(unsigned char c, unsigned char row0,
 void lcdMakeFont(unsigned char c, char *row);
 void lcdInit(void);							// 2lines, Font:5x7
 
-
 void lcdEfxBounce(unsigned char row, char *str, unsigned int speed);
 void lcdEfxRoll(unsigned char row, char *str, unsigned char dir, unsigned int speed);
-
-
-
-

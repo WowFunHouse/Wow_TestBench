@@ -27,7 +27,7 @@
 				将 JPBG 液晶背光跳线插上
 ****************************************************************************/
 #include "lib_uty001.h"
-#include "lcd_lib001.h"
+#include "lcd_lib002.h"
 
 void main(void)
 {
@@ -48,9 +48,9 @@ void main(void)
 
 	lcdInit();				// Set 2 lines, font:5x7
 
-	lcdSetDisplayMode(LCD_DMODE_DISPLAY_ON | 
-					  LCD_DMODE_CURSOR_ON  |
-					  LCD_DMODE_CURSOR_BLINK_ON);
+	lcdSetDisplay(LCD_DISPLAY_ON | 
+				  LCD_DISPLAY_CURSOR_ON  |
+				  LCD_DISPLAY_CURSOR_BLINK_ON);
 
 //	lcdMakeRawFont(0, 0x01, 0x02, 0x04, 0x08, 0x10, 0x11, 0x0a, 0x11);
 
@@ -64,7 +64,7 @@ void main(void)
 	}
 
 	lcdClearScreen();
-	lcdSetInputMode(LCD_INPUT_INC | LCD_INPUT_SHIFT_OFF);
+	lcdSetInput(LCD_INPUT_INC);
 
 	/* try to show all 8 pre-programmed special characters */
 //	for (n=0; n<8; n++)
@@ -79,12 +79,11 @@ void main(void)
 	lcdSelectRow(1);
 	lcdWriteString(msgB);
 
-	currentDisplayMode = LCD_DMODE_DISPLAY_ON | 
-						 LCD_DMODE_CURSOR_OFF |
-					 	 LCD_DMODE_CURSOR_BLINK_OFF;
+	currentDisplayMode = LCD_DISPLAY_ON;
 
-	lcdSetDisplayMode(currentDisplayMode);
-
+	lcdSetDisplay(currentDisplayMode);
+	lcdSetShiftingMsg();
+	
 	for (n=0;;)
 	{
 		lcdSelectRow(0);
@@ -95,9 +94,9 @@ void main(void)
 			n=0;
 			for (i=0; i<3; i++)
 			{
-				lcdSetDisplayMode(LCD_DMODE_DISPLAY_OFF);
+				lcdSetDisplayOff();
 				delay(10000);
-				lcdSetDisplayMode(currentDisplayMode);
+				lcdSetDisplay(currentDisplayMode);
 				delay(20000);
 			}
 		}
@@ -109,7 +108,7 @@ void main(void)
 			lcdClearRow(0);
 			lcdWriteString("  * ");
 			lcdWriteString(msgA);
-			lcdSetShiftMode(LCD_SHIFT_MSG | LCD_SHIFT_RIGHT);
+			lcdSetShiftingRight();
 			lcdClearRow(1);
 			lcdWriteString(msgB);
 		}
@@ -117,7 +116,7 @@ void main(void)
 		{
 			lcdClearRow(1);
 			lcdWriteString("Come back! Ha! Ha!");
-			lcdSetShiftMode(LCD_SHIFT_MSG | LCD_SHIFT_LEFT);
+			lcdSetShiftingLeft();
 		}
 	}
 
