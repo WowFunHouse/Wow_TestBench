@@ -28,6 +28,7 @@
 #include <STC89.H>
 #include "lib_uty001.h"
 #include "hw_rz51v2.h"
+#include "hw_lcd1602.h"
 #include "lcd_lib002.h"
 
 #define DELAYSHORT	10

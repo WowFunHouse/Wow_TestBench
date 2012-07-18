@@ -4,7 +4,7 @@
  LCD Driver Library Header File
 
  Version:		0.01
- Description:	LCD 1602 Driver Header
+ Description:	LCD 1602 Driver Header (Hitachi HD44780 Chip)
 
  Created on:	2012-07-14
  Created by:	Michael
@@ -43,31 +43,29 @@
 // void lcdWaitUntilReady(void);
 
 // void lcdWriteCmd(unsigned char cmd);
-void lcdWriteData(unsigned char dData);
-void lcdWriteString(char *str);
+unsigned char lcdWriteData(unsigned char dData);
+unsigned char lcdWriteString(char *str);
+
+unsigned char lcdSelectDDRAMAddr(unsigned addr);	// Rtn: True/False
+unsigned char lcdSelectCGRAMAddr(unsigned addr);	// Rtn: True/False
+
+unsigned char lcdGetCursorAddress(void);
+unsigned char lcdGetCurrentRow(void);
+unsigned char lcdGetCursorCurrentPos(void);
+ 
+void lcdPutCharAtPos(unsigned char row, unsigned char pos, char c);
 
 void lcdClearRow(unsigned char row);
 void lcdClearCurrentRow(void);
 void lcdClearRestOfRow(unsigned char row);
 void lcdClearRestOfCurrentRow(void);
 
-// row: 0 - 1
-void lcdSelectRow(unsigned char row);	// Row#1:0, Row#2:1	Cursor on 1st position of row
-void lcdSelectRowPosition(unsigned char row, unsigned char pos);
-void lcdSelectPosition(unsigned char row, unsigned pos);
-
-// addr: 0x00 - 0x27, 0x40 - 0x67
-void lcdSelectDDRAMAddr(unsigned addr);
-void lcdSelectCGRAMAddr(unsigned addr);
-
-// row: 0 - 1, pos: 0 - 39
-void lcdPutCharAtPos(unsigned char row, unsigned char pos, char c);
-
-unsigned char lcdGetCursorPos(void);
+void lcdCursorReset(void);
 
 void lcdClearScreen(void);
-
-void lcdCursorReset(void);
+void lcdSelectRow(unsigned char row);
+void lcdSelectRowPosition(unsigned char row, unsigned char pos);
+void lcdSelectPosition(unsigned char row, unsigned pos);
 
 void lcdSetInput(unsigned char mode);
 void lcdSetInputShiftOn(void);
