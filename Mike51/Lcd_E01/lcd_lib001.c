@@ -111,15 +111,31 @@ void lcdWriteString(char *str)
 
 } /* lcdWriteString */
 
+void lcdSetDisplay(unsigned char mode)
+{
+	lcdCurrentModeDisplay = mode;
+
+	lcdWriteCmd(LCD_CMD_SET_DISPLAY | lcdCurrentModeDisplay);
+
+} /* lcdSetDisplay */
+	
+void lcdSetInput(unsigned char mode)
+{
+	lcdCurrentModeInput = mode;
+
+	lcdWriteCmd(LCD_CMD_SET_INPUT | lcdCurrentModeInput);
+
+} /* lcdSetInput */
+
 void lcdSelectRow(unsigned char row)	// Row#1:0, Row#2:1
 {
 	if (row == 0)
 	{
-		lcdWriteCmd(0x80); 				// Row #1
+		lcdWriteCmd(LCD_CMD_SET_DDRAM); 			// Row #1
 	}
 	else
 	{
-		lcdWriteCmd(0x80 | 0x40); 		//  Row #2
+		lcdWriteCmd(LCD_CMD_SET_DDRAM | 0x40); 		//  Row #2
 	}
 
 } /* lcdSelectRow */
@@ -131,7 +147,7 @@ void lcdClearRow(unsigned char row)
 	
 	currentModeInput = lcdCurrentModeInput;
 
-	lcdSetInput(LCD_INPUT_INC);
+	lcdSetInputInc();
 
 	lcdSelectRow(row);
 
@@ -148,40 +164,24 @@ void lcdClearRow(unsigned char row)
 
 void lcdClearScreen(void)
 {
-	lcdWriteCmd(0x1);			// Clear LCD Screen
+	lcdWriteCmd(LCD_CMD_CLEAR_SCREEN);			// Clear LCD Screen
 
 } /* lcdClear */
 
-
 void lcdInit(void)
 {
-	lcdCurrentModeFunction = LCD_STYLE_2LINES;		// 8-bit, 2lines, font:5x7
+	lcdCurrentModeFunction = LCD_FUNC_2LINES;		// 8-bit, 2lines, font:5x7
 
-	lcdWriteCmd(0x30 | lcdCurrentModeFunction);
+	lcdWriteCmd(LCD_CMD_SET_FUNCTION | LCD_FUNC_DL8 | 
+				lcdCurrentModeFunction);
 
 } /* lcdInit */
-
-void lcdSetDisplay(unsigned char mode)
-{
-	lcdCurrentModeDisplay = mode;
-
-	lcdWriteCmd(0x08 | lcdCurrentModeDisplay);
-
-} /* lcdSetDisplay */
-
-void lcdSetInput(unsigned char mode)
-{
-	lcdCurrentModeInput = mode;
-
-	lcdWriteCmd(0x04 | lcdCurrentModeInput);
-
-} /* lcdSetInput */
 
 void lcdSetInputShiftOn(void)
 {
 	lcdCurrentModeInput |= LCD_INPUT_SHIFT_ON;
 
-	lcdWriteCmd(0x04 | lcdCurrentModeInput);
+	lcdWriteCmd(LCD_CMD_SET_INPUT | lcdCurrentModeInput);
 
 } /* lcdSetInputShiftOn */
 
@@ -189,7 +189,7 @@ void lcdSetInputShiftOff(void)
 {
 	lcdCurrentModeInput &= ~LCD_INPUT_SHIFT_ON;
 
-	lcdWriteCmd(0x04 | lcdCurrentModeInput);
+	lcdWriteCmd(LCD_CMD_SET_INPUT | lcdCurrentModeInput);
 		
 } /* lcdSetInputShiftOff */
 
@@ -197,7 +197,7 @@ void lcdSetInputInc(void)
 {
 	lcdCurrentModeInput |= LCD_INPUT_INC;
 
-	lcdWriteCmd(0x04 | lcdCurrentModeInput);
+	lcdWriteCmd(LCD_CMD_SET_INPUT | lcdCurrentModeInput);
 
 } /* lcdSetInputInc */
 
@@ -205,7 +205,7 @@ void lcdSetInputDec(void)
 {	
 	lcdCurrentModeInput &= ~LCD_INPUT_INC;
 
-	lcdWriteCmd(0x04 | lcdCurrentModeInput);
+	lcdWriteCmd(LCD_CMD_SET_INPUT | lcdCurrentModeInput);
 
 } /*  lcdSetInputDec */
 
@@ -215,9 +215,9 @@ void lcdSetInputDec(void)
 	c: character code (0 - 7)
 	row0-row7: dotmatrix rows from top to bottom
 			   valid bits b0 - b4 from right to left
- Output: N/A
+ Output: 0:Ok 1:Error
  ***************************************************/
-void lcdMakeRawFont(unsigned char c, unsigned char row0,
+unsigned char lcdMakeRawFont(unsigned char c, unsigned char row0,
 									 unsigned char row1, 
 									 unsigned char row2, 
 									 unsigned char row3, 
@@ -226,31 +226,46 @@ void lcdMakeRawFont(unsigned char c, unsigned char row0,
 									 unsigned char row6,
 									 unsigned char row7)
 {																 
-	unsigned char	cgAddr = 8*c;							   
+	unsigned char	cgAddr;
+	unsigned char	error;
+	
+	if (c > LCD_USRCHAR_CNT)
+	{
+		error = 1;
+	}
+	else
+	{
+		cgAddr = c * LCD_USRCHAR_SIZE;							   
+	
+		lcdWriteCmd(LCD_CMD_SET_CGRAM |  cgAddr);
+		lcdWriteData(row0);
+	
+		lcdWriteCmd(LCD_CMD_SET_CGRAM | (cgAddr+1));
+		lcdWriteData(row1);
+	
+		lcdWriteCmd(LCD_CMD_SET_CGRAM | (cgAddr+2));
+		lcdWriteData(row2);
+	
+		lcdWriteCmd(LCD_CMD_SET_CGRAM | (cgAddr+3));
+		lcdWriteData(row3);
+	
+		lcdWriteCmd(LCD_CMD_SET_CGRAM | (cgAddr+4));
+		lcdWriteData(row4);
+	
+		lcdWriteCmd(LCD_CMD_SET_CGRAM | (cgAddr+5));
+		lcdWriteData(row5);
+	
+		lcdWriteCmd(LCD_CMD_SET_CGRAM | (cgAddr+6));
+		lcdWriteData(row6);
+	
+		lcdWriteCmd(LCD_CMD_SET_CGRAM | (cgAddr+7));
+		lcdWriteData(row7);
 
-	lcdWriteCmd(0x40 |  cgAddr);
-	lcdWriteData(row0);
+		error = 0;
+	}
 
-	lcdWriteCmd(0x40 | (cgAddr+1));
-	lcdWriteData(row1);
 
-	lcdWriteCmd(0x40 | (cgAddr+2));
-	lcdWriteData(row2);
-
-	lcdWriteCmd(0x40 | (cgAddr+3));
-	lcdWriteData(row3);
-
-	lcdWriteCmd(0x40 | (cgAddr+4));
-	lcdWriteData(row4);
-
-	lcdWriteCmd(0x40 | (cgAddr+5));
-	lcdWriteData(row5);
-
-	lcdWriteCmd(0x40 | (cgAddr+6));
-	lcdWriteData(row6);
-
-	lcdWriteCmd(0x40 | (cgAddr+7));
-	lcdWriteData(row7);
+	return error;
 
 } /* lcdMakeRawFont */
 
@@ -260,21 +275,32 @@ void lcdMakeRawFont(unsigned char c, unsigned char row0,
 	c: character code (0 - 7)
 	*row: dotmatrix rows (8 rows) from top to bottom
 		  valid bits b0 - b4 from right to left
- Output: N/A
+ Output: status - 1:OK, 0: fail
  *****************************************************/
-void lcdMakeFont(unsigned char c, char *row)
+unsigned char lcdMakeFont(unsigned char c, char *row)
 {
 	unsigned char	cgAddr;
+	unsigned char	error;
 	unsigned char	n;
 
-	cgAddr = 8*c;
-
-	for (n=0; n<8; n++)
+	if (c > LCD_USRCHAR_CNT)
 	{
-		lcdWriteCmd(0x40 | cgAddr + n);
-		lcdWriteData(row[n]);
+		error = 1;
 	}
+	else
+	{
+		cgAddr = c * LCD_USRCHAR_SIZE;
 	
-} /* lcdMakeFont */																 
+		for (n=0; n<LCD_USRCHAR_SIZE; n++)
+		{
+			lcdWriteCmd(LCD_CMD_SET_CGRAM | cgAddr + n);
+			lcdWriteData(row[n]);
+		}
+		error = 0;
+	}
+	return error;
+	
+} /* lcdMakeFont */
+															 
 
 

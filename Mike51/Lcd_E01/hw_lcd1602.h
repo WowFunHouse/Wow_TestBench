@@ -15,8 +15,8 @@
 #define LCD_ADDR_ROW0				0x00
 #define LCD_ADDR_ROW1				0x40
 #define LCD_CGRAM_ADDR				0x00
-#define LCD_USRCHR_SIZE				8	// Size of per character
-#define LCD_USRCHR_CNT				8	// Total number of user defined characters
+#define LCD_USRCHAR_SIZE			8	// Size of per character
+#define LCD_USRCHAR_CNT				8	// Total number of user defined characters
 
 #define	LCD_WINDOW_LENGTH			16
 #define	LCD_WINDOW_ROWS				2

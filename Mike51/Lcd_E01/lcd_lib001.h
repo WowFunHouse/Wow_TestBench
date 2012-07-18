@@ -36,8 +36,18 @@
 #define	LCD_SHIFT_MSG					0x08
 #define	LCD_SHIFT_RIGHT					0x04
 
-#define LCD_STYLE_2LINES				0x08
-#define	LCD_STYLE_FONT5X10				0x04
+#define	LCD_FUNC_DL8					0x10
+#define LCD_FUNC_2LINES					0x08
+#define	LCD_FUNC_FONT5X10				0x04
+
+#define	LCD_CMD_CLEAR_SCREEN			0x01
+#define	LCD_CMD_CURSOR_RESET			0x02
+#define	LCD_CMD_SET_INPUT				0x04
+#define	LCD_CMD_SET_DISPLAY				0x08
+#define	LCD_CMD_SET_SHIFTING			0x10
+#define	LCD_CMD_SET_FUNCTION			0x20
+#define	LCD_CMD_SET_CGRAM				0x40
+#define	LCD_CMD_SET_DDRAM				0x80			
 
 // unsigned char lcdCheckBusy(void);
 // void lcdWaitUntilReady(void);
@@ -46,8 +56,8 @@
 void lcdWriteData(unsigned char dData);
 void lcdWriteString(char *str);
 
-unsigned char lcdSelectDDRAMAddr(unsigned addr);	// Rtn: True/False
-unsigned char lcdSelectCGRAMAddr(unsigned addr);	// Rtn: True/False
+unsigned char lcdSelectDDRAMAddr(unsigned addr);	// Rtn: 0:OK 1:Err
+unsigned char lcdSelectCGRAMAddr(unsigned addr);	// Rtn: 0:OK 1:Err
 
 unsigned char lcdGetCursorAddress(void);
 unsigned char lcdGetCurrentRow(void);
@@ -67,7 +77,7 @@ void lcdSelectRow(unsigned char row);
 void lcdSelectRowPosition(unsigned char row, unsigned char pos);
 void lcdSelectPosition(unsigned char row, unsigned pos);
 
-void lcdSetInput(unsigned char mode);
+//void lcdSetInput(unsigned char mode);
 void lcdSetInputShiftOn(void);
 void lcdSetInputShiftOff(void);
 void lcdSetInputInc(void);
@@ -99,9 +109,9 @@ void lcdSetFunctionFont5x10(void);
 	c: character code (0 - 7)
 	row0-row7: dotmatrix rows from top to bottom
 			   valid bits b0 - b4 from right to left
- Output: N/A
+ Output: 0:Ok 1:Error
  ***************************************************/
-void lcdMakeRawFont(unsigned char c, unsigned char row0,
+unsigned char lcdMakeRawFont(unsigned char c, unsigned char row0,
 									 unsigned char row1, 
 									 unsigned char row2, 
 									 unsigned char row3, 
@@ -116,9 +126,9 @@ void lcdMakeRawFont(unsigned char c, unsigned char row0,
 	c: character code (0 - 7)
 	*row: dotmatrix rows (8 rows) from top to bottom
 		  valid bits b0 - b4 from right to left
- Output: N/A
+ Output: 0:OK, 1:Error
  *****************************************************/
-void lcdMakeFont(unsigned char c, char *row);
+unsigned char lcdMakeFont(unsigned char c, char *row);
 void lcdInit(void);							// 2lines, Font:5x7
 
 void lcdEfxBounce(unsigned char row, char *str, unsigned int speed);

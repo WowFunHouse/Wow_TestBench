@@ -1,5 +1,5 @@
 /****************************************************************************
- File:			lcd001.c
+ File:			lcd_main001.c
 
  LCD Demo
 
@@ -29,9 +29,14 @@
 #include "lib_uty001.h"
 #include "lcd_lib001.h"
 
-#define	DEBUG_USRCHAR
-#undef	DEBUG_USRCHAR
+#define		DELAYLONG		30000
 
+//#define		LCD_DEMO_ANIM_CHAR
+#define		LCD_DEMO_FLIP_ROW
+
+//#define	DEBUG_USRCHAR
+
+#ifdef	LCD_DEMO_ANIM_CHAR
 void lcdDemoAnimatedChar(void)
 {
 	char mario[][8]={{0x06, 0x09, 0x09, 0x06, 0x03, 0x1a, 0x05, 0x08},
@@ -46,8 +51,7 @@ void lcdDemoAnimatedChar(void)
 	char msgA[]="Wow8051";
 	char msgB[]="Wow is Great!!!";
 
-	unsigned char currentDisplayMode;
-	unsigned char i, n;
+	unsigned char n;
 
 	lcdInit();				// Set 2 lines, font:5x7
 
@@ -86,16 +90,60 @@ void lcdDemoAnimatedChar(void)
 	{
 		lcdSelectRow(0);
 		lcdWriteData(n);
-		delay(20000);
+		delay(DELAYLONG);
 	}
 #endif
-
 } /* lcdDemoAnimatedChar */
+#endif
+
+#ifdef	LCD_DEMO_FLIP_ROW
+void lcdDemoFlip(void)
+{
+	char msgA[]="I Love 8051";
+	char msgB[]="Wow is Great!!!";
+
+	unsigned char n;
+
+	lcdInit();				// Set 2 lines, font:5x7
+
+	lcdSetDisplay(LCD_DISPLAY_ON);
+
+	lcdClearScreen();
+	lcdSetInputInc();
+	lcdSetInputShiftOff();
+
+	for (n=0; n<3; n++)
+	{
+		lcdClearRow(0);
+		lcdSelectRow(0);
+		lcdWriteString(msgA);
+		lcdClearRow(1);
+		lcdSelectRow(1);
+		lcdWriteString(msgB);
+		delay(DELAYLONG);
+
+		lcdClearRow(0);
+		lcdSelectRow(0);
+		lcdWriteString(msgB);
+		lcdClearRow(1);
+		lcdSelectRow(1);
+		lcdWriteString(msgA);
+		delay(DELAYLONG);
+	}
+} /* lcdDemoFlip */
+#endif
 
 void main(void)
 {
 	for (;;)
 	{
+#ifdef	LCD_DEMO_ANIM_CHAR
 		lcdDemoAnimatedChar();
+#endif
+
+#ifdef	LCD_DEMO_FLIP_ROW
+		lcdDemoFlip();
+#endif
 	}
 } /* main */
+
