@@ -1,10 +1,11 @@
 /*********************************************************************
+ File:          Lcd_lib002.c
  LCD Driver Library
 
  Version:		0.01  
  Description:	Lcd 1602 Driver
 
- Created on:	2012-07-09
+ Created on:	2012-07-16
  Created by:	Carol
 
  Board:			RichMCU RZ-51V2.0
@@ -26,6 +27,15 @@
 #include "lcd_lib001.h"
 
 #define DELAYSHORT	500
+
+unsigned char lcdCurrentModeInput;
+status of Input Mode
+unsigned char lcdCurrentModeDisplay;
+status of Display Mode
+unsigned char lcdCurrentModeShifting;
+status of Shifting
+unsigned char lcdCurrentModeFunction;
+status of #	of Lines & Fonts
 
 unsigned char lcdCheckBusy(void)			   //1:busy,  0:poady;  
 {
@@ -104,29 +114,82 @@ void lcdSelectRow(unsigned char row)
 	{
 		lcdWriteCmd(0x80|0x40);
 	}
-} /* lcdSelectRow */
+} /* lcdSelectRow */ 
+
+void lcdClearRow(unsigned char row)
+{
+ 	unsigned char n;
+	unsigned char currentModeInput;
+
+	currentModeInput=lcdcurrentModeInput;
+
+	lcdSetInput(LCD_INPUT_INC);
+
+	lcdSeletRow(row);
+
+	for (n=0;n<40;n++)
+	{
+		lcdWriteData(' ');
+	}
+	lcdInpu(currentModeInput);
+
+	lcdSeletRow(row); 
+
+} /* lcdClearRow */
 
 void lcdClearScreen(void)
-{
+{															  
 	lcdWriteCmd(0x01);			   // Clear LCD screen
 
 } /* lcdClear */
 
 void lcdInit(void)
 {
-	lcdWriteCmd(0x30|LCD_STYLE_2LINES|LCD_STYLE_FONT5X7);	  //8 bit,2 lines, font 5x7
-}/* lcdInit */
+	lcdCurrenModeFunction=LCD_STYLE_2LINES;
+	lcdWriteCmd(0x30 | lcdCurrentModeFunction);	  //8 bit,2 lines, font 5x7
+			 
+} /* lcdInit */
 	  
-void lcdSetDisplayMode(unsigned display_mode)
+void lcdSetDisplay(unsigned char mode)
 {
 	lcdWriteCmd(0x08|display_mode);
-}/* lcdSetDisplayMode */
 
-void lcdSetInputMode(unsigned char input_mode,unsigned char input_shift)
+} /* lcdSetDisplay */
+
+void lcdSetInput(unsigned char input_mode,unsigned char input_shift)
 {		   
 	lcdWriteCmd(0x04|input_mode|input_shift);
-}/* lcdSetInputMode */
 
+} /* lcdSetInputMode */
+
+void lcdSetInputShiftOn(void)
+{
+	lcdCursorModeInput|
+
+} /* lcdSetInputShiftOn */
+
+void lcdSetInputShiftOff(void)
+{				
+	lcd	
+
+} /* lcdSetInputShiftOff */
+
+void lcdSetInputInc(void)
+{
+
+} /* lcdSetInputInc */
+
+void lcdSetInputDec(void)
+
+{
+
+} /* lcdSetInputInc */
+
+void lcdSetShifting(unsigned char mode)
+{
+
+} /* lcdSetShifting */
+		
 /*******************************************
 lcdMakeRawFont()
 Input:
@@ -143,7 +206,7 @@ Input:
 {
 	unsigned char cgAddr =8*c;
 
-	lcdWriteCmd(0x40| cgAddre);
+	lcdWriteCmd(0x40| cgAddr);
 	lcdWriteData(row0);
 
 	lcdWriteCmd(0x40|(cgAddr+1));

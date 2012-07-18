@@ -1,10 +1,11 @@
 /*********************************************************************
+ File:          Lcd002.c
  LCD Testing
 
  Version:		0.01
  Description:	Show 2 lines of messages on 1602 LCD module
-
- Created on:	2012-07-09
+						 
+ Created on:	2012-07-16
  Created by:	Carol
 
  Board:			RichMCU RZ-51V2.0
@@ -28,9 +29,9 @@ void main(void)
 	char msgB[]="Good Day!";	
 
 	lcdInit();								            //set 2 lines,font 5x7
-	lcdSetDisplayMode(LCD_DMODE_DISPLAY_ON|
+	lcdSetDisplay(LCD_DMODE_DISPLAY_ON|
 	                   LCD_DMODE_CURSOR_ON|
-					   LCD_DMODE_CURSOR_BLINK_ON);
+					   LCD_DMODE_CURSOR_BLING_ON);
 
 //	lcdMakeFont(0,0x01,0x02,0x04,0x08,0x10,0x11,0x0a,0x11);
 //	lcdMakeFont(0,0x04,0x0b,0x04,0x08,0x10,0x11,0x0a,0x11);
@@ -39,7 +40,7 @@ void main(void)
 	lcdMakeFont(0,font0);
 							  
 	lcdClearScreen();
-	lcdSetInputMode(LCD_INPUT_INC,LCD_INPUT_SHIFT_OFF);
+	lcdSetInput(LCD_INPUT_INC,LCD_INPUT_SHIFT_OFF);
 
 	lcdWriteData(0);
 	lcdWriteData(' ');
