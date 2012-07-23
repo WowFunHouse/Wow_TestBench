@@ -4,7 +4,7 @@
  LCD Dribver Library Header File
 
  Version:		0.01
- Description:	Driver of LCD 1602 module
+ Description:	LCD 1602 Driver Header
 
  Created on:	2012-07-16
  Created by:	Carol
@@ -43,40 +43,56 @@
 void lcdWriteData(unsigned char dData);
 void lcdWriteString(char *str);
 
-void lcdSelectDDRAMAddr(unsigned addr);
-void lcdSelectCGRAMAddr(unsigned addr);
+//addr:0x00 - 0x27, 0x40 - 0x67
+unsigned char lcdSeletDDRAMAddr(unsigned addr);
+unsigned char lcdSeletCGRAMAddr(unsigned addr);
 
-
-void lcdSeleRow(unsigned char row);			   //ROW#:1,ROW#2:0
-void lcdSeleRowPosition(unsigned char row,unsigned char pos);
-void lcdClearRow(unsigned char row);
-void lcdClearCurrentRow(void);
-void lcdClearRestOfRow(unsigned char row);
-void lcdClearRestOfCurrentRow(void);
-
-void lcdClearScreen(void);
+unsigned char lcdGetCursorPos(void);
+void lcdPutCharAtPos(unsigned char row,unsigned char pos,char c);
 
 void lcdCursorReset(void);
 
-void lcdSeletRowPosition(unsigned char row);
-void lcdSetDisplay(unsigned display_mode);
- 
+void lcdClearRowScreen(void);
+void lcdClearRow(unsigned char row);
+voie lcdClearCurrentRow(void);
+void lcdClearRestOfRow(unsigned char row);
+void lcdClearRestOfCurrentRow(void);
+
+//row: 0 - 1
+void lcdSeleRow(unsigned char row);			   //ROW#1:0,ROW#2:1 Cursor on 1status
+void lcdSeleRowPosition(unsigned char row,unsigned char pos);
+void lcdSelectPosition(unsigned char row,unsigned pos);
+
 void lcdSetInput(unsigned char mode);
 void lcdSetInputShiftOn(void);
 void lcdSetInputShiftOff(void);
 void lcdSetInputInc(void);
 void lcdSetInputDec(void);
 
-void lcdSetShifting(void);
-void lcdSetFuntion(unsigned char mode);
+void lcdSetDisplay(unsigned char mode);
+void lcdSetDisplayOn(void);
+void lcdSetDisplayOff(void);
+void lcdSetDisplayCursorOn(void);
+void lcdSetDisplayCursorOff(void);
+void lcdSetDisplayCursorBlinkOn(void);
+void lcdSetDisplayCursorBlinkOff(void);
+ 
+void lcdSetShifting(unsigned char mode);
+void lcdSetShiftingMsg(void);
+void lcdSetShiftingCursor(void);
+void lcdSetShiftingRight(void);
+void lcdSetShiftingLeft(void);
 
-void lcdSetPosition(unsigned char row,unsigned char pos);
-void lcdPutChar(unsigned char row,unsigned char pos,char c);
-unsigned char lcdGetCursorPost(void);
+void lcdSetFuntion(unsigned char mode);
+void lcdSetFunction2Lines(void);
+void lcdSetFunction1Lines(void);
+void lcdSetFunctionFont5x7(void);
+void lcdSetFunctionFont5x10(void);
 
 /********************************************************************
-lcdMakeF
+lcdMakeRawFont() - Use this to creata a new font
 Input:
+	c:
 
  ********************************************************************/
 void lcdMadeRawFont(unsigned char c,unsigned char row0,		
@@ -93,11 +109,8 @@ lcdMakeFont()
 Input:
 
  ********************************************************************/
-void lcdMadeFont(unsigned char c,unsigned char row);
-
-
-void lcdInit(void);					        //2 lines,Fones 5x7
-void lcdClearScreen(void);
+void lcdMadeFont(unsigned char c,char *row);
+void lcdInit(void);					        //2 lines,Fones: 5x7
 
 void lcdEfxBounce(unsigned char row,char *str,unsigned int speed);
 void lcdEfxRoll(unsigned char row,char *str,unsigned char dir,unsigned int speed); 

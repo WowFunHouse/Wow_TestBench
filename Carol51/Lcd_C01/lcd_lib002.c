@@ -3,7 +3,7 @@
  LCD Driver Library
 
  Version:		0.01  
- Description:	Lcd 1602 Driver
+ Description:	LCD 1602 Driver
 
  Created on:	2012-07-16
  Created by:	Carol
@@ -24,18 +24,18 @@
 #include <STC89.H>
 #include "lib_uty001.h"
 #include "hw_rz51v2.h"
-#include "lcd_lib001.h"
+#include "lcd_lib002.h"
 
 #define DELAYSHORT	500
-
-unsigned char lcdCurrentModeInput;
-status of Input Mode
-unsigned char lcdCurrentModeDisplay;
-status of Display Mode
-unsigned char lcdCurrentModeShifting;
+												   
+unsigned char lcdCurrentModeInput;			    //Use to memorize the current
+status of Input Mode						    
+unsigned char lcdCurrentModeDisplay;			//Use to memorize the current
+status of Display Mode							
+unsigned char lcdCurrentModeShifting;			//Use to memorize the current
 status of Shifting
-unsigned char lcdCurrentModeFunction;
-status of #	of Lines & Fonts
+unsigned char lcdCurrentModeFunction;			//Use to memorize the current
+status of #	of Lines & Fonts 
 
 unsigned char lcdCheckBusy(void)			   //1:busy,  0:poady;  
 {
@@ -43,6 +43,7 @@ unsigned char lcdCheckBusy(void)			   //1:busy,  0:poady;
 	
 	DATAPORT=0xff;				// Set DATAPORT ready for input
 	
+	EN=0;
 	RS=0;
 	RW=1;
 	EN=1;				
@@ -149,10 +150,32 @@ void lcdInit(void)
 	lcdWriteCmd(0x30 | lcdCurrentModeFunction);	  //8 bit,2 lines, font 5x7
 			 
 } /* lcdInit */
+
+unsigned char lcdSeletDDRAMAddr(unsigned addr)
+{
+	unsigned char status=0;
+
+	if ((addr >= 0) && (addr<=0x27)) || ((addr >=0x40) && (addr <= 0x67))
+	{
+		status=1;
+	}
+
+	lcdWriteCmd(x80 | addr);
+	
+	return status;
+
+} /* lcdSeletDDRAMAddr */
+
+unsigned char lcdSeletCGRAMAddr(unsigned addr);
+{ 
+
+} /* lcdSeletCGRAMAddr */
+
 	  
 void lcdSetDisplay(unsigned char mode)
 {
-	lcdWriteCmd(0x08|display_mode);
+	lcdCurrentModeDisplay|mode;
+	lcdWriteCmd(0x08|lcdCurrentModeDisplay);
 
 } /* lcdSetDisplay */
 
@@ -206,7 +229,7 @@ Input:
 {
 	unsigned char cgAddr =8*c;
 
-	lcdWriteCmd(0x40| cgAddr);
+	lcdWriteCmd(0x40| cgAddr);		 
 	lcdWriteData(row0);
 
 	lcdWriteCmd(0x40|(cgAddr+1));
