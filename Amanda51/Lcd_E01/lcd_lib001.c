@@ -144,14 +144,83 @@ unsigned char lcdSelectCGRAMAddr(unsigned char addr)
 
 unsigned char lcdGetCursorAddress(void)
 {
+	unsigned char	addr, cursorAddr;
+
+	EN = 0;									// Ready to create a transition of EN: Low->High
+	RS = 0;
+	RW = 1;
+	EN = 1;	
+	delay(DELAYSHORT);						// Wait for the BF to be stable
+	addr = DATAPORT & 0x7F;
+	EN = 0;
+	RS = 1;									// Optional to set it to RAM Select
+	RW = 1;									// Optional to set it to READ
+
+	if (((addr >= 0x00) && (addr <= 0x27)) || ((addr >= 0x40)) && (addr <= 0x67))
+	{
+		cursorAddr = addr;
+	}
+	else
+	{
+		cursorAddr = 0x00;
+	}
+
+	return	cursorAddr;						// addr: 0x00 - 0x27; 0x40 - 0x67
+
 } /* lcdGetCursorAddress */
 
 unsigned char lcdGetCurrentRow(void)
 {
+	unsigned char	row, currentRow;
+
+	EN = 0;									// Ready to create a transition of EN: Low->High
+	RS = 0;
+	RW = 0;
+	EN = 1;	
+	delay(DELAYSHORT);						// Wait for the BF to be stable
+	row = DATAPORT & 0x70;
+	EN = 0;
+	RS = 1;									// Optional to set it to RAM Select
+	RW = 1;									// Optional to set it to READ
+
+	if ((row == 0x00) || (row == 0x10) || (row == 0x20))
+	{
+		currentRow = 0;
+	}
+	else if ((row == 0x40) || (row == 0x50) || (row == 0x60))
+	{
+		currentRow = 1;
+	}
+
+	return	currentRow;
+
 } /* lcdGetCurrentRow */
 
 unsigned char lcdGetCursorCurrentPos(void)
 {
+	unsigned char	pos, currentPos;
+
+	EN = 0;									// Ready to create a transition of EN: Low->High
+	RS = 0;
+	RW = 1;
+	EN = 1;	
+	delay(DELAYSHORT);						// Wait for the BF to be stable
+	pos = DATAPORT & 0x7F;
+	EN = 0;
+	RS = 1;									// Optional to set it to RAM Select
+	RW = 1;									// Optional to set it to READ
+
+	if ((pos <= 0x00) && (pos >= 0x27 ))
+	{
+		currentPos = pos + 1;
+	}
+	else if ((pos <= 0x40) && (pos >= 0x67))
+	{
+		currentPos = pos - 63;
+	}
+	
+	return	currentPos; 
+
 } /* lcdGetCursorCurrentPos */
 
 void lcdPutCharAtPost(unsigned char row, unsigned char pos, char c)
@@ -237,11 +306,22 @@ void lcdSelectRow(unsigned char row)	// Row#1:0, Row#2:1
 
 void lcdSelectRowPosition(unsigned char row, unsigned char pos)
 {
-} /* lcdSelectRowPosition */
+	unsigned char	selectPos;
 
-void lcdSelectPosition(unsigned char row, unsigned pos)
-{
-} /* lcdSelectPosition */
+	lcdSelectRow(row);
+
+	if (row == 0)
+	{
+		selectPos = pos - 1;
+	}
+	else if (row == 1)
+	{
+		selectPos = pos + 63;
+	}
+
+	lcdWriteCmd(0x80 | selectPos);
+
+} /* lcdSelectRowPosition */
 
 void lcdSetInput(unsigned char mode)
 {
