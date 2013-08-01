@@ -4,9 +4,9 @@
  File:			digit001.c
 
  Version:		0.01
- Description:	7-Seqment Test - Display Five in the 3H of 7-Segment LED 
+ Description:	7-Seqment Test 02 - Display Five loop in the 7-Segment LED 
 
- Created on:	2013-07-31
+ Created on:	2013-08-01
  Created by:	
 
  Board:			RichMCU RZ-51V2.0
@@ -33,14 +33,30 @@
 ****************************************************************************/
 #include <STC89.H>
 
+void delay(unsigned int t)
+{
+	unsigned	x;
+
+	for(x=0; x<t; x++);
+} /* delay */
+
 void main(void)
 {
+	char	a;
+	char	b;
+
 	for(;;)
 	{
 		//P0 = 0x92;
 		P0 = ~0x6d;
 
 		//P2 = 0xfb;
-		P2 = ~0x04;
+		//P2 = ~0x04;
+		for(a=1, b=1; a<=8; a++, b=b*2)
+		{
+			P2 = ~b;
+			delay(10000);
+		}
+
 	}
 } /* main */
