@@ -4,7 +4,9 @@
  File:			digit001.c
 
  Version:		0.01
- Description:	7-Seqment Test 02 - Display Five loop in the 7-Segment LED 
+ Description:	7-Seqment Test 02 - Display Five loop in the 7-Segment 
+ 				Plan A: a 为次数，b = bx2
+				Plan B: a 为次数，b = 向左移动一位 
 
  Created on:	2013-08-01
  Created by:	
@@ -52,10 +54,11 @@ void main(void)
 
 		//P2 = 0xfb;
 		//P2 = ~0x04;
-		for(a=1, b=1; a<=8; a++, b=b*2)
+//		for(a=1, b=1; a<=8; a++, b=b*2)
+		for(a=1, b=1; a<=8; a++, b=b<<1)
 		{
 			P2 = ~b;
-			delay(10000);
+			delay(100000);
 		}
 
 	}
