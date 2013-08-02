@@ -12,6 +12,7 @@
 *.uvopt
 *.bak
 *.hex
+*.i
 Output/
 #*.
 
