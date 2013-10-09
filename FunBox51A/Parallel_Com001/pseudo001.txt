@@ -1,0 +1,47 @@
+sendData()
+{
+	Set P0 as output to send data;
+	Set P1.0 as output for -DR;		/* 0:Data Ready    | 1:Data Not Ready */
+	Set P1.1 as input for ACK;		/* 0:Data Not Rxd  | 1:Data Received by peer */
+
+	i=0;
+
+	DR=1; 		/* Data Not-Ready */
+	
+	for (;;)
+	{
+		P0=++i;		/* Send data out */
+
+		DR=0;		/* Data Ready */
+	
+		while (ACK == 0) {}; 	/* Wait for Ack */
+
+		DR=1;		/* Wait for next data */
+	}
+}
+
+revData()
+{
+	Set P0 as Input to receive data;\
+	Set P1.0 as Input for -DR;	/* 0:Data Ready    | 1:Data Not Ready */
+	Set P1.1 as Ouptut for ACK;	/* 0:Data not Rxd  | 1:Data Received OK */
+
+	ACK = 0;			/* No data received */s
+
+	for (;;)
+	{
+	  while (DR == 1) {};		/* Wait for data ready */
+
+	  data = P0;
+	  LED = data;			/* Show data */
+
+	  ACK = 1;
+
+	  while (DR == 0);		/* Data still ready? */
+
+	  ACK = 0;			/* Data not valid anymore, clear ACK flag */
+	}			
+}
+
+
+
