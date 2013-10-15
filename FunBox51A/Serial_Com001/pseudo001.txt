@@ -1,0 +1,62 @@
+unsigned char serialTxBusy;			/* 1=Busy; 0=ready */
+
+main()
+{
+	serialInit();
+
+	i=0;
+
+	for(;;)
+	{
+		if (serialTxBusy != 1)
+		{
+			serialTxBusy == 1;
+			serialTx(i++);
+		}
+	}
+}
+
+
+void SerialInit(void)
+{
+	serialTxBusy = 0;
+
+	init serial port:
+	
+	Set Serial port to Mode 0
+
+	Enable Serial Interrupt
+	Enable All Interrupts
+							 
+}
+
+void ISRserial(void) interrupt 
+{
+	if (RI == 1)
+	{
+		c = serialGetChar();
+		actionSerialRx(c);
+		RI = 0;
+	}
+
+	if (TI == 1)
+	{
+	 TI = 0;
+	 serialTxBusy = 0;
+	}
+}
+
+unsigned char serialGetChar(void)
+{
+	c = sbuf; /* read data */
+	clear RI;
+	return c;
+}
+
+void actionSerialRx(unsigned char c)
+{
+	LED=c;
+}
+		
+
+
